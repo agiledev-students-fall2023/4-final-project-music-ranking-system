@@ -18,25 +18,15 @@ Discord is each team's primary communication tool. Each member's communications 
 
 Each team **must have at least one Discord channel** where the professor, and any course assistants, graders, and tutors are also invited to be members:
 
-<<<<<<< HEAD
-- use this channel for general team communication
-- individual participation in this and other channels may be used towards each member's grade
-
-Channel names must be short and consistent. For example, if a team is named `octopus`, their main channel might be called `team-octopus`
-
-=======
 Channel names must be short and consistent. For example, if a team is named `octopus`, their main channel should be called `team-octopus`
 
 - use this channel for general team communication
 - individual participation in this and other channels may be used towards each member's grade
 
->>>>>>> 2b503b8d496e3059af152e2a078c2f0d478bcf30
 ### Private communications channels
 
 Communications within private channels or on communications systems where the stakeholders are not present are not visible to stakeholders and therefore will not be considered analyzing the engagement of any individual or of the team as a whole.
 
-<<<<<<< HEAD
-=======
 ## Synchronize git and GitHub account usernames
 
 In order to allow your managers to track your individual contribution to the project, it is imperative that you use the same username for both `git` on your local computer, where you will be making commits, and `GitHub`, where you will be doing pull requests.
@@ -63,7 +53,6 @@ Here is the full recipe:
 1. **Figure out your git username**: run `git config user.name` to see your git username on your local machine - this is your `git` username.
 1. **If your usernames don't match**, then run this: `git config --global user.name "monalisa"`, where `monalisa` is replaced with your GitHub username. Now your usernames match!
 
->>>>>>> 2b503b8d496e3059af152e2a078c2f0d478bcf30
 ## Configure GitHub repository
 
 GitHub is each team's primary resource for version control, project
@@ -80,11 +69,7 @@ GitHub repositories have been created for each team and are in the control of th
 
 Every project must have a [README.md](./README.md) that automatically renders on the project's main repository page with basic details of the project, including:
 
-<<<<<<< HEAD
-- a description of project, including the [Product Vision Statement](https://knowledge.kitchen/Scrum_development_framework#Product_vision_statement)
-=======
 - a description of project, including the [Product Vision Statement](https://knowledge.kitchen/content/courses/agile-development-and-devops/scrum/product-vision-statement/)
->>>>>>> 2b503b8d496e3059af152e2a078c2f0d478bcf30
 - the core team members, including links to their GitHub accounts and any other web presence they have
 - a short history of how the project came to be and information about how to contribute to the project (i.e. a link to the [CONTRIBUTING.md](./CONTRIBUTING.md) document)
 - instructions for building and testing the project (update with that information once the project reaches that stage)
@@ -144,11 +129,7 @@ Once a particular sprint has begun, all issues representing tasks that have been
 
 ### GitHub task boards
 
-<<<<<<< HEAD
-Each team must create a Task Board for each of the four Sprints following [these setup instructions](https://knowledge.kitchen/GitHub_for_team_collaboration#Project_boards).
-=======
 Each team must create a Task Board for each of the four Sprints following [these setup instructions](https://knowledge.kitchen/content/courses/agile-development-and-devops/scrum/github-task-boards/) (these use the "Classic" type of Task Boards available on GitHub).
->>>>>>> 2b503b8d496e3059af152e2a078c2f0d478bcf30
 
 View a [video overview of setting up a Task Board on GitHub](https://youtu.be/Qasz5fhxIqE).
 
@@ -158,18 +139,10 @@ Each team member must `clone` their team's GitHub repository onto their own loca
 
 ## Create the initial Product Backlog
 
-<<<<<<< HEAD
-Each team must have an initial [Product Backlog](https://knowledge.kitchen/Scrum_development_framework#Product_Backlog) - a set of User Stories that together define the product requirements - based on their understanding of the project so far. This will evolve as teams work on the project, but try to think through and write User Stories for as many features as you can imagine wanting to include in the project.
-=======
 Each team must have an initial [Product Backlog](https://knowledge.kitchen/content/courses/agile-development-and-devops/slides/scrum/#46) - a set of User Stories that together define the product requirements - based on their understanding of the project so far. This will evolve as teams work on the project, but try to think through and write User Stories for as many features as you can imagine wanting to include in the project.
->>>>>>> 2b503b8d496e3059af152e2a078c2f0d478bcf30
 
 Each item in the Product Backlog must be added as an Issue to GitHub's Issue tracker.
 
 View a [video overview of setting up a Product Backlog on GitHub](https://youtu.be/m8ZxTHSKSKE).
 
-<<<<<<< HEAD
-Make sure you understand [how GitHub's Issue tracker works](https://knowledge.kitchen/GitHub_for_team_collaboration#Issues) and attach the `user-story` label to all Issues that represent User Stories.
-=======
 Make sure you understand [how GitHub's Issue tracker works](https://knowledge.kitchen/content/courses/agile-development-and-devops/scrum/github-issues/) and attach the `user-story` label to all Issues that represent User Stories.
->>>>>>> 2b503b8d496e3059af152e2a078c2f0d478bcf30

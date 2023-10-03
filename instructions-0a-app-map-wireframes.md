@@ -4,20 +4,6 @@ Create an **app map** and a complete set of **wireframe diagrams** for the [Mini
 
 ## Software
 
-<<<<<<< HEAD
-All team members must use the same software. **You are not allowed to use platform-specific or proprietary software**, such as Sketch or Figma, unless all members can run the software on their own computers without a paid license.
-
-Use any software of your choice:
-
-- [draw.io](https://draw.io) is recommended for all teams on any platform. It is always free and works wonderfully on the web or as a desktop app.
-- The free trial of [Figma](https://www.figma.com/) is a fantastic cross-platform web app or desktop app for teams that want more commercial-quality tools.
-- Do not use any Adobe products for this exercise.
-
-Both Draw.io and Figma have extensions for Visual Studio Code that, while not a replacement for either app, may be useful for some tasks:
-
-- [Draw.io VSCode Integration](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio)
-- [Figma x VS Code](https://marketplace.visualstudio.com/items?itemName=idered.figma)
-=======
 All team members must use the same software. Use any software of your team's choice:
 
 - The free trial of [Figma](https://www.figma.com/) is a fantastic cross-platform web app or desktop app for teams that want more commercial-quality tools.
@@ -27,7 +13,6 @@ Both Figma and draw.io have extensions for Visual Studio Code that, while not a 
 
 - [Figma VS Code extension](https://marketplace.visualstudio.com/items?itemName=figma.figma-vscode-extension)
 - [Draw.io VSCode extension](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio)
->>>>>>> 2b503b8d496e3059af152e2a078c2f0d478bcf30
 
 ## Wireframe requirements
 
@@ -58,11 +43,7 @@ In this scenario, you would design wireframe diagrams for each of the Dashboard,
 
 ### Diagram widths
 
-<<<<<<< HEAD
-All wireframe diagrams must have exactly the same width... heights can vary as necessary.
-=======
 All wireframe diagrams must have exactly the same width... heights can vary as necessary to fit the content.
->>>>>>> 2b503b8d496e3059af152e2a078c2f0d478bcf30
 
 ### Consistency
 
