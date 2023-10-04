@@ -4,5 +4,8 @@ This repository contains instructions and files for two assignments that togethe
 
 Replace the contents of this file with the completed assignments, as described in:
 
+
+## App Map
+![App map](/ux-design/appmap.png)
 - [app map & wireframe instructions](instructions-0a-app-map-wireframes.md).
 - [prototype instructions](instructions-0b-prototyping.md)
