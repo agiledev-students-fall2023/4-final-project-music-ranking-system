@@ -1,5 +1,33 @@
 # Project Repository
 
+### Project Description
+*project description including product vision statement*
+
+- Product Vision Statement:
+
+### Team Members
+*the core team members w/ Github links*
+ - [Athena Leong](https://github.com/aleong2002)
+ - Jaylyn Bido
+ - Richard Li
+ - Amber Li
+ - Gayatri Rithe
+
+### Project History and Contribution
+*a short history of how the project came to be*
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for information on project contribution.
+
+### Project Building/Testing Instructions
+*update this section with instructions at that project stage*
+
+### Additional Links
+*links to any additional Markdown documents or web pages that may be relevant to the project*
+
+
+
+
+-------------------------------------
 This repository will be used for team projects.
 
 Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
