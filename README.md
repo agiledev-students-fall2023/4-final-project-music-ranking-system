@@ -11,7 +11,7 @@
  - [Jaylyn Bido](https://github.com/jaylynb26)
  - [Richard Li](https://github.com/Silver1793)
  - [Amber Li](https://github.com/al6862)
- - Gayatri Rithe
+ - [Gayatri Rithe](https://github.com/gayatririthe)
 
 ### Project History and Contribution
 *a short history of how the project came to be*
