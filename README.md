@@ -1,9 +1,19 @@
 # Project Repository
 
 ### Project Description
-*project description including product vision statement*
+This web app is for music fans to rank and discuss music.
 
 - Product Vision Statement:
+
+    Users can:
+    * login/logout
+    * search for individual songs
+    * rate individual songs
+    * post written reviews
+    * post comments on written reviews
+    * see other users' profiles
+
+
 
 ### Team Members
 *the core team members w/ Github links*
