@@ -13,7 +13,7 @@
  - [Gayatri Rithe](https://github.com/gayatririthe)
 
 ### Project History and Contribution
-*a short history of how the project came to be*
+As frequent users of Spotify, we found ourselves wanting to learn more about our friend’s opinions on the same songs we listen to. It's also fun to play music critic. When comparing albums, we would each have different rankings/opinions for our favorite songs and realized that having an app that would allow us to input this and view other people’s rankings would help make the music-listening experience even more interactive.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for information on project contribution.
 
