@@ -11,8 +11,6 @@
 - We will follow a forking and feature-branching Git workflow such that when a developer wants to make a change or implement a feature, they will create a branch on the local repository, make the changes, create a pull request, and wait for members of the team to review the changes. If successful, the other members will approve the merge request.
   
 ### Rules of Contributions
-*detailed description of the rules of contributing and any considerations or how and what to contribute*
-
 - The contributions will be related to the user stories the developer is assigned to work and every developer has the responsibility of making contributions and double-checking that the contributions are valid/correct in regard to the project.
 
 ### Instructions for Local Environment
