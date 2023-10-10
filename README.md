@@ -1,19 +1,7 @@
 # Project Repository
 
 ### Project Description
-This web app is for music fans to rank and discuss music.
-
-- Product Vision Statement:
-
-    Users can:
-    * login/logout
-    * search for individual songs
-    * rate individual songs
-    * post written reviews
-    * post comments on written reviews
-    * see other users' profiles
-
-
+Our app is a music ranking app that allows users to view songs and leave rating and comments about their thoughts. Users are allowed to create accounts and choose to log in and log out. They can also search for individual songs that they want to rate as well as look at the current reviews for that song. Users can also comment under these posts or create a post of thier own. Our app also allows for people to view other profiles to see what other posts and comments other users have left.
 
 ### Team Members
  - [Athena Leong](https://github.com/aleong2002)
