@@ -28,7 +28,7 @@ As frequent users of Spotify, we found ourselves wanting to learn more about our
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for information on project contribution.
 
 ### Project Building/Testing Instructions
-*update this section with instructions at that project stage*
+*to be updated at a later stage*
 
 ### Additional Links
 *links to any additional Markdown documents or web pages that may be relevant to the project*
