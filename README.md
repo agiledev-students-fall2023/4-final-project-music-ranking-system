@@ -8,9 +8,9 @@
 ### Team Members
 *the core team members w/ Github links*
  - [Athena Leong](https://github.com/aleong2002)
- - Jaylyn Bido
- - Richard Li
- - Amber Li
+ - [Jaylyn Bido](https://github.com/jaylynb26)
+ - [Richard Li](https://github.com/Silver1793)
+ - [Amber Li](https://github.com/al6862)
  - Gayatri Rithe
 
 ### Project History and Contribution
