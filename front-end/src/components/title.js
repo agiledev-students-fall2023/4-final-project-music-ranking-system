@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-import Image from '../static/notes.png';
 
 function Title() {
   return (
