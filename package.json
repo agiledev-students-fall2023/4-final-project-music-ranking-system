@@ -1,0 +1,15 @@
+{
+  "name": "4-final-project-music-ranking-system",
+  "version": "1.0.0",
+  "description": "- Product Vision Statement: Free expression for every music lover.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "create-react-app": "^5.0.1",
+    "react-router-dom": "^6.17.0"
+  }
+}
