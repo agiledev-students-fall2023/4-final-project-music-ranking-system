@@ -1,8 +1,9 @@
 import React from "react";
 import "../App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import About from "./About";
-import Title from "./Title";
+//leave as lowercase so stays linked
+import About from "./about";
+import Title from "./title";
 import HomepageFeed from "./HomepageFeed";
 import Song from './Song';
 
