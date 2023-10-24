@@ -1,12 +1,14 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 import '../App.css';
 
+//TODO: look at 3-simple-mern-stack, maybe use similar format to messages?
 //TODO: after starting backend, need to add a method: POST and action: (backend path) to form element
 
 function Song() {
   const [data, setData] = useState('hi')
-  axios
+  useEffect(() => {
+    axios
     .get('https://my.api.mockaroo.com/songs.json?key=70e1efa0')
     .then(response => {
       // setData(response.data)
@@ -15,6 +17,7 @@ function Song() {
     .catch(err => {
       console.log(err)
     })
+  }, [])
 
   return (
     <div className="Song">
@@ -33,7 +36,7 @@ function Song() {
           </textarea>
 
           <br/>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Post" />
         </form>
       <h2>Other reviews:</h2>
         <p>EXRATING/10</p>
