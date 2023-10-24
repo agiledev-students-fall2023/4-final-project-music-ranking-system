@@ -3,20 +3,31 @@ import axios from 'axios';
 import '../App.css';
 
 //TODO: look at 3-simple-mern-stack, maybe use similar format to messages?
+  //started to change Song.js, still need to check difference in html, then Message.js and MessageForm.js
 //TODO: learn how to make path specified by song title, something like /:artist/:title
 //TODO: after starting backend, need to add axios.post
 function Song() {
-  const [data, setData] = useState('hi')
+  const [reviews, setReviews] = useState([])
+  const [error, setError] = useState('')
+  const [feedback, setFeedback] = useState('')
+  const addReviewToList = review => {
+    const newReviews = [...reviews, review] 
+    setReviews(newReviews) 
+  }
+
   useEffect(() => {
+    // api: https://mockaroo.com/apis/79178
+    // refdocs: https://knowledge.kitchen/content/courses/agile-development-and-devops/notes/react-intro/#fetch
     axios
-    .get('https://my.api.mockaroo.com/songs.json?key=70e1efa0')
-    .then(response => {
-      // setData(response.data)
-      console.log(response.data)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+      .get(`https://my.api.mockaroo.com/songs/1.json?key=70e1efa0`)
+      .then(response => {
+        const reviews = response.data.reviews
+        setReviews(reviews)
+      })
+      .catch(err => {
+        const errMsg = JSON.stringify(err, null, 2) // convert error object to a string so we can simply dump it to the screen
+        setError(errMsg)
+      })
   }, [])
 
   return (
@@ -42,6 +53,24 @@ function Song() {
         <p>EXRATING/10</p>
         <p>EXUSER - EXREVIEW</p>
     </div>
+
+//     <>
+//       <h1>Leave a message!</h1>
+
+//       {feedback && <p className="MessageForm-feedback">{feedback}</p>}
+//       {error && <p className="MessageForm-error">{error}</p>}
+
+//       <MessageForm
+//         setError={setError}
+//         setFeedback={setFeedback}
+//         addMessageToList={addMessageToList}
+//       />
+
+//       {error && <p className="Messages-error">{error}</p>}
+//       {messages.map(message => (
+//         <Message key={message._id} message={message} />
+//       ))}
+//     </>
   );
 }
 
