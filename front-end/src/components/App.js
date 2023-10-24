@@ -1,8 +1,8 @@
 import React from "react";
 import "../App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import About from "./About";
-import Title from "./Title";
+import About from "./about";
+import Title from "./title";
 import HomepageFeed from "./HomepageFeed";
 
 function App() {
