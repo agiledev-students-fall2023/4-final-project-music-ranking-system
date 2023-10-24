@@ -3,6 +3,7 @@ import '../App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import About from './about';
 import Title from './title';
+import Song from './Song';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Title/>
         <Routes>
           <Route path="/about" element={<About/>}></Route>
+          <Route path="/song" element={<Song/>}></Route>
         </Routes>
       </Router>
     </div>
