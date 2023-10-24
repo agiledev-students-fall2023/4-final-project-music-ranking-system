@@ -2,11 +2,14 @@ import {useState} from 'react';
 import axios from 'axios';
 import '../App.css';
 
+//TODO: after starting backend, need to add a method: POST and action: (backend path) to form element
+
 function Song() {
   const [data, setData] = useState('hi')
   axios
-    .get('https://my.api.mockaroo.com/animals.json?key=d9ddfc40')
+    .get('https://my.api.mockaroo.com/songs.json?key=70e1efa0')
     .then(response => {
+      // setData(response.data)
       console.log(response.data)
     })
     .catch(err => {
@@ -15,8 +18,26 @@ function Song() {
 
   return (
     <div className="Song">
-      <h1>Song Page</h1>
-      <p>{data}</p>
+      <p>ARTIST - TITLE</p>
+      <img src="https://picsum.photos/200" alt="album cover" />
+      <p>RATING/10</p><p/>
+      <p>NUMREVIEWS reviews</p>
+      <h2>Review:</h2>
+        <form>
+          <input type="number" name="rating" min="1" max="10" />
+          <label for="rating"> /10</label>
+
+          <br />
+          <textarea name="message" rows="10" cols="30">
+          My review is written here!
+          </textarea>
+
+          <br/>
+          <input type="submit" value="Submit" />
+        </form>
+      <h2>Other reviews:</h2>
+        <p>EXRATING/10</p>
+        <p>EXUSER - EXREVIEW</p>
     </div>
   );
 }
