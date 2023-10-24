@@ -3,8 +3,8 @@ import axios from 'axios';
 import '../App.css';
 
 //TODO: look at 3-simple-mern-stack, maybe use similar format to messages?
-//TODO: after starting backend, need to add a method: POST and action: (backend path) to form element
-
+//TODO: learn how to make path specified by song title, something like /:artist/:title
+//TODO: after starting backend, need to add axios.post
 function Song() {
   const [data, setData] = useState('hi')
   useEffect(() => {
