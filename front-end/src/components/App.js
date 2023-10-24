@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./about";
 import Title from "./title";
 import HomepageFeed from "./HomepageFeed";
+import Nav from './Nav';
 
 function App() {
   return (
