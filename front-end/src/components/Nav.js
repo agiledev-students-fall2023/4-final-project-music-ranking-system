@@ -7,7 +7,7 @@ function Nav() {
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/search">Search</a></li>
-            <li><a href="/profile">Profile</a></li>
+            <li><a href="/profile-review">Profile</a></li>
             <li><a href="/about">About</a></li>
         </ul>
       </div>
