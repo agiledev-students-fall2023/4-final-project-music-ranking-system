@@ -7,7 +7,7 @@ import HomepageFeed from "./HomepageFeed";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
 import Nav from './Nav';
-import Post from './Post';
+import Post from './Post'
 
 function App() {
   return (
