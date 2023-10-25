@@ -1,25 +1,22 @@
 import React from "react";
-import "../css/Nav.css";
 
 function Nav() {
   return (
-    <div>
-      <div className="title">
-        <a href="/">
-          <img
-            id="logo"
-            src={process.env.PUBLIC_URL + "/notes.png"}
-            alt="music notes"
-          />
-        </a>
-        <div className="nav">
+    <div className="Nav">
+      <ul>
+        <li>
           <a href="/">Home</a>
+        </li>
+        <li>
           <a href="/search">Search</a>
+        </li>
+        <li>
           <a href="/profile-review">Profile</a>
+        </li>
+        <li>
           <a href="/about">About</a>
-        </div>
-        <h1>Music Ranking System</h1>
-      </div>
+        </li>
+      </ul>
     </div>
   );
 }
