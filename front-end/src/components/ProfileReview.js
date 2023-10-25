@@ -12,17 +12,17 @@ function App() {
     {
       songName: 'Candy',
       artistName: 'Doja Cat',
-      albumCover: 'album2.jpg',
+      albumCover: 'https://picsum.photos/200',
     },
     {
       songName: 'Heartless',
       artistName: 'The Weeknd',
-      albumCover: 'album3.jpg',
+      albumCover: 'https://picsum.photos/200',
     },
     {
       songName: 'Popular (with Playboi Carti & Madonna)',
       artistName: 'The Weeknd, Playboi Carti, Madonna',
-      albumCover: 'album4.jpg',
+      albumCover: 'https://picsum.photos/200',
     },
   ];
 
@@ -54,6 +54,41 @@ function App() {
       </div>
       <div className="top-songs">
         <h2>Top Songs</h2>
+        <div className="song-container">
+          {topSongs.map((song, index) => (
+            <div key={index} className="song">
+              <img src={song.albumCover} alt={song.songName} />
+              <p>{song.songName} - {song.artistName}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="activity">
+        <h2>Activity</h2>
+        {userActivity.map((entry, index) => (
+          <div key={index} className="activity-entry">
+            <p>{entry.review}</p>
+            <p>Rating: {entry.rating}/10</p>
+            <p>
+              Review for: <a href="#">{entry.songName}</a>
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  /*
+  return (
+    <div className="profile-review">
+      <div className="logo">
+        <img src="logo.png" alt="Logo" />
+      </div>
+      <div className="profile">
+        <h1>User's Profile</h1>
+      </div>
+      <div className="top-songs">
+        <h2>Top Songs</h2>
         {topSongs.map((song, index) => (
           <div key={index} className="song">
             <img src={song.albumCover} alt={song.songName} />
@@ -73,6 +108,7 @@ function App() {
       </div>
     </div>
   );
+  */
 }
 
 export default App;
