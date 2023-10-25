@@ -20,7 +20,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />;
         </Routes>
       </Router>
-      <Nav />
+      {/* <Nav /> */}
     </div>
   );
 }
