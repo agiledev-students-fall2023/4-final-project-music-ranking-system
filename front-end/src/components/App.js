@@ -6,21 +6,20 @@ import Title from "./title";
 import HomepageFeed from "./HomepageFeed";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
-import Nav from './Nav';
+import Nav from "./Nav";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Title />
+        <Nav />
         <Routes>
           <Route path="/" element={<HomepageFeed />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<LogIn />} />
-          <Route path="/signup" element = {<SignUp />} />;
+          <Route path="/signup" element={<SignUp />} />;
         </Routes>
       </Router>
-      <Nav />
     </div>
   );
 }

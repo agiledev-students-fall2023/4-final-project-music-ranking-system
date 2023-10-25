@@ -1,16 +1,27 @@
-import React from 'react';
+import React from "react";
+import "../css/Nav.css";
 
 function Nav() {
-    return (
-      <div className="Nav">
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/search">Search</a></li>
-            <li><a href="/profile-review">Profile</a></li>
-            <li><a href="/about">About</a></li>
-        </ul>
+  return (
+    <div>
+      <div className="title">
+        <a href="/">
+          <img
+            id="logo"
+            src={process.env.PUBLIC_URL + "/notes.png"}
+            alt="music notes"
+          />
+        </a>
+        <div className="nav">
+          <a href="/">Home</a>
+          <a href="/search">Search</a>
+          <a href="/profile-review">Profile</a>
+          <a href="/about">About</a>
+        </div>
+        <h1>Music Ranking System</h1>
       </div>
-    );
-  }
-  
-  export default Nav;
+    </div>
+  );
+}
+
+export default Nav;

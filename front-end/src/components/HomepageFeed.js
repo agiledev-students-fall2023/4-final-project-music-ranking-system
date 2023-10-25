@@ -10,8 +10,10 @@ export default function HomepageFeed() {
       .then((res) => {
         for (let i = 0; i < 5; i++) {
           const temp = {
-            title: res.data[i].title,
+            artist: res.data[i].artist,
+            song: res.data[i].song,
             cover: res.data[i].cover,
+            rating: res.data[i].rating,
             review: res.data[i].review,
           };
           setReviewObject((prevReviewObject) => [...prevReviewObject, temp]);
@@ -26,6 +28,7 @@ export default function HomepageFeed() {
     display: "flex",
     alignitems: "center",
     borderRadius: "10px",
+    margin: "10px",
     width: "1000px",
     height: "200px",
   };
@@ -42,8 +45,11 @@ export default function HomepageFeed() {
     >
       <div style={style}>
         <img style={{ width: 200, height: 200 }} src={item.cover} alt="temp" />
-        <div>
-          <h1>{item.title}</h1>
+        <div style={{ margin: 10 }}>
+          <h1>
+            {item.artist} -- {item.song}
+          </h1>
+          <h2>{item.rating}/10</h2>
           <p>{item.review}</p>
         </div>
       </div>
