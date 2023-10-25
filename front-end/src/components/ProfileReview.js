@@ -50,7 +50,7 @@ function App() {
         <img src="logo.png" alt="Logo" />
       </div>
       <div className="profile">
-        <h1>User's Profile</h1>
+        <h1>User123</h1>
       </div>
       <div className="top-songs">
         <h2>Top Songs</h2>

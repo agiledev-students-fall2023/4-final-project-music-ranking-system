@@ -5,6 +5,9 @@ import About from "./about";
 import Title from "./title";
 import HomepageFeed from "./HomepageFeed";
 import ProfileReview from "./ProfileReview"; 
+import LogIn from "./LogIn";
+import SignUp from "./SignUp";
+import Nav from "./Nav";
 
 function App() {
   return (
@@ -15,8 +18,11 @@ function App() {
           <Route path="/" element={<HomepageFeed />} />
           <Route path="/about" element={<About />} />
           <Route path="/profile-review" element={<ProfileReview />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/signup" element={<SignUp />} />;
         </Routes>
       </Router>
+      <Nav />
     </div>
   );
 }
