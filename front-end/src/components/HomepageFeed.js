@@ -1,17 +1,23 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import tempImage from "../logo.svg";
+import axios from "axios";
 
 export default function HomepageFeed() {
   const [reviewObject, setReviewObject] = useState([]);
   useEffect(() => {
-    const temp = {
-      title: "HelloWord",
-      cover: tempImage,
-      review: "This is review",
-    };
-    console.log("HERE");
-    setReviewObject((prevReviewObject) => [...prevReviewObject, temp]);
+    axios
+      .get("https://api.mockaroo.com/api/ed7b7f40?count=1000&key=e62d6f80")
+      .then((res) => {
+        for (let i = 0; i < 5; i++) {
+          const temp = {
+            title: res.data[i].title,
+            cover: res.data[i].cover,
+            review: res.data[i].review,
+          };
+          setReviewObject((prevReviewObject) => [...prevReviewObject, temp]);
+        }
+      });
   }, []);
 
   const style = {
