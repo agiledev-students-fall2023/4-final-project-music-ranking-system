@@ -7,6 +7,7 @@ import HomepageFeed from "./HomepageFeed";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
 import Nav from "./Nav";
+import Post from "./Post";
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />;
+          <Route path="/post" element={<Post />} />;
         </Routes>
+        <Nav />
       </Router>
-      {/* <Nav /> */}
     </div>
   );
 }
