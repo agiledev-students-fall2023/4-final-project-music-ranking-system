@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./about";
 import Title from "./title";
 import HomepageFeed from "./HomepageFeed";
+import Nav from './Nav';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/about" element={<About />} />
         </Routes>
       </Router>
+      <Nav />
     </div>
   );
 }
