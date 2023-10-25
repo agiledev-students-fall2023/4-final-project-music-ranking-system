@@ -8,17 +8,19 @@ export default function HomepageFeed() {
     axios
       .get("https://api.mockaroo.com/api/ed7b7f40?count=1000&key=e62d6f80")
       .then((res) => {
-        for (let i = 0; i < 2; i++) {
-          const temp = {
-            artist: res.data[i].artist,
-            song: res.data[i].song,
-            cover: res.data[i].cover,
-            rating: res.data[i].rating,
-            review: res.data[i].review,
-          };
-          setReviewObject((prevReviewObject) => [...prevReviewObject, temp]);
-        }
-      });
+        const data = res.data.slice(0, 2).map((item) => ({
+          title: item.title,
+          artist: item.artist,
+          song: item.song,
+          cover: item.cover,
+          rating: item.rating,
+          review: item.review,
+        }));
+          setReviewObject(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data: ", error);
+        });
   }, []);
 
   const style = {
