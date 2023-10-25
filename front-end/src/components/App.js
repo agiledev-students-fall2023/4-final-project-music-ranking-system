@@ -6,6 +6,7 @@ import Title from "./title";
 import HomepageFeed from "./HomepageFeed";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
+import Nav from './Nav';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" element = {<SignUp />} />;
         </Routes>
       </Router>
+      <Nav />
     </div>
   );
 }
