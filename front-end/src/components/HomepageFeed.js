@@ -16,11 +16,11 @@ export default function HomepageFeed() {
           rating: item.rating,
           review: item.review,
         }));
-          setReviewObject(data);
-        })
-        .catch((error) => {
-          console.error("Error fetching data: ", error);
-        });
+        setReviewObject(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
   }, []);
 
   const style = {
