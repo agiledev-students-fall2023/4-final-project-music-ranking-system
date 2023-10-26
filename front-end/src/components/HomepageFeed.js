@@ -1,64 +1,31 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import FeedComponent from "./FeedComponent";
 
 export default function HomepageFeed() {
   const [reviewObject, setReviewObject] = useState([]);
   useEffect(() => {
     axios
-      .get("https://api.mockaroo.com/api/ed7b7f40?count=1000&key=e62d6f80")
+      .get("https://api.mockaroo.com/api/d8caa150?count=3&key=9b1fc5d0")
       .then((res) => {
-        const data = res.data.slice(0, 2).map((item) => ({
-          id: item.id,
-          title: item.title,
-          artist: item.artist,
-          song: item.song,
-          cover: item.cover,
-          rating: item.rating,
-          review: item.review,
-        }));
-        setReviewObject(data);
+        // const data = res.data.slice(0, 2).map((item) => ({
+        //   id: item.id,
+        //   title: item.title,
+        //   artist: item.artist,
+        //   song: item.song,
+        //   cover: item.cover,
+        //   rating: item.rating,
+        //   review: item.review,
+        // }));
+        setReviewObject(res.data);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
   }, []);
 
-  const style = {
-    background: "lightgray",
-    padding: "20px",
-    border: "1px solid #ccc",
-    display: "flex",
-    alignitems: "center",
-    borderRadius: "10px",
-    margin: "10px",
-    width: "1000px",
-    height: "200px",
-  };
-
   return reviewObject.map((item, index) => (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        margin: "10px",
-      }}
-      key={index}
-    >
-      <div style={style}>
-        <img style={{ width: 200, height: 200 }} src={item.cover} alt="temp" />
-        <Link style = {{ textDecoration: "none" }} to={`/post/${item.id}`}>
-          <div style={{ margin: 10 }}>
-            <h1>
-              {item.artist} -- {item.song}
-            </h1>
-            <h2>{item.rating}/10</h2>
-            <p>{item.review}</p>
-          </div>
-        </Link>
-      </div>
-    </div>
+    <FeedComponent item={item} key={index} />
   ));
 }
