@@ -9,6 +9,7 @@ import LogIn from "./LogIn";
 import SignUp from "./SignUp";
 import Nav from "./Nav";
 import Post from "./Post";
+import Settings from "./Settings";
 import Song from './Song';
 
 
@@ -23,7 +24,8 @@ function App() {
           <Route path="/profile-review" element={<ProfileReview />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />;
-          <Route path="/post" element={<Post />} />;
+          <Route path="/post/:postId" element={<Post />} />;
+          <Route path="/settings" element={<Settings />} />;
           <Route path="/song" element={<Song/>}></Route>
         </Routes>
         <Nav />

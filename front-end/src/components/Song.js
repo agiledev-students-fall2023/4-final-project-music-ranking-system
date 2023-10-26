@@ -4,7 +4,7 @@ import SongPostForm from './SongPostForm.js';
 import SongPost from './SongPost.js';
 
 
-//TODO: learn how to make path specified by song title, something like /:artist/:title
+//TODO: learn how to make path specified by song title, something like /:artist/:title, then need to change anywhere Link is /song
 //TODO: after starting backend, need to add axios.post
 function Song() {
   const [song, setSong] = useState([])

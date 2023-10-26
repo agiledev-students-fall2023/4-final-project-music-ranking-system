@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-
+import { Link } from "react-router-dom";
 
 function App() {
   const topSongs = [
@@ -46,12 +46,10 @@ function App() {
 
   return (
     <div className="profile-review">
-      <div className="logo">
-        <img src="logo.png" alt="Logo" />
-      </div>
       <div className="profile">
         <h1>User123</h1>
       </div>
+      <Link to="/settings">Settings</Link>
       <div className="top-songs">
         <h2>Top Songs</h2>
         <div className="song-container">
@@ -70,7 +68,7 @@ function App() {
             <p>{entry.review}</p>
             <p>Rating: {entry.rating}/10</p>
             <p>
-              Review for: <a href="#">{entry.songName}</a>
+              Review for: <Link className="song-link" to="/song">{entry.songName}</Link>
             </p>
           </div>
         ))}
