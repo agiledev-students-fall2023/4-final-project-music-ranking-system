@@ -1,25 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../css/Nav.css";
 
 function Nav() {
-    return (
-        <nav className="Nav">
-            <ul className="nav-links">
-                <li className="nav-item">
-                    <Link to="/">Home</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/search">Search</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/profile-review">Profile</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/about">About</Link>
-                </li>
-            </ul>
-        </nav>
-    );
-  }
-  
+  return (
+    <div>
+      <nav className="nav">
+        <Link className="nav-link" to="/">
+          Home
+        </Link>
+        <Link className="nav-link" to="/search">
+          Search
+        </Link>
+        <Link className="nav-link" to="/profile-review">
+          Profile
+        </Link>
+        <Link className="nav-link" to="/about">
+          About
+        </Link>
+      </nav>
+    </div>
+  );
+}
+
 export default Nav;

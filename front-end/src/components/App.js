@@ -7,8 +7,8 @@ import HomepageFeed from "./HomepageFeed";
 import ProfileReview from "./ProfileReview"; 
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
-import Nav from './Nav';
-import Post from './Post'
+import Nav from "./Nav";
+import Post from "./Post";
 
 function App() {
   return (
