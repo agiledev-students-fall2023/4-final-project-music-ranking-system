@@ -21,7 +21,7 @@ function App() {
           <Route path="/profile-review" element={<ProfileReview />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />;
-          <Route path="/post" element={<Post />} />;
+          <Route path="/post/:postId" element={<Post />} />;
         </Routes>
         <Nav />
       </Router>

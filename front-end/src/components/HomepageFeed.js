@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function HomepageFeed() {
   const [reviewObject, setReviewObject] = useState([]);
@@ -9,6 +10,7 @@ export default function HomepageFeed() {
       .get("https://api.mockaroo.com/api/ed7b7f40?count=1000&key=e62d6f80")
       .then((res) => {
         const data = res.data.slice(0, 2).map((item) => ({
+          id: item.id,
           title: item.title,
           artist: item.artist,
           song: item.song,
@@ -47,13 +49,15 @@ export default function HomepageFeed() {
     >
       <div style={style}>
         <img style={{ width: 200, height: 200 }} src={item.cover} alt="temp" />
-        <div style={{ margin: 10 }}>
-          <h1>
-            {item.artist} -- {item.song}
-          </h1>
-          <h2>{item.rating}/10</h2>
-          <p>{item.review}</p>
-        </div>
+        <Link style = {{ textDecoration: "none" }} to={`/post/${item.id}`}>
+          <div style={{ margin: 10 }}>
+            <h1>
+              {item.artist} -- {item.song}
+            </h1>
+            <h2>{item.rating}/10</h2>
+            <p>{item.review}</p>
+          </div>
+        </Link>
       </div>
     </div>
   ));

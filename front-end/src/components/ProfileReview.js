@@ -46,9 +46,6 @@ function App() {
 
   return (
     <div className="profile-review">
-      <div className="logo">
-        <img src="logo.png" alt="Logo" />
-      </div>
       <div className="profile">
         <h1>User123</h1>
       </div>
