@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function HomepageFeed() {
   const [reviewObject, setReviewObject] = useState([]);
@@ -8,14 +9,19 @@ export default function HomepageFeed() {
     axios
       .get("https://api.mockaroo.com/api/ed7b7f40?count=1000&key=e62d6f80")
       .then((res) => {
-        for (let i = 0; i < 5; i++) {
-          const temp = {
-            title: res.data[i].title,
-            cover: res.data[i].cover,
-            review: res.data[i].review,
-          };
-          setReviewObject((prevReviewObject) => [...prevReviewObject, temp]);
-        }
+        const data = res.data.slice(0, 2).map((item) => ({
+          id: item.id,
+          title: item.title,
+          artist: item.artist,
+          song: item.song,
+          cover: item.cover,
+          rating: item.rating,
+          review: item.review,
+        }));
+        setReviewObject(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
       });
   }, []);
 
@@ -26,6 +32,7 @@ export default function HomepageFeed() {
     display: "flex",
     alignitems: "center",
     borderRadius: "10px",
+    margin: "10px",
     width: "1000px",
     height: "200px",
   };
@@ -42,10 +49,15 @@ export default function HomepageFeed() {
     >
       <div style={style}>
         <img style={{ width: 200, height: 200 }} src={item.cover} alt="temp" />
-        <div>
-          <h1>{item.title}</h1>
-          <p>{item.review}</p>
-        </div>
+        <Link style = {{ textDecoration: "none" }} to={`/post/${item.id}`}>
+          <div style={{ margin: 10 }}>
+            <h1>
+              {item.artist} -- {item.song}
+            </h1>
+            <h2>{item.rating}/10</h2>
+            <p>{item.review}</p>
+          </div>
+        </Link>
       </div>
     </div>
   ));
