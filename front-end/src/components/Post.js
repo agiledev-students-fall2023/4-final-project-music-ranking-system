@@ -2,6 +2,8 @@ import React, { useState, useEffect} from 'react';
 import '../css/Post.css';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
+import Comment from './Comment';
+import CommentDisplay from './CommentDisplay';
 
 function Post() {
   const { postId } = useParams();
@@ -38,18 +40,7 @@ function Post() {
       <p>user1 -- review</p>
       <p>user2 -- review</p>
       <br/>
-
-      <form action='/add-comment' method='post' enctype='multipart/form-data'>
-        <div class="input-group">
-          <label for="comment">Add Comment: </label><br/>
-          <textarea id="song-comment" name="song-comment" placeholder="Enter a comment" rows="10"></textarea>
-        </div>
-        <br/>
-        <div class="button">
-          <input type="submit" value="Enter"/>
-        </div>
-
-      </form>
+      <CommentDisplay />
 
     </div>
   );
