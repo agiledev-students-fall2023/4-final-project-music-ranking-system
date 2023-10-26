@@ -11,7 +11,7 @@ function Post() {
 
   useEffect(() => {
     axios
-      .get("https://api.mockaroo.com/api/ed7b7f40?count=1000&key=e62d6f80")
+      .get("https://api.mockaroo.com/api/d8caa150?count=3&key=9b1fc5d0")
       .then((res) => {
         const foundPost = res.data.find((item) => item.id === parseInt(postId));
         if (foundPost) {
