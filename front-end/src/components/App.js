@@ -10,6 +10,8 @@ import SignUp from "./SignUp";
 import Nav from "./Nav";
 import Post from "./Post";
 import Settings from "./Settings";
+import Song from './Song';
+
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />;
           <Route path="/post/:postId" element={<Post />} />;
           <Route path="/settings" element={<Settings />} />;
+          <Route path="/song" element={<Song/>}></Route>
         </Routes>
         <Nav />
       </Router>

@@ -68,7 +68,7 @@ function App() {
             <p>{entry.review}</p>
             <p>Rating: {entry.rating}/10</p>
             <p>
-              Review for: <a href="#">{entry.songName}</a>
+              Review for: <Link className="song-link" to="/song">{entry.songName}</Link>
             </p>
           </div>
         ))}
