@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-const SongPostForm = (addReviewToList) => {
+//TODO: maybe switch wording from review to post? in the codebase: review refers to the actual text, while post refers to user + rating + review
+const SongPostForm = ({addReviewToList}) => {
   // create a state variable for each form field
   const [user, setUser] = useState('')
   const [rating, setRating] = useState('')

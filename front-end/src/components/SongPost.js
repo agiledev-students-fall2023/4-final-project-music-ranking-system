@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom'
 
 
-const SongPost = (post) => {
-  console.log(post)
+const SongPost = ({post}) => {
+  console.log(post.user)
   return (
     <>
       <article className="SongPost-article">
-        <h2>
-          {/* <Link to={`/post/${post.user}/${post.title}`}>{post.title}</Link> */}
-        </h2>
-        <p>{post.review}</p>
+        <Link to={`/post/${post.user}/${post.title}`}>
+        <p>{post.rating}/10</p>
+        <p>{post.user} - {post.review}</p>
+        </Link>
       </article>
     </>
   )
