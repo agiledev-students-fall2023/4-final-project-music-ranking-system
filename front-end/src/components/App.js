@@ -4,14 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./about";
 import Title from "./title";
 import HomepageFeed from "./HomepageFeed";
-import ProfileReview from "./ProfileReview"; 
+import ProfileReview from "./ProfileReview";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
 import Nav from "./Nav";
 import Post from "./Post";
 import Settings from "./Settings";
-import Song from './Song';
-
+import Song from "./Song";
+import Search from "./Search";
 
 function App() {
   return (
@@ -26,7 +26,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />;
           <Route path="/post/:postId" element={<Post />} />;
           <Route path="/settings" element={<Settings />} />;
-          <Route path="/song" element={<Song/>}></Route>
+          <Route path="/song" element={<Song />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
         <Nav />
       </Router>
