@@ -9,6 +9,7 @@ import LogIn from "./LogIn";
 import SignUp from "./SignUp";
 import Nav from "./Nav";
 import Post from "./Post";
+import Settings from "./Settings";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />;
           <Route path="/post/:postId" element={<Post />} />;
+          <Route path="/settings" element={<Settings />} />;
         </Routes>
         <Nav />
       </Router>

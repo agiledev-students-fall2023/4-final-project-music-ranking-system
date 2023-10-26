@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-
+import { Link } from "react-router-dom";
 
 function App() {
   const topSongs = [
@@ -49,6 +49,7 @@ function App() {
       <div className="profile">
         <h1>User123</h1>
       </div>
+      <Link to="/settings">Settings</Link>
       <div className="top-songs">
         <h2>Top Songs</h2>
         <div className="song-container">
