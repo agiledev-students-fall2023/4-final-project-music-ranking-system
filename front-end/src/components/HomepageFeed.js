@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import tempImage from "../logo.svg";
 import axios from "axios";
 
 export default function HomepageFeed() {
