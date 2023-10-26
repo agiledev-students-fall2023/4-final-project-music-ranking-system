@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from 'axios';
 import FeedComponent from "./FeedComponent";
 import "../css/Search.css";
 
@@ -22,14 +22,14 @@ export default function Search() {
 
   useEffect(() => {
     const filteredData = allData.filter(
-      (item) => item.artist.includes(search) || item.song.includes(search)
+      (item) => item.artist.toLowerCase().includes(search) || item.song.toLowerCase().includes(search)
     );
     setData(filteredData);
     console.log(filteredData);
   }, [search, allData]);
 
   const handleInputChange = (event) => {
-    setSearch(event.target.value);
+    setSearch(event.target.value.toLowerCase());
   };
 
   return (
