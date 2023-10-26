@@ -58,7 +58,6 @@ export default function HomepageFeed() {
             <p>{item.review}</p>
           </div>
         </Link>
-        
       </div>
     </div>
   ));

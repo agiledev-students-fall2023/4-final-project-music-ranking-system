@@ -31,19 +31,19 @@ function Post() {
       <h3>user's Review</h3>
       <h3>{post.artist} -- {post.song}</h3>
       <img style={{ width: 200, height: 200 }} src={post.cover} alt="temp" />
-      <h2>{post.rating}/10</h2>
+      <h4>{post.rating}/10</h4>
       <p>{post.review}</p>
       <br/>
 
       <p>user1 -- review</p>
-      <br/>
       <p>user2 -- review</p>
       <br/>
+
       <form action='/add-comment' method='post' enctype='multipart/form-data'>
         <div class="input-group">
-                <label for="comment">Add Comment: </label><br/>
-                <textarea id="song-comment" name="song-comment" placeholder="Enter a comment" rows="10"></textarea>
-            </div>
+          <label for="comment">Add Comment: </label><br/>
+          <textarea id="song-comment" name="song-comment" placeholder="Enter a comment" rows="10"></textarea>
+        </div>
         <br/>
         <div class="button">
           <input type="submit" value="Enter"/>
