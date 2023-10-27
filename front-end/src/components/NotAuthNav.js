@@ -6,11 +6,11 @@ function NotAuthNav() {
   return (
     <div>
       <nav className="nav">
-        <Link className="nav-link" to="/">
-          Home
+        <Link className="nav-link" to="/login">
+          Log In
         </Link>
-        <Link className="nav-link" to="/about">
-          About
+        <Link className="nav-link" to="/signup">
+          Sign Up
         </Link>
       </nav>
     </div>

@@ -1,14 +1,16 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/LogIn.css';
 import { useAuthContext } from "./AuthProvider.js";
+
 
 
 function LogIn() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const authContext = useAuthContext();
+  const navigate = useNavigate();
 
   const submitForm = e => {
     e.preventDefault() // prevent normal browser submit behavior
@@ -20,7 +22,7 @@ function LogIn() {
         password: password,
       })
       .then(response => {
-        // prob want to redirect here or in backend to homefeed?
+        // prob want to redirect here once backend implemented?
         // https://stackoverflow.com/questions/34735580/how-to-do-a-redirect-to-another-route-with-react-routers
         console.log("Logged in successfully")
       })
@@ -31,8 +33,9 @@ function LogIn() {
     // clear form
     setUsername('')
     setPassword('')
-    // for now, set auth is true regardless of result of post request
+    // for now, setting auth is true and redirecting to / regardless of result of post request
     authContext.setAuth(true)
+    navigate("/")
   }
 
   return(
