@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/LogIn.css';
 import { useAuthContext } from "./AuthProvider.js";
@@ -41,7 +41,7 @@ function LogIn() {
   return(
     <div className='LogIn'>
       <h2> Log In</h2>  
-      <form action='/log-in' enctype='multipart/form-data' onSubmit={submitForm}>
+      <form enctype='multipart/form-data' onSubmit={submitForm}>
         <div class="input-group">
           <label for="username">Username: </label><br/>
           <input type="text" id="username" name="username" placeholder="Enter username" value={username} onChange={e => setUsername(e.target.value)} required/>
