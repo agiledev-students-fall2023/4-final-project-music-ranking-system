@@ -25,7 +25,12 @@ export default function LandingFeed() {
       });
   }, []);
 
-  return reviewObject.map((item, index) => (
-    <FeedComponent item={item} key={index} />
-  ));
+  return (
+    <>
+      <h1>Welcome to Music Ranking App!</h1>
+      {reviewObject.map((item, index) => (
+        <FeedComponent item={item} key={index} />
+      ))}
+    </>
+  )
 }
