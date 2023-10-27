@@ -10,7 +10,7 @@ function SignUp() {
   const authContext = useAuthContext();
   const navigate = useNavigate();
 
-  const submitForm = e => {
+  const submitForm = (e) => {
     e.preventDefault() // prevent normal browser submit behavior
 
     // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
@@ -40,7 +40,6 @@ function SignUp() {
     <div className="SignUp">
       <h2>Sign Up</h2>  
       <form enctype='multipart/form-data' onSubmit={submitForm}>
-        
         <div class="input-group">
           <label for="username">Username: </label><br/>
           <input type="text" id="username" name="username" placeholder="Enter username" value={username} onChange={e => setUsername(e.target.value)} required/>
@@ -54,7 +53,6 @@ function SignUp() {
         <div class="button">
           <input type="submit" value="Enter"/>
         </div>
-
       </form>
       <br/>
       <Link to="/login">Already have an account? Click here to log in</Link>
