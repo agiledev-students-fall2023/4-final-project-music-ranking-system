@@ -14,7 +14,7 @@ const AuthContext = createContext({
 export const useAuthContext = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
 
     isAuth();
   }, [auth]);
-
+  // the context passed down is object that contains the state variable auth, setAuth, and user
   return (
     <AuthContext.Provider value={{ auth, setAuth, user }}>
       {children}
