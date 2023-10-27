@@ -17,7 +17,7 @@ function LogIn() {
 
     // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
     axios
-      .post(`${process.env.REACT_APP_SERVER_HOSTNAME}/signin`, {
+      .post(`${process.env.REACT_APP_SERVER_HOSTNAME}/login`, {
         username: username,
         password: password,
       })
