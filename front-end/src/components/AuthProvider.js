@@ -14,7 +14,8 @@ const AuthContext = createContext({
 export const useAuthContext = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState(false);
+  // const [auth, setAuth] = useState(false)
+  const [auth, setAuth] = useState(localStorage.getItem("auth")? localStorage.getItem("auth"): false)
   const [user, setUser] = useState(null);
 
   useEffect(() => {

@@ -33,8 +33,9 @@ function LogIn() {
     // clear form
     setUsername('')
     setPassword('')
-    // for now, setting auth is true and redirecting to / regardless of result of post request
+    // for now, setting auth is true, setting local storage item auth to true,  and redirecting to / regardless of result of post request
     authContext.setAuth(true)
+    localStorage.setItem("auth", true)
     navigate("/")
   }
 

@@ -16,8 +16,10 @@ import Search from "./Search";
 import { useAuthContext } from "./AuthProvider.js";
 import NotAuthNav from './NotAuthNav';
 
+
 function App() {
   const auth = useAuthContext().auth;
+  console.log(auth)
   return (
     <div className="App">
       <Router>

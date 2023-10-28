@@ -23,8 +23,9 @@ function Settings() {
       .catch(err => {
         console.log("Error getting data:", err)
       })
-    // for now, setting auth is false and redirecting to / regardless of result of get request
+    // for now, setting auth is false, setting local storage item auth is false and redirecting to / regardless of result of get request
     authContext.setAuth(false)
+    localStorage.removeItem("auth")
     navigate("/")
   }
   
