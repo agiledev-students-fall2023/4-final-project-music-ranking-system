@@ -14,17 +14,13 @@ const AuthContext = createContext({
 export const useAuthContext = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  // const [auth, setAuth] = useState(false)
   const [auth, setAuth] = useState(localStorage.getItem("auth")? localStorage.getItem("auth"): false)
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const isAuth = async () => {
       try {
-        const res = await axios.get(
-          'http://localhost:5000/api/logged-user/',
-          { withCredentials: true }
-        );
+        const res = await axios.get(`${process.env.REACT_APP_SERVER_HOSTNAME}/loggeduser`,);
         setUser(res.data);
       } catch(error) {
         setUser(null);
