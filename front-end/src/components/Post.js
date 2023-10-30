@@ -1,9 +1,10 @@
 import React, { useState, useEffect} from 'react';
 import '../css/Post.css';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
 import Comment from './Comment';
 import CommentDisplay from './CommentDisplay';
+ 
 
 function Post() {
   const { postId } = useParams();
@@ -37,8 +38,8 @@ function Post() {
       <p>{post.review}</p>
       <br/>
 
-      <p>user1 -- review</p>
-      <p>user2 -- review</p>
+      <p><Link to='/other-user/user1'>user1</Link>  -- review</p>
+      <p><Link to='/other-user/user2'>user2</Link> -- review</p>
       <br/>
       <CommentDisplay />
 
