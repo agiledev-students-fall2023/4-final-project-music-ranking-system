@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useEffect, useState} from "react";
 
 
+
 function App() {
   
   const [songObject, setSongObject] = useState([]);   
@@ -53,24 +54,6 @@ function App() {
     // }
   ]; */
 
-  // const userActivity = [
-  //   {
-  //     review: 'Love this song! My favorite! Pretend I came up with some more positive comments!',
-  //     rating: 9,
-  //     songName: 'Song 1',
-  //   },
-  //   {
-  //     review: 'This song sucks. Overrated. Cannot open Tiktok wo hearing it this is so overplayed.',
-  //     rating: 2,
-  //     songName: 'Song 2',
-  //   },
-  //   {
-  //     review: 'This song is good, but no where near as much as everyone is saying. Mid.',
-  //     rating: 6,
-  //     songName: 'Song 3',
-  //   },
-  // ];
-
   return (
     <div className="profile-review">
       <div className="profile">
@@ -83,7 +66,10 @@ function App() {
           {songObject.map((song, index) => (
             <div key={index} className="song">
               <img src={song.albumCover} alt={song.songName} />
-              <p>{song.songName} - {song.artistName}</p>
+               <p>
+                <Link to={`/song`} className="song-link">{song.songName}</Link>
+                {" - " + song.artistName}
+               </p>
             </div>
           ))}
         </div>
