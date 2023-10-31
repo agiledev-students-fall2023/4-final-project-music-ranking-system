@@ -1,48 +1,75 @@
 import React from 'react';
-import '../App.css';
+import '../css/ProfileReview.css'
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import {useEffect, useState} from "react";
+
 
 function App() {
-  const topSongs = [
-    {
-      songName: 'Born To Die',
-      artistName: 'Lana Del Rey',
-      albumCover: 'https://picsum.photos/200',
-    },
-    {
-      songName: 'Candy',
-      artistName: 'Doja Cat',
-      albumCover: 'https://picsum.photos/200',
-    },
-    {
-      songName: 'Heartless',
-      artistName: 'The Weeknd',
-      albumCover: 'https://picsum.photos/200',
-    },
-    {
-      songName: 'Popular (with Playboi Carti & Madonna)',
-      artistName: 'The Weeknd, Playboi Carti, Madonna',
-      albumCover: 'https://picsum.photos/200',
-    },
-  ];
+  
+  const [songObject, setSongObject] = useState([]);   
+  const [activityObject, setActivityObject] = useState([]);
 
-  const userActivity = [
-    {
-      review: 'Love this song! My favorite! Pretend I came up with some more positive comments!',
-      rating: 9,
-      songName: 'Song 1',
-    },
-    {
-      review: 'This song sucks. Overrated. Cannot open Tiktok wo hearing it this is so overplayed.',
-      rating: 2,
-      songName: 'Song 2',
-    },
-    {
-      review: 'This song is good, but no where near as much as everyone is saying. Mid.',
-      rating: 6,
-      songName: 'Song 3',
-    },
-  ];
+  useEffect(() => {
+    axios
+      .get("https://api.mockaroo.com/api/4f9a5d40?count=4&key=deb8cfd0")
+      .then((res) => {
+        setSongObject(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  }, []);
+
+
+  useEffect(() => {
+    axios
+      .get("https://api.mockaroo.com/api/9360e250?count=3&key=deb8cfd0")  
+      .then((res) => {
+        setActivityObject(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  }, []); 
+
+ 
+ 
+ /* const topSongs = [
+    // {
+    //   songName: 'Born To Die',
+    //   artistName: 'Lana Del Rey',
+    //   albumCover: 'https://picsum.photos/200',
+    // },
+    // {
+    //   songName: 'Candy',
+    //   artistName: 'Doja Cat',
+    //   albumCover: 'https://picsum.photos/200',
+    // },
+    // {
+    //   songName: 'Heartless',
+    //   artistName: 'The Weeknd',
+    //   albumCover: 'https://picsum.photos/200',
+    // }
+  ]; */
+
+  // const userActivity = [
+  //   {
+  //     review: 'Love this song! My favorite! Pretend I came up with some more positive comments!',
+  //     rating: 9,
+  //     songName: 'Song 1',
+  //   },
+  //   {
+  //     review: 'This song sucks. Overrated. Cannot open Tiktok wo hearing it this is so overplayed.',
+  //     rating: 2,
+  //     songName: 'Song 2',
+  //   },
+  //   {
+  //     review: 'This song is good, but no where near as much as everyone is saying. Mid.',
+  //     rating: 6,
+  //     songName: 'Song 3',
+  //   },
+  // ];
 
   return (
     <div className="profile-review">
@@ -53,7 +80,7 @@ function App() {
       <div className="top-songs">
         <h2>Top Songs</h2>
         <div className="song-container">
-          {topSongs.map((song, index) => (
+          {songObject.map((song, index) => (
             <div key={index} className="song">
               <img src={song.albumCover} alt={song.songName} />
               <p>{song.songName} - {song.artistName}</p>
@@ -63,7 +90,7 @@ function App() {
       </div>
       <div className="activity">
         <h2>Activity</h2>
-        {userActivity.map((entry, index) => (
+        {activityObject.map((entry, index) => (
           <div key={index} className="activity-entry">
             <p>{entry.review}</p>
             <p>Rating: {entry.rating}/10</p>
@@ -76,37 +103,7 @@ function App() {
     </div>
   );
 
-  /*
-  return (
-    <div className="profile-review">
-      <div className="logo">
-        <img src="logo.png" alt="Logo" />
-      </div>
-      <div className="profile">
-        <h1>User's Profile</h1>
-      </div>
-      <div className="top-songs">
-        <h2>Top Songs</h2>
-        {topSongs.map((song, index) => (
-          <div key={index} className="song">
-            <img src={song.albumCover} alt={song.songName} />
-            <p>{song.songName} - {song.artistName}</p>
-          </div>
-        ))}
-      </div>
-      <div className="activity">
-        <h2>Activity</h2>
-        {userActivity.map((entry, index) => (
-          <div key={index} className="activity-entry">
-            <p>{entry.review}</p>
-            <p>Rating: {entry.rating}/10</p>
-            <p>Review for: <a href="#">{entry.songName}</a></p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-  */
+ 
 }
 
 export default App;
