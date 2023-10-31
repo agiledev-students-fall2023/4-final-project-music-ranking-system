@@ -1,0 +1,57 @@
+/* 
+.Song {
+    max-width: 100px;
+    margin: 50px auto;
+    padding: 20px; 
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.Song h2:first-child {
+    margin-top: 0;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+img {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+p {
+    text-align: center;
+    margin: 10px 0;
+}
+
+ .SongPostForm {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+ .SongPost {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.SongPost h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+.SongPost p {
+    margin: 10px 0;
+}
+
+  */
