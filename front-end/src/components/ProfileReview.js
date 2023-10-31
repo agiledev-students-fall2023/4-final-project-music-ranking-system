@@ -67,7 +67,7 @@ function App() {
             <div key={index} className="song">
               <img src={song.albumCover} alt={song.songName} />
                <p>
-                <Link to={`/song/${song.id}`} className="song-link">{song.songName}</Link>
+                <Link to={`/song`} className="song-link">{song.songName}</Link>
                 {" - " + song.artistName}
                </p>
             </div>
