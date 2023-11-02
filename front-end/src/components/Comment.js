@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
 
-const Comment = ({ addCommentToList }) => {
-  const [user, setUser] = useState('');
+
+function Comment({ onSubmit }) {
   const [comment, setComment] = useState('');
 
   const handleSubmit = (e) => {

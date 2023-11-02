@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import FeedComponent from "./FeedComponent";
 
-export default function HomepageFeed() {
+
+export default function LandingFeed() {
   const [reviewObject, setReviewObject] = useState([]);
   useEffect(() => {
     axios
@@ -25,7 +26,12 @@ export default function HomepageFeed() {
       });
   }, []);
 
-  return reviewObject.map((item, index) => (
-    <FeedComponent item={item} key={index} />
-  ));
+  return (
+    <>
+      <h1>Welcome to Music Ranking App!</h1>
+      {reviewObject.map((item, index) => (
+        <FeedComponent item={item} key={index} />
+      ))}
+    </>
+  )
 }
