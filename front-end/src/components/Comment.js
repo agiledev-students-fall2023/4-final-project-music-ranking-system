@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 function Comment({ onSubmit }) {
   const [comment, setComment] = useState('');
 
