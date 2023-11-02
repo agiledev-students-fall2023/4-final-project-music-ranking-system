@@ -10,17 +10,15 @@ function Comment({ onSubmit }) {
 
     axios
       .post(`${process.env.REACT_APP_SERVER_HOSTNAME}/comments/save`, {
-        user: user,
         comment: comment,
       })
       .then(response => {
-        addCommentToList(response.data)
+        handleSubmit(response.data)
       })
       .catch(err => {
         console.log("Error posting data:", err)
       })
 
-      setUser('');
       setComment('');
   }
 
