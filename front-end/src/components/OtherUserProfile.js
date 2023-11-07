@@ -1,61 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import '../App.css';
 import { useParams, Link } from "react-router-dom";
 
 
 function OtherUserProfile() {
-    const { userId } = useParams();
+  const { userId } = useParams();
+  const [userData, setUser] = useState([]);
+  const [userSongs, setSongs] = useState([]);
+  const [userActivity, setActivity] = useState([]);
 
-  const topSongs = [
-    {
-      songName: 'Born To Die',
-      artistName: 'Lana Del Rey',
-      albumCover: 'https://picsum.photos/200',
-    },
-    {
-      songName: 'Candy',
-      artistName: 'Doja Cat',
-      albumCover: 'https://picsum.photos/200',
-    },
-    {
-      songName: 'Heartless',
-      artistName: 'The Weeknd',
-      albumCover: 'https://picsum.photos/200',
-    },
-    {
-      songName: 'Popular (with Playboi Carti & Madonna)',
-      artistName: 'The Weeknd, Playboi Carti, Madonna',
-      albumCover: 'https://picsum.photos/200',
-    },
-  ];
+  useEffect(() => {
+    console.log("UserID: ", userId);
+    axios
+      .get(`http://localhost:3000/other-user/${userId}`)
+      .then((res) => {
+        console.log('Received data:', res.data);
+        setUser(res.data);
+        setSongs(res.data.topSongs);
+        setActivity(res.data.activity);
+      })
+      .catch((error) =>{
+        console.error("Error fetching other user data: ", error);
+      });
+      
+  }, [userId]);
 
-  const userActivity = [
-    {
-      review: 'Love this song! My favorite! Pretend I came up with some more positive comments!',
-      rating: 9,
-      songName: 'Song 1',
-    },
-    {
-      review: 'This song sucks. Overrated. Cannot open Tiktok wo hearing it this is so overplayed.',
-      rating: 2,
-      songName: 'Song 2',
-    },
-    {
-      review: 'This song is good, but no where near as much as everyone is saying. Mid.',
-      rating: 6,
-      songName: 'Song 3',
-    },
-  ];
-
+  if (!userData && !userSongs && !userActivity) {
+    return <div>Loading...</div>
+  }
   return (
     <div className="profile-review">
       <div className="profile">
         <h1>{userId}</h1>
       </div>
+
       <div className="top-songs">
         <h2>Top Songs</h2>
         <div className="song-container">
-          {topSongs.map((song, index) => (
+          {userSongs.map((song, index) => (
             <div key={index} className="song">
               <img src={song.albumCover} alt={song.songName} />
               <p>{song.songName} - {song.artistName}</p>
@@ -63,7 +46,8 @@ function OtherUserProfile() {
           ))}
         </div>
       </div>
-      <div className="activity">
+
+       <div className="activity">
         <h2>Activity</h2>
         {userActivity.map((entry, index) => (
           <div key={index} className="activity-entry">
@@ -75,6 +59,7 @@ function OtherUserProfile() {
           </div>
         ))}
       </div>
+
     </div>
   );
 }
