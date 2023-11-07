@@ -4,9 +4,7 @@ const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
 const morgan = require("morgan") // middleware for printing requests on terminal
 const homePage = require("./routes/homePage");
-// const {
-//   default: HomepageFeed,
-// } = require("../front-end/src/components/HomepageFeed");
+const song = require("./routes/song");
 
 // use express' builtin body-parser middleware to parse data included in a request
 app.use(express.json());
@@ -22,10 +20,11 @@ app.use(function (req, res, next) {
 });
 
 app.use(morgan("dev"))
-// we will put some server logic here later...
 app.use("/static", express.static("public"));
 
 app.use("/", homePage);
+app.use("/song", song);
+
 // Post.js requests to/from API
 app.get("/post/:postId", async (req, res) => {
   const postID = parseInt(req.params.postId);
