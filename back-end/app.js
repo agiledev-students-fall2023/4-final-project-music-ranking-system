@@ -39,5 +39,55 @@ app.get("/post/:postId", async (req, res) => {
     }
 });
 
+// OtherUserProfile.js requests 
+app.get("/other-user/:userId", async(req, res) => {
+    const userID = req.params.userId;
+    const data = {
+        userId: userID,
+        topSongs: [
+            {
+              songName: 'Born To Die',
+              artistName: 'Lana Del Rey',
+              albumCover: 'https://picsum.photos/200',
+            },
+            {
+              songName: 'Candy',
+              artistName: 'Doja Cat',
+              albumCover: 'https://picsum.photos/200',
+            },
+            {
+              songName: 'Heartless',
+              artistName: 'The Weeknd',
+              albumCover: 'https://picsum.photos/200',
+            },
+            {
+              songName: 'Popular (with Playboi Carti & Madonna)',
+              artistName: 'The Weeknd, Playboi Carti, Madonna',
+              albumCover: 'https://picsum.photos/200',
+            },
+          ],
+        
+        activity: [
+            {
+              review: 'Love this song! My favorite! Pretend I came up with some more positive comments!',
+              rating: 9,
+              songName: 'Song 1',
+            },
+            {
+              review: 'This song sucks. Overrated. Cannot open Tiktok wo hearing it this is so overplayed.',
+              rating: 2,
+              songName: 'Song 2',
+            },
+            {
+              review: 'This song is good, but no where near as much as everyone is saying. Mid.',
+              rating: 6,
+              songName: 'Song 3',
+            },
+        ],
+    };
+
+    res.send(data);
+})
+
 // export the express app we created to make it available to other modules
 module.exports = app;
