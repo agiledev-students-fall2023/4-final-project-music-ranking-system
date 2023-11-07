@@ -22,3 +22,10 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for information on project contribution
 
 ### Additional Links
 - [SpotifyAPI](https://developer.spotify.com/documentation/web-api)
+
+### To run front-end...
+- use `npm start`
+- for now, any username and password is authenticated
+
+### To run back-end...
+- use `npm start`
