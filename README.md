@@ -24,8 +24,8 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for information on project contribution
 - [SpotifyAPI](https://developer.spotify.com/documentation/web-api)
 
 ### To run front-end...
-- use `npm start`
+- use `npm install`, then `npm start`
 - for now, any username and password is authenticated
 
 ### To run back-end...
-- use `npm start`
+- use `npm install`, then `npm start`
