@@ -7,6 +7,7 @@ import SongPost from './SongPost.js';
 
 
 //TODO: change anywhere Link is /song
+//TODO: maybe change link to /song/artist/title?
 function Song() {
   const {songId} = useParams()
   const [song, setSong] = useState([])
