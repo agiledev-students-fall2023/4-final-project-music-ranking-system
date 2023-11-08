@@ -6,7 +6,7 @@ import SongPostForm from './SongPostForm.js';
 import SongPost from './SongPost.js';
 
 
-//TODO: learn how to make path specified by song title, something like /:artist/:title, then need to change anywhere Link is /song
+//TODO: change anywhere Link is /song
 //TODO: after starting backend, need to add axios.post
 function Song() {
   const {songId} = useParams()
@@ -26,7 +26,7 @@ function Song() {
         console.log(songId)
         const song = response.data
         setSong(song)
-        setPosts([{"title": song.title, "user": song.exuser, "rating": song.exrating, "review": song.exreview}])
+        setPosts(song.posts)
       })
       .catch(err => {
         console.log("Error fetching data:", err)
@@ -36,14 +36,14 @@ function Song() {
   return (
     <div className="Song">
       <h2>{song.artist} - {song.title}</h2>
-        <img src="https://picsum.photos/200" alt="album cover" />
+        <img src={song.coversrc} alt="album cover" />
         <p>{song.rating}/10</p><p/>
         <p>{song.numreviews} reviews</p>
       <h2>Review:</h2>
         <SongPostForm addPostToList={addPostToList} />
       <h2>Other reviews:</h2>
         {posts.map(post => (
-          <SongPost key={post.user} post={post} />
+          <SongPost key={post.user} post={post} title={song.title}/>
         ))}
     </div>
   );

@@ -8,8 +8,10 @@ router.get("/:songId", (req, res) => {
     const song = {
         title: "Title", 
         artist: "Artist",
+        coversrc: "https://picsum.photos/200",
         rating: 5, 
-        numreviews: 10
+        numreviews: 10,
+        posts: [{user: "User", rating: 8, review: "This is a review"}]
     }
     res.json(song)
 });
