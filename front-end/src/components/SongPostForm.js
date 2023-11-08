@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-//TODO: maybe switch wording from review to post? in the codebase: review refers to the actual text, while post refers to user + rating + review
-const SongPostForm = ({addReviewToList}) => {
+//TODO: change user: user?
+const SongPostForm = ({addPostToList}) => {
   // create a state variable for each form field
   const [user, setUser] = useState('')
   const [rating, setRating] = useState('')
@@ -13,13 +13,13 @@ const SongPostForm = ({addReviewToList}) => {
 
     // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
     axios
-      .post(`${process.env.REACT_APP_SERVER_HOSTNAME}/messages/save`, {
+      .post(`http://localhost:3000/song/save`, {
         user: user,
         rating: rating,
         review: review,
       })
       .then(response => {
-        addReviewToList(response.data)
+        addPostToList(response.data)
       })
       .catch(err => {
         console.log("Error posting data:", err)

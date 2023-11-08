@@ -13,7 +13,7 @@ function Song() {
   const [song, setSong] = useState([])
   const [posts, setPosts] = useState([])
   const addPostToList = post => {
-    const newPosts = [...posts, post] 
+    const newPosts = [post, ...posts] 
     setPosts(newPosts) 
   }
 

@@ -5,9 +5,6 @@ const axios = require("axios"); // middleware for making requests to APIs
 const morgan = require("morgan") // middleware for printing requests on terminal
 const homePage = require("./routes/homePage");
 const song = require("./routes/song");
-// const {
-//   default: HomepageFeed,
-// } = require("../front-end/src/components/HomepageFeed");
 const otherUserRoute = require("./routes/otherUser");
 const postRoute = require("./routes/postRoute");
 
