@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 // TODO: change /post/$post.user/title to real post link
 const SongPost = ({ post, title }) => {
-  console.log(post.user);
   return (
     <>
       <article className="SongPost-article">
