@@ -5,30 +5,30 @@ const axios = require("axios"); // middleware for making requests to APIs
 const router = require("express").Router();
 
 //TODO: figure out spotify search
-//TODO: once database implemented, remove postArr
-//TODO: in post /save, add numReviews and change ratings
+//TODO: once database implemented, remove postArr and song
+//TODO: in post /save, maybe change rating equation? currently disregards any individual ratings, so decimal points are kind of off
 let postArr = []
-router.post("/save", (req, res) =>{
-    console.log(req.body.rating)
-    console.log(req.body.review)
+let song = {
+    title: "Title", 
+    artist: "Artist",
+    coverSrc: "https://picsum.photos/200",
+    rating: 5, 
+    numReviews: 10,
+    posts: postArr
+}
+
+router.post("/:songId/save", (req, res) =>{
     const newPost = {
         user: req.body.user, 
-        rating: req.body.rating, 
+        rating: parseInt(req.body.rating), 
         review: req.body.review
     } 
     postArr = [newPost, ...postArr]
-    console.log(postArr)
+    song.numReviews++
+    song.rating = ((song.rating * (song.numReviews-1) + newPost.rating)/song.numReviews).toFixed(1)
     res.json(newPost)
 });
 router.get("/:songId", (req, res) => {
-    const song = {
-        title: "Title", 
-        artist: "Artist",
-        coversrc: "https://picsum.photos/200",
-        rating: 5, 
-        numreviews: 10,
-        posts: postArr
-    }
     res.json(song)
 });
 

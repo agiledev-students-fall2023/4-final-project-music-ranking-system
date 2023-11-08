@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useAuthContext } from "./AuthProvider.js";
 
-const SongPostForm = ({addPostToList}) => {
+const SongPostForm = ({addPostToList, songId}) => {
   const username = useAuthContext().user
   // create a state variable for each form field
   const [rating, setRating] = useState('')
@@ -15,7 +15,7 @@ const SongPostForm = ({addPostToList}) => {
 
     // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
     axios
-      .post(`http://localhost:3000/song/save`, {
+      .post(`http://localhost:3000/song/${songId}/save`, {
         user: username,
         rating: rating,
         review: review,
