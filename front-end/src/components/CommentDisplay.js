@@ -14,7 +14,7 @@ function CommentDisplay() {
       <h2>Comments: </h2>
       <ul>
         {comments.map((comment, index) => (
-          <li key={index}>user: {comment}</li>
+          <li key={index}>{comment.user}: {comment.comment}</li>
         ))}
       </ul>
       <Comment onSubmit={addComment} />

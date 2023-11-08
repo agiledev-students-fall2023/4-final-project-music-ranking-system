@@ -2,28 +2,25 @@ import React, { useState, useEffect} from 'react';
 import '../css/Post.css';
 import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
-import Comment from './Comment';
 import CommentDisplay from './CommentDisplay';
  
 
 function Post() {
-  const { postId } = useParams();
-  const [post, setPost] = useState(null);
+  const { postId } = useParams(); // "1"
+  const [post, setPost] = useState([]);
 
   useEffect(() => {
+    console.log("PostId: ", postId);
     axios
-      .get("https://api.mockaroo.com/api/d8caa150?count=3&key=9b1fc5d0")
+      .get(`http://localhost:3000/post/${postId}`)
       .then((res) => {
-        const foundPost = res.data.find((item) => item.id === parseInt(postId));
-        if (foundPost) {
-          setPost(foundPost);
-        } else {
-          console.error("Post not found.");
-        }
+        console.log('Received data:', res.data);
+        setPost(res.data);
       })
       .catch((error) =>{
         console.error("Error fetching post: ", error);
       });
+      
   }, [postId]);
 
   if (!post) {
