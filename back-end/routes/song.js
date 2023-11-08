@@ -27,8 +27,8 @@ router.post("/:songArtist/:songTitle/save", (req, res) =>{
     res.json(newPost)
 });
 router.get("/:songArtist/:songTitle", (req, res) => {
-    song.title = req.params.songTitle.replaceAll("+", " ")
-    song.artist = req.params.songArtist.replaceAll("+", " ")    
+    song.title = req.params.songTitle
+    song.artist = req.params.songArtist
     res.json(song)
 });
 
