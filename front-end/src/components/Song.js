@@ -7,9 +7,8 @@ import SongPost from './SongPost.js';
 
 
 //TODO: change anywhere Link is /song
-//TODO: maybe change link to /song/artist/title?
 function Song() {
-  const {songId} = useParams()
+  const {songArtist, songTitle} = useParams()
   const [song, setSong] = useState([])
   const [posts, setPosts] = useState([])
   const addPostToList = post => {
@@ -19,9 +18,8 @@ function Song() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/song/${songId}`)
+      .get(`http://localhost:3000/song/${songArtist}/${songTitle}`)
       .then(response => {
-        console.log(songId)
         const song = response.data
         setSong(song)
         setPosts(song.posts)
@@ -29,7 +27,7 @@ function Song() {
       .catch(err => {
         console.log("Error fetching data:", err)
       })
-  }, [songId])
+  }, [songArtist, songTitle])
 
   return (
     <div className="Song">
@@ -38,7 +36,7 @@ function Song() {
         <p>{song.rating}/10</p><p/>
         <p>{song.numReviews} reviews</p>
       <h2>Review:</h2>
-        <SongPostForm addPostToList={addPostToList} songId ={songId}/>
+        <SongPostForm addPostToList={addPostToList} songArtist ={songArtist} songTitle = {songTitle}/>
       <h2>Other reviews:</h2>
         {posts.map((post, i) => (
           <SongPost key={i} post={post} title={song.title}/>

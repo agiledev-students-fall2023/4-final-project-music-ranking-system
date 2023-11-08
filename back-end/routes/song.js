@@ -15,8 +15,7 @@ let song = {
     numReviews: 10,
     posts: postArr
 }
-
-router.post("/:songId/save", (req, res) =>{
+router.post("/:songArtist/:songTitle/save", (req, res) =>{
     const newPost = {
         user: req.body.user, 
         rating: parseInt(req.body.rating), 
@@ -27,7 +26,9 @@ router.post("/:songId/save", (req, res) =>{
     song.rating = ((song.rating * (song.numReviews-1) + newPost.rating)/song.numReviews).toFixed(1)
     res.json(newPost)
 });
-router.get("/:songId", (req, res) => {
+router.get("/:songArtist/:songTitle", (req, res) => {
+    song.title = req.params.songTitle.replaceAll("+", " ")
+    song.artist = req.params.songArtist.replaceAll("+", " ")    
     res.json(song)
 });
 

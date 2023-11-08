@@ -32,7 +32,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />;
           <Route path="/post/:postId" element={<Post />} />;
           <Route path="/settings" element={auth? <Settings />:<LogIn />} />;
-          <Route path="/song/:songId" element={<Song />} />
+          <Route path="/song/:songArtist/:songTitle" element={<Song />} />
           <Route path="/search" element={<Search />} />
           <Route path="/other-user/:userId" element={<OtherUserProfile />} />;
         </Routes>
