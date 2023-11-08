@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
   }, [auth]);
   // the context passed down is object that contains the state variable auth, setAuth, and user
   return (
-    <AuthContext.Provider value={{ auth, setAuth, user }}>
+    <AuthContext.Provider value={{ auth, setAuth, user, setUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -25,7 +25,9 @@ function Settings() {
       })
     // for now, setting auth is false, removing local storage item auth and redirecting to / regardless of result of get request
     authContext.setAuth(false)
+    authContext.setUser(null)
     localStorage.removeItem("auth")
+    localStorage.removeItem("username")
     navigate("/")
   }
   
