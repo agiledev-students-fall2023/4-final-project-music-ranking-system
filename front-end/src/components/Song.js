@@ -5,6 +5,7 @@ import '../css/Song.css'
 import SongPostForm from './SongPostForm.js';
 import SongPost from './SongPost.js';
 
+//TODO: consider removing SongPostFrom once submit review? that way user can only submit once instead of multiple times
 function Song() {
   const {songArtist, songTitle} = useParams()
   const [song, setSong] = useState([])
