@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import '../css/Song.css'
 import SongPostForm from './SongPostForm.js';
@@ -8,6 +9,7 @@ import SongPost from './SongPost.js';
 //TODO: learn how to make path specified by song title, something like /:artist/:title, then need to change anywhere Link is /song
 //TODO: after starting backend, need to add axios.post
 function Song() {
+  const {songId} = useParams()
   const [song, setSong] = useState([])
   const [posts, setPosts] = useState([])
   const addPostToList = post => {
@@ -19,8 +21,9 @@ function Song() {
     // api: https://mockaroo.com/apis/79178
     // refdocs: https://knowledge.kitchen/content/courses/agile-development-and-devops/notes/react-intro/#fetch
     axios
-      .get(`https://my.api.mockaroo.com/songs/123.json?key=70e1efa0`)
+      .get(`http://localhost:3000/song/${songId}`)
       .then(response => {
+        console.log(songId)
         const song = response.data
         setSong(song)
         setPosts([{"title": song.title, "user": song.exuser, "rating": song.exrating, "review": song.exreview}])
@@ -28,7 +31,7 @@ function Song() {
       .catch(err => {
         console.log("Error fetching data:", err)
       })
-  }, [])
+  }, [songId])
 
   return (
     <div className="Song">
