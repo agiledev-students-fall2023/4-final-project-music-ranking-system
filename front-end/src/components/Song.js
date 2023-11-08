@@ -5,8 +5,6 @@ import '../css/Song.css'
 import SongPostForm from './SongPostForm.js';
 import SongPost from './SongPost.js';
 
-
-//TODO: change anywhere Link is /song
 function Song() {
   const {songArtist, songTitle} = useParams()
   const [song, setSong] = useState([])
