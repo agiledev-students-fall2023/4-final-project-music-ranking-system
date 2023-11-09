@@ -2,10 +2,9 @@
 const express = require("express"); // CommonJS import style!
 const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
+const morgan = require("morgan") // middleware for printing requests on terminal
 const homePage = require("./routes/homePage");
-// const {
-//   default: HomepageFeed,
-// } = require("../front-end/src/components/HomepageFeed");
+const song = require("./routes/song");
 const otherUserRoute = require("./routes/otherUser");
 const postRoute = require("./routes/postRoute");
 
@@ -23,10 +22,12 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(morgan("dev"))
 // we will put some server logic here later...
 app.use("/static", express.static("public"));
 
 app.use("/", homePage);
+app.use("/song", song);
 app.use("/", otherUserRoute);
 app.use("/", postRoute);
 

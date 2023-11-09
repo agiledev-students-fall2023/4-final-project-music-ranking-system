@@ -67,7 +67,7 @@ function App() {
             <div key={index} className="song">
               <img src={song.albumCover} alt={song.songName} />
                <p>
-                <Link to={`/song`} className="song-link">{song.songName}</Link>
+                <Link to={`/song/${song.artistName}/${song.songName}`} className="song-link">{song.songName}</Link>
                 {" - " + song.artistName}
                </p>
             </div>
@@ -81,7 +81,7 @@ function App() {
             <p>{entry.review}</p>
             <p>Rating: {entry.rating}/10</p>
             <p>
-              Review for: <Link className="song-link" to="/song">{entry.songName}</Link>
+              Review for: <Link className="song-link" to={`/song/${entry.artistName}/${entry.songName}`}>{entry.songName}</Link>
             </p>
           </div>
         ))}
