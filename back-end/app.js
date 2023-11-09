@@ -7,6 +7,7 @@ const homePage = require("./routes/homePage");
 const song = require("./routes/song");
 const otherUserRoute = require("./routes/otherUser");
 const postRoute = require("./routes/postRoute");
+const myProfile = require("./routes/myProfile");
 
 
 // use express' builtin body-parser middleware to parse data included in a request
@@ -30,6 +31,7 @@ app.use("/", homePage);
 app.use("/song", song);
 app.use("/", otherUserRoute);
 app.use("/", postRoute);
+app.use("/myProfile", myProfile);
 
 // export the express app we created to make it available to other modules
 module.exports = app;

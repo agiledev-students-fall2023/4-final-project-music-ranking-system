@@ -13,8 +13,9 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://api.mockaroo.com/api/4f9a5d40?count=4&key=deb8cfd0")
+      .get("http://localhost:3000/api/songs")
       .then((res) => {
+        console.log(res.data)
         setSongObject(res.data);
       })
       .catch((error) => {
@@ -36,23 +37,6 @@ function App() {
 
  
  
- /* const topSongs = [
-    // {
-    //   songName: 'Born To Die',
-    //   artistName: 'Lana Del Rey',
-    //   albumCover: 'https://picsum.photos/200',
-    // },
-    // {
-    //   songName: 'Candy',
-    //   artistName: 'Doja Cat',
-    //   albumCover: 'https://picsum.photos/200',
-    // },
-    // {
-    //   songName: 'Heartless',
-    //   artistName: 'The Weeknd',
-    //   albumCover: 'https://picsum.photos/200',
-    // }
-  ]; */
 
   return (
     <div className="profile-review">
