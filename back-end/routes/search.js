@@ -6,7 +6,7 @@ const router = require("express").Router();
 
 router.get("/", (req, res) => {
   axios
-    .get("http://localhost:3000/search/")
+    .get("https://api.mockaroo.com/api/d8caa150?count=3&key=9b1fc5d0")
     .then((apiResponse) => {
       const resdata = apiResponse.data;
       res.json(resdata);
