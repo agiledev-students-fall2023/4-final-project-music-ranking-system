@@ -57,10 +57,6 @@ function App() {
             <p><Link to={`/post/${entry.songName}`}>{entry.artistName} -- {entry.songName}</Link></p>
             <p>{entry.rating}/10</p>
             <p>{entry.review}</p>
-            <p>Rating: {entry.rating}/10</p>
-            <p>
-              Review for: <Link className="song-link" to={`/song/${entry.artistName}/${entry.songName}`}>{entry.songName}</Link>
-            </p>
           </div>
         ))}
       </div>
