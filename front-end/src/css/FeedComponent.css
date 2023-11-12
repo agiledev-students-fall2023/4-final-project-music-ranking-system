@@ -1,0 +1,28 @@
+.FeedComponent {
+    border-top: 1px #ccc solid;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.FeedComponent h1, h2, p {
+    font-weight: 200;
+    color: #00E;
+}
+
+.FeedComponent h1 {
+    font-size: 1.5em;
+}
+
+.FeedComponent h2 {
+    font-size: 0.8em;
+}
+
+.FeedComponent p {
+    font-size: 0.8em;
+}
+
+.FeedComponent img {
+    width: 40vw;
+    height: 40vw;
+}
