@@ -34,7 +34,7 @@ function Settings() {
   return (
     <div className='Settings'>
         <h1>Settings</h1>
-        <h4><Link id='link' to='/profile-review'>user123</Link>s</h4>
+        <h4><Link id='link' to='/profile-review'>user123</Link></h4>
         <form enctype='multipart/form-data'>
         <div class="input-group">
           <label for="username">Change username: </label><br/>
