@@ -3,7 +3,7 @@ const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
 const router = require("express").Router();
 
-//TODO: figure out spotify search
+
 //TODO: once database implemented, remove postArr and song
 //TODO: in post /save, maybe change rating equation? currently disregards any individual ratings, so decimal points are kind of off
 let postArr = []
@@ -26,7 +26,23 @@ router.post("/:songArtist/:songTitle/save", (req, res) =>{
     song.rating = ((song.rating * (song.numReviews-1) + newPost.rating)/song.numReviews).toFixed(1)
     res.json(newPost)
 });
+
 router.get("/:songArtist/:songTitle", (req, res) => {
+    let token;
+    //first get spotify token
+    axios.get("http://localhost:3000/spotify/token")
+    .then (response => {
+        token = response.data.access_token
+    })
+    //then search for item
+    axios.get("https://api.spotify.com/v1/search?q=taylor+swift+shake+it+off&type=track&limit=1&offset=0", {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then (response => {
+        console.log(response)
+    })
     song.title = req.params.songTitle
     song.artist = req.params.songArtist
     res.json(song)
