@@ -40,7 +40,6 @@ const SongPostForm = ({addPostToList, songArtist, songTitle}) => {
       <textarea
         placeholder="Enter your review"
         rows="10"
-        cols="30"
         onChange={e => setReview(e.target.value)}
         value={review}
       />
