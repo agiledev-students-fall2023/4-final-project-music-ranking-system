@@ -34,9 +34,9 @@ function Song() {
         <img src={song.coverSrc} alt="album cover" />
         <p>{song.rating}/10</p><p/>
         <p>{song.numReviews} reviews</p>
-      <h2>Review:</h2>
+      <h3>Review:</h3>
         <SongPostForm addPostToList={addPostToList} songArtist ={songArtist} songTitle = {songTitle}/>
-      <h2>Other reviews:</h2>
+      <h3>Other reviews:</h3>
         {posts.map((post, i) => (
           <SongPost key={i} post={post} title={song.title}/>
         ))}

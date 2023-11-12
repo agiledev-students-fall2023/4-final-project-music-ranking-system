@@ -3,8 +3,13 @@
     margin-left: 10px;
 }
 
-.Song h1, h2, p {
+.Song h1, h2, h3, p {
     margin-left: 0px;
+}
+.Song h3{
+    font-weight: 100;
+    color: #00E;
+    text-transform: lowercase;
 }
 .Song textarea {
     width: 95%;
