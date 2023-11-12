@@ -30,5 +30,6 @@ app.use("/", homePage);
 app.use("/", otherUserRoute);
 app.use("/", postRoute);
 
+
 // export the express app we created to make it available to other modules
 module.exports = app;
