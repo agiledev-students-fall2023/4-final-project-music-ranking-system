@@ -17,15 +17,19 @@ As frequent users of Spotify, we found ourselves wanting to learn more about our
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for information on project contribution.
 
-### Project Building/Testing Instructions
-*to be updated at a later stage*
-
 ### Additional Links
 - [SpotifyAPI](https://developer.spotify.com/documentation/web-api)
 
-### To run front-end...
-- use `npm install`, then `npm start`
+### Project Building/Testing Instructions
+#### To run front-end...
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- use `npm install`, then `npm start` in the project directory `cd front-end` so the app runs.
+- open [http://localhost:3001](http://localhost:3001) to view it in your browser. The page will reload when you make changes.
 - for now, any username and password is authenticated
+- use `npm test` for testing
 
-### To run back-end...
-- use `npm install`, then `npm start`
+#### To run and test back-end...
+- use `npm install`, then `npm start` in the project directory `cd back-end` for the back-end to run
+- be sure to use `npm install c8 --save-dev`, `npm install mocha chai --save-dev`, and `npm install express`
+- use `npm test` to run the c8 module and mocha/chai unit tests. results and code coverage will appear in the terminal
+- open [http://localhost:3001](http://localhost:3001) to view the complete app in your browser.
