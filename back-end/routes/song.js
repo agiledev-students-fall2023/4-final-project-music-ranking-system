@@ -8,9 +8,6 @@ const router = require("express").Router();
 //TODO: in post /save, maybe change rating equation? currently disregards any individual ratings, so decimal points are kind of off
 let postArr = []
 let song = {
-    title: "Title", 
-    artist: "Artist",
-    coverSrc: "https://picsum.photos/200",
     rating: 5, 
     numReviews: 10,
     posts: postArr
@@ -34,18 +31,27 @@ router.get("/:songArtist/:songTitle", (req, res) => {
     .then (response => {
         token = response.data.access_token
     })
-    //then search for item
-    axios.get("https://api.spotify.com/v1/search?q=taylor+swift+shake+it+off&type=track&limit=1&offset=0", {
+    .catch(err => {
+        console.log("Error fetching Spotify token:", err)
+      })
+    // then search for song with token
+    .then (response => {
+        axios.get(`https://api.spotify.com/v1/search?q=${req.params.songArtist}+${req.params.songTitle}&type=track&limit=1&offset=0`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
+        })
+    // then send response with updated song object
+        .then (response => {
+            song.artist = response.data.tracks.items[0].artists[0].name
+            song.title = response.data.tracks.items[0].name
+            song.coverSrc = response.data.tracks.items[0].album.images[1].url
+            res.json(song)
+        })
     })
-    .then (response => {
-        console.log(response)
-    })
-    song.title = req.params.songTitle
-    song.artist = req.params.songArtist
-    res.json(song)
+    .catch(err => {
+        console.log("Error searching Spotify:", err)
+      })
 });
 
 module.exports = router;
