@@ -5,3 +5,7 @@
     padding: 20px;
     padding-top: 10px;
 }
+
+.About h1, h3, p {
+    font-weight: 100;
+}
