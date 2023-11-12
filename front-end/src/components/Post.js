@@ -28,15 +28,11 @@ function Post() {
   }
   return (
     <div className="Post">
-      <h3>user's Review</h3>
+      <h3><Link to='/other-user/user'>user</Link>'s Review</h3>
       <h3>{post.artist} -- {post.song}</h3>
-      <img style={{ width: 200, height: 200 }} src={post.cover} alt="temp" />
+      <img src={post.cover} alt="temp" />
       <h4>{post.rating}/10</h4>
       <p>{post.review}</p>
-      <br/>
-
-      <p><Link to='/other-user/user1'>user1</Link>  -- review</p>
-      <p><Link to='/other-user/user2'>user2</Link> -- review</p>
       <br/>
       <CommentDisplay />
 
