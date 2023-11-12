@@ -1,9 +1,6 @@
 .ProfileReview {
     margin-left: 2vw;
 }
-.ProfileReview h1 {
-    font-weight: 100;
-}
 .ProfileReviewHeader {
     display: flex;
     justify-content: space-between;

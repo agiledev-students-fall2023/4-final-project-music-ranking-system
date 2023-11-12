@@ -5,10 +5,6 @@
     text-align: center;
 }
 
-.FeedComponent h1, h2, p {
-    font-weight: 200;
-}
-
 .FeedComponent h1 {
     font-size: 1.5em;
 }
