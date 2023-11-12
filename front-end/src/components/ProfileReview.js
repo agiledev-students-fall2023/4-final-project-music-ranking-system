@@ -1,19 +1,18 @@
-import React from 'react';
-import '../css/ProfileReview.css'
+import React from "react";
+import "../css/ProfileReview.css";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import {useEffect, useState} from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 
 function App() {
-  
-  const [songObject, setSongObject] = useState([]);   
+  const [songObject, setSongObject] = useState([]);  
   const [activityObject, setActivityObject] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://api.mockaroo.com/api/4f9a5d40?count=4&key=deb8cfd0")
+      .get("http://localhost:3000/myProfile/songs")
       .then((res) => {
         setSongObject(res.data);
       })
@@ -22,10 +21,9 @@ function App() {
       });
   }, []);
 
-
   useEffect(() => {
     axios
-      .get("https://api.mockaroo.com/api/9360e250?count=3&key=deb8cfd0")  
+      .get("http://localhost:3000/myProfile/activities")
       .then((res) => {
         setActivityObject(res.data);
       })
@@ -59,13 +57,15 @@ function App() {
             <p><Link to={`/post/${entry.songName}`}>{entry.artistName} -- {entry.songName}</Link></p>
             <p>{entry.rating}/10</p>
             <p>{entry.review}</p>
+            <p>Rating: {entry.rating}/10</p>
+            <p>
+              Review for: <Link className="song-link" to={`/song/${entry.artistName}/${entry.songName}`}>{entry.songName}</Link>
+            </p>
           </div>
         ))}
       </div>
     </div>
   );
-
- 
 }
 
 export default App;
