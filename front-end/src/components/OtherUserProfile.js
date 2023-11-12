@@ -41,7 +41,7 @@ function OtherUserProfile() {
           {userSongs.map((song, index) => (
             <div key={index} className="song">
               <img src={song.albumCover} alt={song.songName} />
-              <p>{song.songName} - {song.artistName}</p>
+              <p><Link to={`/song/${song.artistName}/${song.songName}`} className="song-link">{song.artistName} -- {song.songName}</Link></p>
             </div>
           ))}
         </div>
