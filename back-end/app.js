@@ -7,6 +7,7 @@ const song = require("./routes/song");
 const otherUserRoute = require("./routes/otherUser");
 const postRoute = require("./routes/postRoute");
 const searchRoute = require("./routes/search");
+const myProfile = require("./routes/myProfile");
 const landingFeedRoute = require("./routes/landingFeed");
 
 // use express' builtin body-parser middleware to parse data included in a request
@@ -29,6 +30,7 @@ app.use("/", homePage);
 app.use("/song", song);
 app.use("/", otherUserRoute);
 app.use("/", postRoute);
+app.use("/myProfile", myProfile);
 app.use("/search", searchRoute);
 app.use("/landingFeed", landingFeedRoute);
 
