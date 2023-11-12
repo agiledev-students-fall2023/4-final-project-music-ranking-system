@@ -11,7 +11,7 @@ export default function Search() {
 
   useEffect(() => {
     axios
-      .get("https://api.mockaroo.com/api/d8caa150?count=3&key=9b1fc5d0")
+      .get("http://localhost:3000/search/")
       .then((res) => {
         setAllData(res.data);
       })

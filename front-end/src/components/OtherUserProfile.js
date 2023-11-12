@@ -54,7 +54,7 @@ function OtherUserProfile() {
             <p>{entry.review}</p>
             <p>Rating: {entry.rating}/10</p>
             <p>
-              Review for: <Link className="song-link" to="/song">{entry.songName}</Link>
+              Review for: <Link className="song-link" to={`/song/${entry.artistName}/${entry.songName}`}>{entry.songName}</Link>
             </p>
           </div>
         ))}

@@ -3,12 +3,11 @@ const express = require("express"); // CommonJS import style!
 const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
 const homePage = require("./routes/homePage");
-// const {
-//   default: HomepageFeed,
-// } = require("../front-end/src/components/HomepageFeed");
+const song = require("./routes/song");
 const otherUserRoute = require("./routes/otherUser");
 const postRoute = require("./routes/postRoute");
-
+const searchRoute = require("./routes/search");
+const landingFeedRoute = require("./routes/landingFeed");
 
 // use express' builtin body-parser middleware to parse data included in a request
 app.use(express.json());
@@ -27,8 +26,11 @@ app.use(function (req, res, next) {
 app.use("/static", express.static("public"));
 
 app.use("/", homePage);
+app.use("/song", song);
 app.use("/", otherUserRoute);
 app.use("/", postRoute);
+app.use("/search", searchRoute);
+app.use("/landingFeed", landingFeedRoute);
 
 
 

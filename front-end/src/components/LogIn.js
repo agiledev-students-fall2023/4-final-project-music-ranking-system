@@ -30,12 +30,14 @@ function LogIn() {
         console.log("Error posting data:", err)
       })
 
+    // for now, setting auth is true, setting local storage item auth to true,  and redirecting to / regardless of result of post request
+    authContext.setAuth(true)
+    authContext.setUser(username)
+    localStorage.setItem("auth", true)
+    localStorage.setItem("username", username)
     // clear form
     setUsername('')
     setPassword('')
-    // for now, setting auth is true, setting local storage item auth to true,  and redirecting to / regardless of result of post request
-    authContext.setAuth(true)
-    localStorage.setItem("auth", true)
     navigate("/")
   }
 
