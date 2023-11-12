@@ -34,6 +34,9 @@ function Post() {
       <h4>{post.rating}/10</h4>
       <p>{post.review}</p>
       <br/>
+      <p><Link to='/other-user/user1'>user1</Link>  -- comment</p>
+      <p><Link to='/other-user/user2'>user2</Link> -- comment</p>
+      <br />
       <CommentDisplay />
 
     </div>

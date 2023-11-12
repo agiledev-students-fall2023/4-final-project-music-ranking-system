@@ -34,35 +34,16 @@ function App() {
       });
   }, []); 
 
- 
- 
- /* const topSongs = [
-    // {
-    //   songName: 'Born To Die',
-    //   artistName: 'Lana Del Rey',
-    //   albumCover: 'https://picsum.photos/200',
-    // },
-    // {
-    //   songName: 'Candy',
-    //   artistName: 'Doja Cat',
-    //   albumCover: 'https://picsum.photos/200',
-    // },
-    // {
-    //   songName: 'Heartless',
-    //   artistName: 'The Weeknd',
-    //   albumCover: 'https://picsum.photos/200',
-    // }
-  ]; */
 
   return (
-    <div className="profile-review">
-      <div className="profile">
+    <div className="ProfileReview">
+      <div className="ProfileReviewHeader">
         <h1>User123</h1>
+        <p><Link to="/settings">Settings</Link></p>
       </div>
-      <Link to="/settings">Settings</Link>
       <div className="top-songs">
         <h2>Top Songs</h2>
-        <div className="song-container">
+        <div className="ProfileReviewSongContainer">
           {songObject.map((song, index) => (
             <div key={index} className="song">
               <img src={song.albumCover} alt={song.songName} />
@@ -78,11 +59,11 @@ function App() {
         <h2>Activity</h2>
         {activityObject.map((entry, index) => (
           <div key={index} className="activity-entry">
+          <Link to={`/post/${entry.songName}`}>
+            <p>{entry.artistName} -- {entry.songName}</p>
+            <p>{entry.rating}/10</p>
             <p>{entry.review}</p>
-            <p>Rating: {entry.rating}/10</p>
-            <p>
-              Review for: <Link className="song-link" to={`/song/${entry.artistName}/${entry.songName}`}>{entry.songName}</Link>
-            </p>
+          </Link>
           </div>
         ))}
       </div>

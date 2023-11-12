@@ -24,8 +24,8 @@ router1.get("/other-user/:userId", async (req, res) => {
           albumCover: "https://picsum.photos/200",
         },
         {
-          songName: "Popular (with Playboi Carti & Madonna)",
-          artistName: "The Weeknd, Playboi Carti, Madonna",
+          songName: "Popular",
+          artistName: "The Weeknd",
           albumCover: "https://picsum.photos/200",
         },
       ],
