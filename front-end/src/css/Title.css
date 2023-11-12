@@ -1,12 +1,12 @@
 .title{
     text-align: center;
-    font-size: 2vh;
     background-color: #f4f4f4;
     border-top: 1px #ccc solid;
     border-bottom: 1px #ccc solid;
 }
 
 .title h1{
+    font-size: 1.8em;
     font-weight: 200;
     color: #00E;
     text-transform: lowercase;
