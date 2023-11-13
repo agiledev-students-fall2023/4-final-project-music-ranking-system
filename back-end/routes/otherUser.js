@@ -35,19 +35,22 @@ router1.get("/other-user/:userId", async (req, res) => {
           review:
             "Love this song! My favorite! Pretend I came up with some more positive comments!",
           rating: 9,
-          songName: "Song 1",
+          songName: "Blank Space",
+          artistName: "Taylor Swift",
         },
         {
           review:
             "This song sucks. Overrated. Cannot open Tiktok wo hearing it this is so overplayed.",
           rating: 2,
-          songName: "Song 2",
+          songName: "Lose Control",
+          artistName: "Eminem",
         },
         {
           review:
             "This song is good, but no where near as much as everyone is saying. Mid.",
           rating: 6,
-          songName: "Song 3",
+          songName: "God's Plan",
+          artistName: "Drake",
         },
       ],
     };
