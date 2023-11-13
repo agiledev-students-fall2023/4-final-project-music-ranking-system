@@ -28,7 +28,7 @@ describe("Other User API", () => {
                     expect(activity).to.have.property("rating").to.be.a("number");
                     expect(activity).to.have.property("songName").to.be.a("string");
                 });
-                done();
-            });
+            done();
+        });
     });
 });
