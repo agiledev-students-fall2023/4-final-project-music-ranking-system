@@ -1,5 +1,12 @@
 .title{
-    padding: 10px;
-    background-color: rgb(5, 5, 53);
-    color: white;
+    text-align: center;
+    background-color: #f4f4f4;
+    border-top: 1px #ccc solid;
+    border-bottom: 1px #ccc solid;
+}
+
+.title h1{
+    font-size: 1.8em;
+    color: #00E;
+    text-transform: lowercase;
 }

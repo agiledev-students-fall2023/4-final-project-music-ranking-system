@@ -1,26 +1,14 @@
-/* 
 .Song {
-    max-width: 100px;
-    margin: 50px auto;
-    padding: 20px; 
+    border-top: 1px #ccc solid;
+    margin-left: 2vw;
 }
 
-h2 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 1.5em;
+.Song h1, h2, h3, p {
+    margin-left: 0px;
 }
-
-img {
-    display: block;
-    width: 200px;
+.Song h3{
+    text-transform: lowercase;
 }
-
-p {
-    text-align: center;
-    margin: 10px 0;
+.Song textarea {
+    width: 95%;
 }
-
-
-
-  */

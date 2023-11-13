@@ -1,15 +1,10 @@
-textarea {
-    resize: none;
-}
-
 .Post {
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    margin-left: 8%;
+    border-top: 1px #ccc solid;
+    margin-left: 2vw;
 }
-
-.input-group {
-    text-align: left;
-    padding-left: 8%;
+.Post h1, h2, h3, h4, p {
+    margin-left: 0px;
+}
+.Post textarea {
+    width: 95%;
 }
