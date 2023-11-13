@@ -24,12 +24,15 @@ function Comment({ onSubmit }) {
 
   return (
     <form className="CommentForm" onSubmit={handleSubmit} method="post" enctype="multipart/form-data">
-        <div class="input-group">
-          <label for="comment">Add Comment: </label><br/>
-          <textarea id="song-comment" value={comment} name="song-comment" onChange={(e) => setComment(e.target.value)} placeholder="Enter a comment" rows="10"></textarea>
-        </div>
-        <br/>
-    
+          <label for="comment">Add Comment: </label>
+          <textarea 
+            id="song-comment" 
+            value={comment} 
+            name="song-comment" 
+            onChange={(e) => setComment(e.target.value)} 
+            placeholder="Enter a comment" 
+            rows="10"
+          />
         <div class="button">
           <input type="submit" disabled={!comment} value="Enter"/>
         </div>

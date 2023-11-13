@@ -1,17 +1,6 @@
 .Settings {
+    display: flex;
+    justify-content: center;
     text-align: center;
-    padding: 20px;
-}
-
-h4 {
-    padding-right: 10%;
-}
-
-.input-group {
-    text-align: left;
-    padding-left: 8%;
-}
-
-#link {
-    text-decoration: none;
+    flex-direction: column;
 }

@@ -38,9 +38,8 @@ const SongPostForm = ({addPostToList, songArtist, songTitle}) => {
       <label htmlFor="rating"> /10</label>
       <br />
       <textarea
-        placeholder="Enter your review"
+        placeholder="enter your review..."
         rows="10"
-        cols="30"
         onChange={e => setReview(e.target.value)}
         value={review}
       />
