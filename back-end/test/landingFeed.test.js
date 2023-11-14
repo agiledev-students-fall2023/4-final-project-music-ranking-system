@@ -6,7 +6,7 @@ const axios = require("axios");
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-describe("GET /retrieve", () => {
+describe("Landing Feed", () => {
     afterEach(() => {
         sinon.restore();
     });
@@ -16,7 +16,7 @@ describe("GET /retrieve", () => {
         const getStub = sinon.stub(axios, "get").resolves(mock_response);
 
         chai.request(app)
-        .get("/retrieve")
+        .get("/landingFeed/retrieve")
         .end((err, res) => {
             expect(res).to.have.status(200);
             expect(res.body).to.be.an("array"); 
@@ -31,7 +31,7 @@ describe("GET /retrieve", () => {
         const getStub = sinon.stub(axios, "get").rejects(err_response);
 
         chai.request(app)
-        .get("/retrieve")
+        .get("/landingFeed/retrieve")
         .end((err, res) => {
             expect(res).to.have.status(500);
             expect(res.body).to.deep.equal({ error: "Internal Server Error" });
