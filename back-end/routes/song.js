@@ -38,7 +38,6 @@ router.get("/:songArtist/:songTitle", (req, res) => {
     })
     .catch(err => {
         res.status(500).json({"Error fetching Spotify token": err})
-        console.log(err)
       })
     // then search for song with token
     .then (response => {
