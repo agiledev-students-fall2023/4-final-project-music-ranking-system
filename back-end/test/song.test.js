@@ -6,7 +6,7 @@ const assert = require("assert");
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-describe("POST request to /song/:songArtist/:songTitle/save", () => {
+describe("Song", () => {
   it("should respond with an HTTP 200 status code and a new post object in the response body, currently with any input", (done) => {
     chai
       .request(app)

@@ -5,11 +5,11 @@ const app = require("../app");
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-describe("Search API", () => {
+describe("Home Page", () => {
   it("should return an array of 3 elements with specific properties", (done) => {
     chai
       .request(app)
-      .get("/search/")
+      .get("/")
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.be.an("array").with.lengthOf(3);
@@ -51,9 +51,6 @@ describe("Search API", () => {
         done();
       });
   });
-});
-
-describe("Search API", () => {
   it("should handle API errors and return 500 status", (done) => {
     const axiosMock = require("axios-mock-adapter");
     const mock = new axiosMock(require("axios"));
@@ -63,7 +60,7 @@ describe("Search API", () => {
 
     chai
       .request(app)
-      .get("/search/")
+      .get("/")
       .end((err, res) => {
         expect(res).to.have.status(500);
         expect(res.body).to.deep.equal({ error: "Internal Server Error" });
