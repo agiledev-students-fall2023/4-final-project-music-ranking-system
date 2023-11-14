@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
-import '../css/Song.css'
+import '../css/Song.css';
 import SongPostForm from './SongPostForm.js';
 import SongPost from './SongPost.js';
 
@@ -34,11 +34,11 @@ function Song() {
         <img src={song.coverSrc} alt="album cover" />
         <p>{song.rating}/10</p><p/>
         <p>{song.numReviews} reviews</p>
-      <h2>Review:</h2>
+      <h3>Review:</h3>
         <SongPostForm addPostToList={addPostToList} songArtist ={songArtist} songTitle = {songTitle}/>
-      <h2>Other reviews:</h2>
+      <h3>Other reviews:</h3>
         {posts.map((post, i) => (
-          <SongPost key={i} post={post} title={song.title}/>
+          <SongPost key={i} post={post} songArtist={songArtist} songTitle={songTitle}/>
         ))}
     </div>
   );

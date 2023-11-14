@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../App.css';
+import '../css/ProfileReview.css';
 import { useParams, Link } from "react-router-dom";
 
 
@@ -30,18 +30,18 @@ function OtherUserProfile() {
     return <div>Loading...</div>
   }
   return (
-    <div className="profile-review">
+    <div className="ProfileReview">
       <div className="profile">
         <h1>{userId}</h1>
       </div>
 
       <div className="top-songs">
         <h2>Top Songs</h2>
-        <div className="song-container">
+        <div className="ProfileReviewSongContainer">
           {userSongs.map((song, index) => (
             <div key={index} className="song">
               <img src={song.albumCover} alt={song.songName} />
-              <p>{song.songName} - {song.artistName}</p>
+              <p><Link to={`/song/${song.artistName}/${song.songName}`} className="song-link">{song.artistName} -- {song.songName}</Link></p>
             </div>
           ))}
         </div>
@@ -51,11 +51,9 @@ function OtherUserProfile() {
         <h2>Activity</h2>
         {userActivity.map((entry, index) => (
           <div key={index} className="activity-entry">
+            <p><Link to={`/post/${entry.artistName}/${entry.songName}`}>{entry.artistName} -- {entry.songName}</Link></p>
+            <p>{entry.rating}/10</p>
             <p>{entry.review}</p>
-            <p>Rating: {entry.rating}/10</p>
-            <p>
-              Review for: <Link className="song-link" to={`/song/${entry.artistName}/${entry.songName}`}>{entry.songName}</Link>
-            </p>
           </div>
         ))}
       </div>
