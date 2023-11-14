@@ -38,7 +38,7 @@ function Song() {
         <SongPostForm addPostToList={addPostToList} songArtist ={songArtist} songTitle = {songTitle}/>
       <h3>Other reviews:</h3>
         {posts.map((post, i) => (
-          <SongPost key={i} post={post} title={song.title}/>
+          <SongPost key={i} post={post} songArtist={songArtist} songTitle={songTitle}/>
         ))}
     </div>
   );
