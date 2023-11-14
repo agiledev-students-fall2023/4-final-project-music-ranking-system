@@ -13,15 +13,20 @@ let song = {
     posts: postArr
 }
 router.post("/:songArtist/:songTitle/save", (req, res) =>{
-    const newPost = {
-        user: req.body.user, 
-        rating: parseInt(req.body.rating), 
-        review: req.body.review
-    } 
-    postArr = [newPost, ...postArr]
-    song.numReviews++
-    song.rating = ((song.rating * (song.numReviews-1) + newPost.rating)/song.numReviews).toFixed(1)
-    res.json(newPost)
+    try {
+        const newPost = {
+            user: req.body.user, 
+            rating: parseInt(req.body.rating), 
+            review: req.body.review
+        } 
+        postArr = [newPost, ...postArr]
+        song.numReviews++
+        song.rating = ((song.rating * (song.numReviews-1) + newPost.rating)/song.numReviews).toFixed(1)
+        res.json(newPost)
+    }
+    catch (err){
+        res.status(500).json({"Error posting song review": err})
+    }
 });
 
 router.get("/:songArtist/:songTitle", (req, res) => {
@@ -32,7 +37,7 @@ router.get("/:songArtist/:songTitle", (req, res) => {
         token = response.data.access_token
     })
     .catch(err => {
-        console.log("Error fetching Spotify token:", err)
+        res.status(500).json({"Error fetching Spotify token": err})
       })
     // then search for song with token
     .then (response => {
@@ -48,10 +53,13 @@ router.get("/:songArtist/:songTitle", (req, res) => {
             song.coverSrc = response.data.tracks.items[0].album.images[1].url
             res.json(song)
         })
+        .catch(err => {
+            res.status(500).send("Error updating song object:", err)
+        })
     })
     .catch(err => {
-        console.log("Error searching Spotify:", err)
-      })
+        res.status(500).json({"Error searching Spotify": err})
+    })
 });
 
 module.exports = router;

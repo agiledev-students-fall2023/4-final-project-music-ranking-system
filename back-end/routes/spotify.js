@@ -25,7 +25,7 @@ router.get("/token", (req, res) => {
         res.json(response.data)
     })
     .catch(err => {
-      console.log("Error fetching Spotify token:", err)
+        res.status(500).json({"Error fetching Spotify token": err})
     })
 })
 
