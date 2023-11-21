@@ -31,9 +31,9 @@ router.get("/token", (req, res) => {
     .then((response) => {
       res.json(response.data);
     })
-    .catch((err) => {
-      console.log("Error fetching Spotify token:", err);
-    });
-});
+    .catch(err => {
+        res.status(500).json({"Error fetching Spotify token": err})
+    })
+})
 
 module.exports = router;
