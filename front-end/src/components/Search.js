@@ -7,22 +7,41 @@ export default function Search() {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [allData, setAllData] = useState([]);
+  const [searchType, setSearchType] = useState("song");
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/search/new?query=${search}`
-      );
-      console.log(response.data);
-      const res = response.data.tracks[0];
-      const temp = {
-        artist: res.artists[0].name,
-        song: res.name,
-        cover: res.album.images[1].url,
-        rating: 10,
-        review: "test",
-      };
-      setData([temp]);
+      if (searchType == "song") {
+        const response = await axios.get(
+          `http://localhost:3000/search/song?query=${search}`
+        );
+        const res = response.data.tracks[0];
+        const temp = {
+          artist: res.artists[0].name,
+          song: res.name,
+          cover: res.album.images[1].url,
+          rating: 10,
+          review: "test",
+        };
+        setData([temp]);
+      } else if (searchType == "artist") {
+        const response = await axios.get(
+          `http://localhost:3000/search/artist?query=${search}`
+        );
+        const res = response.data.tracks;
+        console.log(res);
+        const tracksData = res.map((track, index) => {
+          return {
+            artist: track.artist,
+            song: track.name,
+            cover: track.image,
+            rating: 10,
+            review: "test",
+            id: track.id,
+          };
+        });
+        setData(tracksData);
+      }
     } catch (error) {
       console.error("Error fetching search results: ", error);
     }
@@ -46,9 +65,17 @@ export default function Search() {
     };
   }, [search]);
 
+  const handleSearchTypeChange = (event) => {
+    setSearchType(event.target.value);
+  };
+
   return (
     <div>
       <div className="searchBar">
+        <select value={searchType} onChange={handleSearchTypeChange}>
+          <option value="song">Song</option>
+          <option value="artist">Artist</option>
+        </select>
         <input
           className="searchInput"
           type="text"

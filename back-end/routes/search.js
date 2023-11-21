@@ -42,13 +42,13 @@ const getAccessToken = async () => {
   return response.data.access_token;
 };
 
-router.get("/new", async (req, res) => {
+router.get("/song", async (req, res) => {
   try {
     const accessToken = await getAccessToken();
     const searchTerm = encodeURIComponent(req.query.query);
 
     const response = await axios.get(
-      `https://api.spotify.com/v1/search?q=${searchTerm}&type=track,artist`,
+      `https://api.spotify.com/v1/search?q=${searchTerm}&type=track`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -56,10 +56,39 @@ router.get("/new", async (req, res) => {
       }
     );
 
-    const artists = response.data.artists.items;
+    // const artists = response.data.artists.items;
     const tracks = response.data.tracks.items;
 
-    res.json({ artists, tracks });
+    res.json({ tracks });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Assuming you have a valid implementation for getAccessToken
+router.get("/artist", async (req, res) => {
+  try {
+    const accessToken = await getAccessToken();
+    const searchTerm = encodeURIComponent(req.query.query);
+
+    const response = await axios.get(
+      `https://api.spotify.com/v1/search?type=track&q=artist:${searchTerm}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    const tracks = response.data.tracks.items.map((track) => ({
+      id: track.id,
+      name: track.name,
+      album: track.album.name,
+      artist: track.artists.map((artist) => artist.name).join(", "),
+      image: track.album.images.length > 0 ? track.album.images[0].url : null,
+    }));
+
+    res.json({ tracks });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
