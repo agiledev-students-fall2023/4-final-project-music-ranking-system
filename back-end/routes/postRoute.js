@@ -3,7 +3,7 @@ const express = require("express"); // CommonJS import style!
 const axios = require("axios"); // middleware for making requests to APIs
 const router2 = express.Router();
 
-// Post.js requests to/from API
+/*Post.js requests to/from API
 router2.get("/post/:postId", async (req, res) => {
     const postID = parseInt(req.params.postId);
     //res.send({ postId: postID });
@@ -25,13 +25,14 @@ router2.get("/post/:postId", async (req, res) => {
       res.status(500).json({ error: "Internal Server Error:" });
     }
   });
+  */
 
   let song = {
-    rating: 5,
+    rating:5,
+    numReviews: 10,
     review: "Banger",
   }
-
-  router2.get("/post/:songArtist/:songTitle", (req, res) => {
+  router2.get("post/:songArtist/:songTitle", (req, res) => {
     let token;
     //first get spotify token
     axios.get("http://localhost:3000/spotify/token")
