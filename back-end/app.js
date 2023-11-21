@@ -2,6 +2,8 @@
 const express = require("express"); // CommonJS import style!
 const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
+const mongoose = require('mongoose');
+const connect_db = require('./db');
 require('dotenv').config();
 
 const homePage = require("./routes/homePage");
