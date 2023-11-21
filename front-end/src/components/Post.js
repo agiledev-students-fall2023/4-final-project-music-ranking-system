@@ -10,7 +10,7 @@ function Post() {
   const [post, setPost] = useState([]);
   const {songArtist, songTitle} = useParams()
   const [song, setSong] = useState([])
-
+  
   useEffect(() => {
     console.log("PostId: ", postId);
     axios
