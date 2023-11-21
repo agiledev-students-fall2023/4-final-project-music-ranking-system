@@ -51,7 +51,7 @@ function OtherUserProfile() {
         <h2>Activity</h2>
         {userActivity.map((entry, index) => (
           <div key={index} className="activity-entry">
-            <p><Link to={`/post/${entry.songName}`}>{entry.artistName} -- {entry.songName}</Link></p>
+            <p><Link to={`/post/${entry.artistName}/${entry.songName}`}>{entry.artistName} -- {entry.songName}</Link></p>
             <p>{entry.rating}/10</p>
             <p>{entry.review}</p>
           </div>

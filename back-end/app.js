@@ -2,6 +2,8 @@
 const express = require("express"); // CommonJS import style!
 const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
+require('dotenv').config();
+
 const homePage = require("./routes/homePage");
 const songRoute = require("./routes/song");
 const otherUserRoute = require("./routes/otherUser");
@@ -35,6 +37,8 @@ app.use("/myProfile", myProfile);
 app.use("/search", searchRoute);
 app.use("/landingFeed", landingFeedRoute);
 app.use("/spotify", spotifyRoute);
+
+
 
 // export the express app we created to make it available to other modules
 module.exports = app;

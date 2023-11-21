@@ -51,9 +51,6 @@ describe("Search API", () => {
         done();
       });
   });
-});
-
-describe("Search API", () => {
   it("should handle API errors and return 500 status", (done) => {
     const axiosMock = require("axios-mock-adapter");
     const mock = new axiosMock(require("axios"));
