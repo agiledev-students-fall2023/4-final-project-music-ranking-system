@@ -3,7 +3,7 @@ const express = require("express"); // CommonJS import style!
 const axios = require("axios"); // middleware for making requests to APIs
 const router2 = express.Router();
 
-// Post.js requests to/from API
+/*Post.js requests to/from API
 router2.get("/post/:postId", async (req, res) => {
     const postID = parseInt(req.params.postId);
     //res.send({ postId: postID });
@@ -25,7 +25,7 @@ router2.get("/post/:postId", async (req, res) => {
       res.status(500).json({ error: "Internal Server Error:" });
     }
   });
-  
+  */
 
   let song = {
     rating:5,
