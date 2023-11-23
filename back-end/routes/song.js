@@ -2,9 +2,8 @@ const express = require("express"); // CommonJS import style!
 const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
 const router = require("express").Router();
+const Song = require("../models/song");
 
-
-//TODO: once database implemented, remove postArr and song
 //TODO: in post /save, maybe change rating equation? currently disregards any individual ratings, so decimal points are kind of off
 let postArr = []
 let song = {
@@ -46,12 +45,20 @@ router.get("/:songArtist/:songTitle", (req, res) => {
             'Authorization': `Bearer ${token}`
         }
         })
-    // then send response with updated song object
-        .then (response => {
+    // then send response with updated song object + save to database
+        .then (async response => {
             song.artist = response.data.tracks.items[0].artists[0].name
             song.title = response.data.tracks.items[0].name
             song.coverSrc = response.data.tracks.items[0].album.images[1].url
-            res.json(song)
+            const newSong = new Song({
+                title: song.title, 
+                artist: song.artist, 
+                coverSrc: song.coverSrc, 
+                numReviews: 0,
+                posts: []
+            })
+            await newSong.save()
+            res.json(newSong)
         })
         .catch(err => {
             res.status(500).send("Error updating song object:", err)

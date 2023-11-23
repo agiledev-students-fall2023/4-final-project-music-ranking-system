@@ -32,7 +32,7 @@ function Song() {
     <div className="Song">
       <h2>{song.artist} - {song.title}</h2>
         <img src={song.coverSrc} alt="album cover" />
-        <p>{song.rating}/10</p><p/>
+        {song.rating && <p>{song.rating}/10</p>}
         <p>{song.numReviews} reviews</p>
       <h3>Review:</h3>
         <SongPostForm addPostToList={addPostToList} songArtist ={songArtist} songTitle = {songTitle}/>
