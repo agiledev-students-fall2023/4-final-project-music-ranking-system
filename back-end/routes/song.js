@@ -28,45 +28,56 @@ router.post("/:songArtist/:songTitle/save", (req, res) =>{
     }
 });
 
-router.get("/:songArtist/:songTitle", (req, res) => {
-    let token;
-    //first get spotify token
-    axios.get("http://localhost:3000/spotify/token")
-    .then (response => {
-        token = response.data.access_token
-    })
-    .catch(err => {
-        res.status(500).json({"Error fetching Spotify token": err})
-      })
-    // then search for song with token
-    .then (response => {
-        axios.get(`https://api.spotify.com/v1/search?q=${req.params.songArtist}+${req.params.songTitle}&type=track&limit=1&offset=0`, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-        })
-    // then send response with updated song object + save to database
-        .then (async response => {
-            song.artist = response.data.tracks.items[0].artists[0].name
-            song.title = response.data.tracks.items[0].name
-            song.coverSrc = response.data.tracks.items[0].album.images[1].url
-            const newSong = new Song({
-                title: song.title, 
-                artist: song.artist, 
-                coverSrc: song.coverSrc, 
-                numReviews: 0,
-                posts: []
-            })
-            await newSong.save()
-            res.json(newSong)
+router.get("/:songArtist/:songTitle", async (req, res) => {
+    //check if already have song saved in database
+    const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist})
+    // if so, send response with song object
+    if (song) {
+        res.json(song)
+    }
+    //if not, query spotify
+    else {
+        let token;
+        //first get spotify token
+        axios.get("http://localhost:3000/spotify/token")
+        .then (response => {
+            token = response.data.access_token
         })
         .catch(err => {
-            res.status(500).send("Error updating song object:", err)
+            res.status(500).json({"Error fetching Spotify token": err})
         })
-    })
-    .catch(err => {
-        res.status(500).json({"Error searching Spotify": err})
-    })
+        // then search for song with token
+        .then (response => {
+            axios.get(`https://api.spotify.com/v1/search?q=${req.params.songArtist}+${req.params.songTitle}&type=track&limit=1&offset=0`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+            })
+        // then send response with updated song object + save to database
+            .then (async response => {
+                let song = {}
+                song.artist = response.data.tracks.items[0].artists[0].name
+                song.title = response.data.tracks.items[0].name
+                song.coverSrc = response.data.tracks.items[0].album.images[1].url
+                const newSong = new Song({
+                    title: song.title, 
+                    artist: song.artist, 
+                    coverSrc: song.coverSrc, 
+                    numReviews: 0,
+                    posts: []
+                })
+                await newSong.save()
+                res.json(newSong)
+            })
+            .catch(err => {
+                res.status(500).json({"Error updating song object": err})
+                console.log(err)
+            })
+        })
+        .catch(err => {
+            res.status(500).json({"Error searching Spotify": err})
+        })
+    }
 });
 
 module.exports = router;
