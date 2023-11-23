@@ -6,11 +6,12 @@ import CommentDisplay from './CommentDisplay';
  
 
 function Post() {
-  const { postId } = useParams(); // "1"
-  const [post, setPost] = useState([]);
+  //const { postId } = useParams(); // "1"
+  //const [post, setPost] = useState([]);
   const {songArtist, songTitle} = useParams()
   const [song, setSong] = useState([])
-
+  
+  /*
   useEffect(() => {
     console.log("PostId: ", postId);
     axios
@@ -24,6 +25,7 @@ function Post() {
       });
       
   }, [postId]);
+  */
 
   useEffect(() => {
     axios
@@ -37,7 +39,7 @@ function Post() {
       })
   }, [songArtist, songTitle])
 
-  if (!post) {
+  if (!song) {
     return <div>Loading...</div>
   }
   return (
@@ -48,8 +50,8 @@ function Post() {
       <h4>{song.rating}/10</h4>
       <p>{song.review}</p>
       <br/>
-      <p><Link to='/other-user/user1'>user1</Link>  -- comment</p>
-      <p><Link to='/other-user/user2'>user2</Link> -- comment</p>
+      <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
+      <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
       <br />
       <CommentDisplay />
 
