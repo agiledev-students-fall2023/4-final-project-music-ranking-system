@@ -5,11 +5,12 @@ import '../css/Song.css';
 import SongPostForm from './SongPostForm.js';
 import SongPost from './SongPost.js';
 
-//TODO: consider removing SongPostFrom once submit review? that way user can only submit once instead of multiple times
+//TODO: change SongPostForm, currently only removing if submit post, but what if log out then sign back in? will it allow duplicate posting?
 function Song() {
   const {songArtist, songTitle} = useParams()
   const [song, setSong] = useState([])
   const [posts, setPosts] = useState([])
+  const [showForm, setShowForm] = useState(true)
   const addPostToList = post => {
     const newPosts = [post, ...posts] 
     setPosts(newPosts) 
@@ -33,9 +34,13 @@ function Song() {
       <h2>{song.artist} - {song.title}</h2>
         <img src={song.coverSrc} alt="album cover" />
         {song.rating && <p>{song.rating}/10</p>}
-        <p>{song.numReviews} reviews</p>
-      <h3>Review:</h3>
-        <SongPostForm addPostToList={addPostToList} songArtist ={songArtist} songTitle = {songTitle}/>
+      {song.numReviews == 1? <p>{song.numReviews} review</p>:<p>{song.numReviews} reviews</p>}
+      {showForm && 
+        <>
+          <h3>Review:</h3>
+          <SongPostForm setShowForm={setShowForm} addPostToList={addPostToList} songArtist ={songArtist} songTitle = {songTitle}/>
+        </>
+      }
       <h3>Other reviews:</h3>
         {posts.map((post, i) => (
           <SongPost key={i} post={post} songArtist={songArtist} songTitle={songTitle}/>

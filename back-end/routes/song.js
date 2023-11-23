@@ -5,22 +5,19 @@ const router = require("express").Router();
 const Song = require("../models/song");
 
 //TODO: in post /save, maybe change rating equation? currently disregards any individual ratings, so decimal points are kind of off
-let postArr = []
-let song = {
-    rating: 5, 
-    numReviews: 10,
-    posts: postArr
-}
-router.post("/:songArtist/:songTitle/save", (req, res) =>{
+router.post("/:songArtist/:songTitle/save", async (req, res) =>{
     try {
+        const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist})
         const newPost = {
-            user: req.body.user, 
+            username: req.body.user, 
             rating: parseInt(req.body.rating), 
-            review: req.body.review
+            review: req.body.review,
+            comments: []
         } 
-        postArr = [newPost, ...postArr]
+        song.posts.push(newPost)
         song.numReviews++
         song.rating = ((song.rating * (song.numReviews-1) + newPost.rating)/song.numReviews).toFixed(1)
+        await song.save()
         res.json(newPost)
     }
     catch (err){
