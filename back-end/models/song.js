@@ -1,3 +1,6 @@
+// helpful documentation: https://mongoosejs.com/docs/subdocs.html#adding-subdocs-to-arrays
+// https://mongoosejs.com/docs/index.html
+
 const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({

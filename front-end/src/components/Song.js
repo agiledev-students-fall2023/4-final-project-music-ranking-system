@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
+import { useAuthContext } from "./AuthProvider.js";
 import axios from 'axios';
 import '../css/Song.css';
 import SongPostForm from './SongPostForm.js';
@@ -7,6 +8,7 @@ import SongPost from './SongPost.js';
 
 //TODO: change SongPostForm, currently only removing if submit post, but what if log out then sign back in? will it allow duplicate posting?
 function Song() {
+  const username = useAuthContext().user
   const {songArtist, songTitle} = useParams()
   const [song, setSong] = useState([])
   const [posts, setPosts] = useState([])
@@ -22,19 +24,29 @@ function Song() {
       .then(response => {
         const song = response.data
         setSong(song)
-        setPosts(song.posts)
+        const temp = [...song.posts]
+        setPosts(temp)
       })
       .catch(err => {
         console.log("Error fetching data:", err)
       })
   }, [songArtist, songTitle])
 
+  useEffect(() => {
+    console.log(posts)
+    posts.map((post) => {
+      if (post.username === username) {
+        setShowForm(false)
+      }
+    })
+  }, [posts])
+
   return (
     <div className="Song">
       <h2>{song.artist} - {song.title}</h2>
         <img src={song.coverSrc} alt="album cover" />
         {song.rating && <p>{song.rating}/10</p>}
-      {song.numReviews == 1? <p>{song.numReviews} review</p>:<p>{song.numReviews} reviews</p>}
+      {song.numReviews === 1? <p>{song.numReviews} review</p>:<p>{song.numReviews} reviews</p>}
       {showForm && 
         <>
           <h3>Review:</h3>
