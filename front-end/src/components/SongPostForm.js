@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useAuthContext } from "./AuthProvider.js";
 
-const SongPostForm = ({addPostToList, songArtist, songTitle}) => {
+const SongPostForm = ({setShowForm, addPostToList, songArtist, songTitle}) => {
   const username = useAuthContext().user
   // create a state variable for each form field
   const [rating, setRating] = useState('')
@@ -28,8 +28,7 @@ const SongPostForm = ({addPostToList, songArtist, songTitle}) => {
       })
 
     // clear form
-    setRating('')
-    setReview('')
+    setShowForm(false)
   }
 
   return (

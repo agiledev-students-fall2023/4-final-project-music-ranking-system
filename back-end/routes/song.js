@@ -2,26 +2,22 @@ const express = require("express"); // CommonJS import style!
 const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
 const router = require("express").Router();
+const Song = require("../models/song");
 
-
-//TODO: once database implemented, remove postArr and song
-//TODO: in post /save, maybe change rating equation? currently disregards any individual ratings, so decimal points are kind of off
-let postArr = []
-let song = {
-    rating: 5, 
-    numReviews: 10,
-    posts: postArr
-}
-router.post("/:songArtist/:songTitle/save", (req, res) =>{
+//TODO: if manually type in artist and title in params, will automatically fetch spotify api even if already have a database entry, maybe fix? but also might be ok if no one is directly typing in url bar
+router.post("/:songArtist/:songTitle/save", async (req, res) =>{
     try {
+        const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist})
         const newPost = {
-            user: req.body.user, 
+            username: req.body.user, 
             rating: parseInt(req.body.rating), 
-            review: req.body.review
+            review: req.body.review,
+            comments: []
         } 
-        postArr = [newPost, ...postArr]
+        song.posts.push(newPost)
         song.numReviews++
         song.rating = ((song.rating * (song.numReviews-1) + newPost.rating)/song.numReviews).toFixed(1)
+        await song.save()
         res.json(newPost)
     }
     catch (err){
@@ -29,37 +25,53 @@ router.post("/:songArtist/:songTitle/save", (req, res) =>{
     }
 });
 
-router.get("/:songArtist/:songTitle", (req, res) => {
-    let token;
-    //first get spotify token
-    axios.get("http://localhost:3000/spotify/token")
-    .then (response => {
-        token = response.data.access_token
-    })
-    .catch(err => {
-        res.status(500).json({"Error fetching Spotify token": err})
-      })
-    // then search for song with token
-    .then (response => {
-        axios.get(`https://api.spotify.com/v1/search?q=${req.params.songArtist}+${req.params.songTitle}&type=track&limit=1&offset=0`, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-        })
-    // then send response with updated song object
+router.get("/:songArtist/:songTitle", async (req, res) => {
+    //check if already have song saved in database
+    const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist})
+    // if so, send response with song object
+    if (song) {
+        res.json(song)
+    }
+    //if not, query spotify
+    else {
+        let token;
+        //first get spotify token
+        axios.get("http://localhost:3000/spotify/token")
         .then (response => {
-            song.artist = response.data.tracks.items[0].artists[0].name
-            song.title = response.data.tracks.items[0].name
-            song.coverSrc = response.data.tracks.items[0].album.images[1].url
-            res.json(song)
+            token = response.data.access_token
         })
         .catch(err => {
-            res.status(500).send("Error updating song object:", err)
+            res.status(500).json({"Error fetching Spotify token": err})
         })
-    })
-    .catch(err => {
-        res.status(500).json({"Error searching Spotify": err})
-    })
+        // then search for song with token
+        .then (response => {
+            axios.get(`https://api.spotify.com/v1/search?q=${req.params.songArtist}+${req.params.songTitle}&type=track&limit=1&offset=0`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+            })
+        // then send response with updated song object + save to database
+            .then (async response => {
+                const newSong = new Song({
+                    title: response.data.tracks.items[0].name, 
+                    artist: response.data.tracks.items[0].artists[0].name, 
+                    coverSrc: response.data.tracks.items[0].album.images[1].url, 
+                    rating: 0,
+                    numReviews: 0,
+                    posts: []
+                })
+                await newSong.save()
+                res.json(newSong)
+            })
+            .catch(err => {
+                res.status(500).json({"Error updating song object": err})
+                console.log(err)
+            })
+        })
+        .catch(err => {
+            res.status(500).json({"Error searching Spotify": err})
+        })
+    }
 });
 
 module.exports = router;
