@@ -4,7 +4,7 @@ const axios = require("axios"); // middleware for making requests to APIs
 const router = require("express").Router();
 const Song = require("../models/song");
 
-//TODO: in post /save, maybe change rating equation? currently disregards any individual ratings, so decimal points are kind of off
+//TODO: if manually type in artist and title in params, will automatically fetch spotify api even if already have a database entry, maybe fix? but also might be ok if no one is directly typing in url bar
 router.post("/:songArtist/:songTitle/save", async (req, res) =>{
     try {
         const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist})
@@ -52,14 +52,11 @@ router.get("/:songArtist/:songTitle", async (req, res) => {
             })
         // then send response with updated song object + save to database
             .then (async response => {
-                let song = {}
-                song.artist = response.data.tracks.items[0].artists[0].name
-                song.title = response.data.tracks.items[0].name
-                song.coverSrc = response.data.tracks.items[0].album.images[1].url
                 const newSong = new Song({
-                    title: song.title, 
-                    artist: song.artist, 
-                    coverSrc: song.coverSrc, 
+                    title: response.data.tracks.items[0].name, 
+                    artist: response.data.tracks.items[0].artists[0].name, 
+                    coverSrc: response.data.tracks.items[0].album.images[1].url, 
+                    rating: 0,
                     numReviews: 0,
                     posts: []
                 })

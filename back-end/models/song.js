@@ -19,6 +19,7 @@ const songSchema = new mongoose.Schema({
   title: String,
   artist: String,
   coverSrc: String,
+  rating: Number,
   numReviews: Number,
   posts: [postSchema]
 });

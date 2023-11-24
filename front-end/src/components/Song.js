@@ -6,7 +6,6 @@ import '../css/Song.css';
 import SongPostForm from './SongPostForm.js';
 import SongPost from './SongPost.js';
 
-//TODO: change SongPostForm, currently only removing if submit post, but what if log out then sign back in? will it allow duplicate posting?
 function Song() {
   const username = useAuthContext().user
   const {songArtist, songTitle} = useParams()
@@ -17,21 +16,20 @@ function Song() {
     const newPosts = [post, ...posts] 
     setPosts(newPosts) 
   }
-
+  //fetch info about song
   useEffect(() => {
     axios
       .get(`http://localhost:3000/song/${songArtist}/${songTitle}`)
       .then(response => {
         const song = response.data
         setSong(song)
-        const temp = [...song.posts]
-        setPosts(temp)
+        setPosts([...song.posts])
       })
       .catch(err => {
         console.log("Error fetching data:", err)
       })
   }, [songArtist, songTitle])
-
+  //check if username already posted review, if so remove post form
   useEffect(() => {
     console.log(posts)
     posts.map((post) => {
@@ -44,13 +42,13 @@ function Song() {
   return (
     <div className="Song">
       <h2>{song.artist} - {song.title}</h2>
-        <img src={song.coverSrc} alt="album cover" />
-        {song.rating && <p>{song.rating}/10</p>}
+      <img src={song.coverSrc} alt="album cover" />
+      <p>{song.rating}/10</p>
       {song.numReviews === 1? <p>{song.numReviews} review</p>:<p>{song.numReviews} reviews</p>}
       {showForm && 
         <>
           <h3>Review:</h3>
-          <SongPostForm setShowForm={setShowForm} addPostToList={addPostToList} songArtist ={songArtist} songTitle = {songTitle}/>
+          <SongPostForm setShowForm={setShowForm} addPostToList={addPostToList} songArtist={songArtist} songTitle={songTitle} />
         </>
       }
       <h3>Other reviews:</h3>
