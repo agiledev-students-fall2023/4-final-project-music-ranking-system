@@ -47,7 +47,7 @@ function Post() {
   }
   return (
     <div className="Post">
-      <h3><Link to='/profile-review'>{username}</Link>'s Review</h3>
+      <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>
       <h3>{song.artist} - {song.title}</h3>
       <img src={song.coverSrc} alt="album cover" />
       <br/>
