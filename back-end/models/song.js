@@ -14,7 +14,7 @@ const postSchema = new mongoose.Schema({
       unique: true,
   },
   rating:{
-      Type: Number,
+      type: Number,
   },
   review: {
       type: String,
