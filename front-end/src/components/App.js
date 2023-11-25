@@ -30,7 +30,7 @@ function App() {
           <Route path="/profile-review" element={auth? <ProfileReview />:<LogIn />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />;
-          <Route path="/post/:songArtist/:songTitle" element={<Post />} />;
+          <Route path="/post/:songArtist/:songTitle/:username" element={<Post />} />;
           <Route path="/settings" element={auth? <Settings />:<LogIn />} />;
           <Route path="/song/:songArtist/:songTitle" element={<Song />} />
           <Route path="/search" element={<Search />} />

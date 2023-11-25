@@ -3,52 +3,57 @@ import '../css/Post.css';
 import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
 import CommentDisplay from './CommentDisplay';
+
  
 
 function Post() {
   //const { postId } = useParams(); // "1"
-  //const [post, setPost] = useState([]);
+  const {username} = useParams();
+  const [posts, setPosts] = useState([]);
   const {songArtist, songTitle} = useParams()
   const [song, setSong] = useState([])
   
-  /*
-  useEffect(() => {
-    console.log("PostId: ", postId);
-    axios
-      .get(`http://localhost:3000/post/${postId}`)
-      .then((res) => {
-        console.log('Received data:', res.data);
-        setPost(res.data);
-      })
-      .catch((error) =>{
-        console.error("Error fetching post: ", error);
-      });
-      
-  }, [postId]);
-  */
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/post/${songArtist}/${songTitle}`)
+      .get(`http://localhost:3000/post/${songArtist}/${songTitle}/${username}`)
       .then(response => {
-        const song = response.data
-        setSong(song)
+        const postResponse = response.data
+        setSong(postResponse.song)
+        setPosts(postResponse.posts);
+        console.log(postResponse.posts);
       })
       .catch(err => {
         console.log("Error fetching data:", err)
       })
-  }, [songArtist, songTitle])
+  }, [songArtist, songTitle, username])
+
+  const filteredPosts = posts.map(post => {
+    if (post.username == username) {
+      return (
+        <div key="post">
+          <h4>{post.rating}/10</h4>
+          <p>{post.review}</p>
+        </div>
+      );
+    }
+    else {
+      return null;
+    }
+  })
 
   if (!song) {
     return <div>Loading...</div>
   }
   return (
     <div className="Post">
-      <h3><Link to='/other-user/user'>user</Link>'s Review</h3>
-      <h3>{song.artist} -- {song.title}</h3>
-      <img src={song.coverSrc} alt="temp" />
-      <h4>{song.rating}/10</h4>
-      <p>{song.review}</p>
+      <h3><Link to='/profile-review'>{username}</Link>'s Review</h3>
+      <h3>{song.artist} - {song.title}</h3>
+      <img src={song.coverSrc} alt="album cover" />
+      <br/>
+
+      {filteredPosts}
+      
       <br/>
       <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
       <p><Link to='/other-user/test1'>test1</Link> -- comment</p>

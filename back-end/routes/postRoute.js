@@ -2,64 +2,76 @@
 const express = require("express"); // CommonJS import style!
 const axios = require("axios"); // middleware for making requests to APIs
 const router2 = express.Router();
+const Song = require("../models/song");
+const User = require("../models/user");
+const mongoose = require('mongoose');
+require("dotenv").config();
 
-/*Post.js requests to/from API
-router2.get("/post/:postId", async (req, res) => {
-    const postID = parseInt(req.params.postId);
-    //res.send({ postId: postID });
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+  
+
+  router2.get("/:songArtist/:songTitle/:username", async (req, res) => {
     try {
-      const apiResponse = await axios.get(
-        "https://api.mockaroo.com/api/d8caa150?count=3&key=9b1fc5d0"
-      );
-      const resdata = apiResponse.data;
-      //res.send(resdata);
-      const foundData = resdata.find((item) => item.id === postID);
-      //res.send(foundData);
-      if (foundData) {
-        res.json(foundData);
-      } else {
-        res.status(404).json({ error: "Error data" });
+      const user = await User.findOne({ username: req.params.username });
+        if (!user) {
+            res.status(404).json({ error: 'User not found' });
+        }
+
+      // Check if the song exists in the database
+      const song = await Song.findOne({ title: req.params.songTitle, artist: req.params.songArtist });
+      if (song) {
+        const postResponse = {
+          song,
+          posts: song.posts,
+        }
+        res.json(postResponse);
       }
-    } catch (error) {
-      //console.error("Error fetching data from API:", error);
-      res.status(500).json({ error: "Internal Server Error:" });
+      else {
+          let token;
+
+          axios.get("http://localhost:3000/spotify/token")
+          .then (response => {
+            token = response.data.access_token;
+          })
+          .catch(err => {
+            res.status(500).json({"Error fetching Spotify token": err});
+          })
+          .then(response => {
+            axios.get(`https://api.spotify.com/v1/search?q=${req.params.songArtist}+${req.params.songTitle}&type=track&limit=1&offset=0`, {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            })
+            .then (async response => {
+              const songResponse = {
+                song: {
+                  title: response.data.tracks.items[0].name,
+                  artist: response.data.tracks.items[0].artists[0].name, 
+                  coverSrc: response.data.tracks.items[0].album.images[1].url, 
+                  rating: 0,
+                  numReviews: 0,
+                  posts: []
+                },
+              };
+              res.json(songResponse);
+              })
+              .catch (err => {
+                res.status(500).json({"Error updating song and review": err});
+                console.log(err);
+              })
+          })
+          .catch(err => {
+          res.status(500).json({"Error searching": err});
+          })
+        }
+      }
+    catch {
+      res.status(500).json("Error finding user, song, and review", err);
     }
   });
-  */
-
-  let song = {
-    rating:5,
-    numReviews: 10,
-    review: "Banger",
-  }
-  router2.get("post/:songArtist/:songTitle", (req, res) => {
-    let token;
-    //first get spotify token
-    axios.get("http://localhost:3000/spotify/token")
-    .then (response => {
-        token = response.data.access_token
-    })
-    .catch(err => {
-        console.log("Error fetching Spotify token:", err)
-      })
-    // then search for song with token
-    .then (response => {
-        axios.get(`https://api.spotify.com/v1/search?q=${req.params.songArtist}+${req.params.songTitle}&type=track&limit=1&offset=0`, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-        })
-    // then send response with updated song object
-        .then (response => {
-            song.artist = response.data.tracks.items[0].artists[0].name
-            song.title = response.data.tracks.items[0].name
-            song.coverSrc = response.data.tracks.items[0].album.images[1].url
-            res.json(song)
-        })
-    })
-    .catch(err => {
-        console.log("Error searching Spotify:", err)
-      })
-});
+        
 
 module.exports = router2;
