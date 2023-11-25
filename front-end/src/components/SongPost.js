@@ -3,10 +3,9 @@ import { useAuthContext } from "./AuthProvider.js";
 
 
 const SongPost = ({ post, songArtist, songTitle }) => {
-  const username = useAuthContext().user;
   return (
     <div className="SongPost">
-      <Link to={`/post/${songArtist}/${songTitle}/${username}`}>
+      <Link to={`/post/${songArtist}/${songTitle}/${post.username}`}>
         <p>{post.rating}/10</p>
         <p>
           {post.username} - {post.review}
