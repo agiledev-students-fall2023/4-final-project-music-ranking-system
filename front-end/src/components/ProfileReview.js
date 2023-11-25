@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/ProfileReview.css";
+import { useAuthContext } from "./AuthProvider.js";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -7,6 +8,7 @@ import { useEffect, useState } from "react";
 
 
 function App() {
+  const username = useAuthContext().user;
   const [songObject, setSongObject] = useState([]);  
   const [activityObject, setActivityObject] = useState([]);
 
@@ -36,7 +38,7 @@ function App() {
   return (
     <div className="ProfileReview">
       <div className="ProfileReviewHeader">
-        <h1>User123</h1>
+        <h1>{username}</h1>
         <p><Link to="/settings">Settings</Link></p>
       </div>
       <div className="top-songs">
@@ -54,7 +56,7 @@ function App() {
         <h2>Activity</h2>
         {activityObject.map((entry, index) => (
           <div key={index} className="activity-entry">
-            <p><Link to={`/post/${entry.artistName}/${entry.songName}`}>{entry.artistName} -- {entry.songName}</Link></p>
+            <p><Link to={`/post/${entry.artistName}/${entry.songName}/${username}`}>{entry.artistName} -- {entry.songName}</Link></p>
             <p>{entry.rating}/10</p>
             <p>{entry.review}</p>
           </div>

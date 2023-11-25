@@ -37,7 +37,7 @@ app.use("/static", express.static("public"));
 app.use("/", homePage);
 app.use("/song", songRoute);
 app.use("/", otherUserRoute);
-app.use("/", postRoute);
+app.use("/post", postRoute);
 app.use("/myProfile", myProfile);
 app.use("/search", searchRoute);
 app.use("/landingFeed", landingFeedRoute);

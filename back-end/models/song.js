@@ -9,10 +9,17 @@ const commentSchema = new mongoose.Schema({
 })
 
 const postSchema = new mongoose.Schema({
-    username: String,
-    rating: Number,
-    review: String,
-    comments: [commentSchema]
+  username: {
+      type: String,
+      unique: true,
+  },
+  rating:{
+      type: Number,
+  },
+  review: {
+      type: String,
+  },
+  comments: [commentSchema],
 })
 
 const songSchema = new mongoose.Schema({
