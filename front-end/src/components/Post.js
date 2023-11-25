@@ -28,40 +28,61 @@ function Post() {
       })
   }, [songArtist, songTitle, username])
 
-  const filteredPosts = posts.map(post => {
-    if (post.username == username) {
-      return (
-        <div key="post">
-          <h4>{post.rating}/10</h4>
-          <p>{post.review}</p>
-        </div>
-      );
+  if (!posts) {
+    if (!song) {
+      return <div>Loading...</div>
     }
-    else {
-      return null;
-    }
-  })
-
-  if (!song) {
-    return <div>Loading...</div>
+    return (
+      <div className="Post">
+        <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>
+        <h3>{song.artist} - {song.title}</h3>
+        <img src={song.coverSrc} alt="album cover" />
+        <br/>
+        <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
+        <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
+        <br />
+        <CommentDisplay />
+  
+      </div>
+    );
   }
-  return (
-    <div className="Post">
-      <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>
-      <h3>{song.artist} - {song.title}</h3>
-      <img src={song.coverSrc} alt="album cover" />
-      <br/>
-
-      {filteredPosts}
-      
-      <br/>
-      <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
-      <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
-      <br />
-      <CommentDisplay />
-
-    </div>
-  );
+  else {
+    const filteredPosts = posts.map(post => {
+      if (post.username === username) {
+        return (
+          <div key="post">
+            <h4>{post.rating}/10</h4>
+            <p>{post.review}</p>
+          </div>
+        );
+      }
+      else {
+        return null;
+      }
+    })
+  
+    if (!song) {
+      return <div>Loading...</div>
+    }
+    return (
+      <div className="Post">
+        <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>
+        <h3>{song.artist} - {song.title}</h3>
+        <img src={song.coverSrc} alt="album cover" />
+        <br/>
+  
+        {filteredPosts}
+        
+        <br/>
+        <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
+        <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
+        <br />
+        <CommentDisplay />
+  
+      </div>
+    );
+  }
+  
 }
 
 export default Post;
