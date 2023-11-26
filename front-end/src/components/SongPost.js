@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useAuthContext } from "./AuthProvider.js";
 
 
 const SongPost = ({ post, songArtist, songTitle }) => {
