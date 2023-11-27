@@ -43,8 +43,8 @@ const activitySchema = new mongoose.Schema({
   },
 });
 
-const songModel = mongoose.model("Song", songSchema);
-const activityModel = mongoose.model("Activity", activitySchema);
+const songModel = mongoose.models.Song || mongoose.model("Song", songSchema);
+const activityModel = mongoose.models.Activity || mongoose.model("Activity", activitySchema);
 
 router.get("/songs", async (req, res) => {
   try 
@@ -59,6 +59,7 @@ router.get("/songs", async (req, res) => {
   }
 });
 
+
 router.get("/activities", async (req, res) => {
   try 
   {
@@ -71,6 +72,7 @@ router.get("/activities", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch activity data" });
   }
 });
+
 
 module.exports = router;
 
