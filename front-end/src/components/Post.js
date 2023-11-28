@@ -22,8 +22,14 @@ function Post() {
       .get(`http://localhost:3000/post/${songArtist}/${songTitle}/${username}`)
       .then(response => {
         setSong(response.data.song)
+        console.log("song", song);
         setPost(response.data.post)
-        setComments([...response.data.post.comments])
+        console.log("post", post);
+
+        if (response.data.post.comments) {
+          setComments([...response.data.post.comments])
+          console.log("set comments");
+        }
       })
       .catch(err => {
         console.log("Error fetching data:", err)
@@ -32,7 +38,7 @@ function Post() {
 
   return (
     <div className="Post">
-      {post.username == currentuser? <h3><Link to={`/profile-review`}>{username}</Link>'s Review</h3> : <h3><Link to={`/other-user/${post.username}`}>{username}</Link>'s Review</h3>}
+      {username == currentuser? <h3><Link to={`/profile-review`}>{username}</Link>'s Review</h3> : <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>}
       <h3>{song.artist} - {song.title}</h3>
       <img src={song.coverSrc} alt="album cover" />
       <h4>{post.rating}/10</h4>

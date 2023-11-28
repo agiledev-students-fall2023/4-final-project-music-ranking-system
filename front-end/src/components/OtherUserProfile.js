@@ -3,7 +3,6 @@ import axios from 'axios';
 import '../css/ProfileReview.css';
 import { useParams, Link } from "react-router-dom";
 
-
 function OtherUserProfile() {
   const { userId } = useParams();
   const [userData, setUser] = useState([]);
