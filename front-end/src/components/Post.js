@@ -9,7 +9,6 @@ import { useAuthContext } from "./AuthProvider.js";
  
 
 function Post() {
-  //const { postId } = useParams(); // "1"
   const {username} = useParams();
   const currentuser = useAuthContext().user;
   const [posts, setPosts] = useState([]);
