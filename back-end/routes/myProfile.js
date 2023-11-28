@@ -3,7 +3,6 @@ const axios = require("axios");
 const router = express.Router();
 const User = require("../models/user");
 
-
 router.get("/:username", async (req, res) => {
   try 
   {
@@ -11,7 +10,6 @@ router.get("/:username", async (req, res) => {
     User.findOne({ username: user_to_find })
         .then((user) => {
           if (user) {
-            // Return user information
             res.json(user);
           } else {
             res.send('User not found');
@@ -28,7 +26,6 @@ router.get("/:username", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch song data" });
   }
 });
-
 
 module.exports = router;
 
