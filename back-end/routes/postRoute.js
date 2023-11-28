@@ -9,7 +9,7 @@ router.get("/:songArtist/:songTitle/:username", async (req, res) => {
   try {
     const song = await Song.findOne({ title: req.params.songTitle, artist: req.params.songArtist });
     // check if song has a post from username
-    const post = song.posts.filter(post => post.username == req.params.username)
+    const post = song.posts.find(post => post.username == req.params.username)
     // if post is empty, send 404
     if (post.length == 0) {
       res.status(404).send("Post not found")
