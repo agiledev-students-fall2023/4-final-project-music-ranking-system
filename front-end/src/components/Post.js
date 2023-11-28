@@ -32,42 +32,7 @@ function Post() {
       })
   }, [songArtist, songTitle, username])
 
-  if (!posts) {
-    if (!song) {
-      return <div>Loading...</div>
-    }
-    if (currentuser == username) {
-      return (
-        <div className="Post">
-          <h3><Link to={`/profile-review`}>{username}</Link>'s Review</h3>
-          <h3>{song.artist} - {song.title}</h3>
-          <img src={song.coverSrc} alt="album cover" />
-          <br/>
-          <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
-          <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
-          <br />
-          <Comment />
-    
-        </div>
-      );
-    }
-    else {
-      return (
-        <div className="Post">
-          <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>
-          <h3>{song.artist} - {song.title}</h3>
-          <img src={song.coverSrc} alt="album cover" />
-          <br/>
-          <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
-          <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
-          <br />
-          <Comment />
-    
-        </div>
-      );
-    }
-  } 
-  else {
+
     const filteredPosts = posts.map(post => {
       if (post.username === username) {
         return (
