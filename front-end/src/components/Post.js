@@ -2,8 +2,8 @@ import React, { useState, useEffect} from 'react';
 import '../css/Post.css';
 import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
-import PostComment from './PostComment';
-import PostCommentForm from './PostCommentForm';
+import PostComment from './PostComment.js';
+import PostCommentForm from './PostCommentForm.js';
 import { useAuthContext } from "./AuthProvider.js";
 
 function Post() {

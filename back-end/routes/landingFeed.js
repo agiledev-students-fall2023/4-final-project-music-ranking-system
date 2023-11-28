@@ -36,16 +36,6 @@ const landingFeedSchema = new mongoose.Schema({
 const model = mongoose.model("Data", landingFeedSchema);
 
 router.get("/retrieve", async (req, res) => {
-  // axios
-  //   .get("https://api.mockaroo.com/api/d8caa150?count=3&key=9b1fc5d0")
-  //   .then((apiResponse) => {
-  //     const resdata = apiResponse.data;
-  //     res.json(resdata);
-  //   })
-  //   .catch((error) => {
-  //     res.status(500).json({ error: "Internal Server Error" });
-  //   });
-
   try {
     const data = await model.find({}).exec();
     if (data.length === 0) {

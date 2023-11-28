@@ -14,26 +14,16 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/myProfile/songs")
+      .get(`http://localhost:3000/myProfile/${username}`)
       .then((res) => {
-        setSongObject(res.data);
+        setSongObject(res.data.topSongs);
+        setActivityObject(res.data.activity);
+
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/myProfile/activities")
-      .then((res) => {
-        setActivityObject(res.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-      });
-  }, []); 
-
+  }, [username]);
 
   return (
     <div className="ProfileReview">
