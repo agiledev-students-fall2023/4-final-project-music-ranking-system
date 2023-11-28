@@ -1,77 +1,57 @@
 // import and instantiate express
 const express = require("express"); // CommonJS import style!
 const axios = require("axios"); // middleware for making requests to APIs
-const router2 = express.Router();
+const router = express.Router();
 const Song = require("../models/song");
 const User = require("../models/user");
-const mongoose = require('mongoose');
-require("dotenv").config();
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-  
-
-  router2.get("/:songArtist/:songTitle/:username", async (req, res) => {
-    try {
-      const user = await User.findOne({ username: req.params.username });
-        if (!user) {
-            res.status(404).json({ error: 'User not found' });
-        }
-
-      // Check if the song exists in the database
-      const song = await Song.findOne({ title: req.params.songTitle, artist: req.params.songArtist });
-      if (song) {
-        const postResponse = {
-          song,
-          posts: song.posts,
-        }
-        res.json(postResponse);
+router.post("/:songArtist/:songTitle/:username/save", async (req, res) => {
+  try {
+    const song = await Song.findOne({ title: req.params.songTitle, artist: req.params.songArtist });
+    // check if song has a post from username
+    const post = song.posts.find(post => post.username == req.params.username)
+    // if post exists, add comment to post
+    if (post) {
+      const newComment = {
+        username: req.body.username,
+        comment: req.body.comment
       }
-      else {
-          let token;
-
-          axios.get("http://localhost:3000/spotify/token")
-          .then (response => {
-            token = response.data.access_token;
-          })
-          .catch(err => {
-            res.status(500).json({"Error fetching Spotify token": err});
-          })
-          .then(response => {
-            axios.get(`https://api.spotify.com/v1/search?q=${req.params.songArtist}+${req.params.songTitle}&type=track&limit=1&offset=0`, {
-              headers: {
-                'Authorization': `Bearer ${token}`
-              }
-            })
-            .then (async response => {
-              const songResponse = {
-                song: {
-                  title: response.data.tracks.items[0].name,
-                  artist: response.data.tracks.items[0].artists[0].name, 
-                  coverSrc: response.data.tracks.items[0].album.images[1].url, 
-                  rating: 0,
-                  numReviews: 0,
-                  posts: []
-                },
-              };
-              res.json(songResponse);
-              })
-              .catch (err => {
-                res.status(500).json({"Error updating song and review": err});
-                console.log(err);
-              })
-          })
-          .catch(err => {
-          res.status(500).json({"Error searching": err});
-          })
-        }
-      }
-    catch {
-      res.status(500).json("Error finding user, song, and review", err);
+      post.comments.push(newComment)
+      await song.save()
+      console.log(post)
+      res.json(newComment)
     }
-  });
+    // otherwise, send 404
+    else{
+      res.status(404).send("Post not found")
+    }
+  }
+  catch (err) {
+    res.status(500).json({"Error retrieving post": err})
+  }
+})
+
+router.get("/:songArtist/:songTitle/:username", async (req, res) => {
+  try {
+    const song = await Song.findOne({ title: req.params.songTitle, artist: req.params.songArtist });
+    // check if song has a post from username
+    const post = song.posts.find(post => post.username == req.params.username)
+    // if post exists, send song and post
+    if (post) {
+      res.json({
+        song: song,
+        post: post
+      })    
+    }
+    // otherwise, send 404
+    else{
+      res.status(404).send("Post not found")
+    }
+  }
+  catch (err) {
+    res.status(500).json({"Error retrieving post": err})
+  }
+});
         
 
-module.exports = router2;
+module.exports = router;
