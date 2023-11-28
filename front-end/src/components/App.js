@@ -17,6 +17,7 @@ import { useAuthContext } from "./AuthProvider.js";
 import NotAuthNav from './NotAuthNav';
 import OtherUserProfile from "./OtherUserProfile";
 import Comment from "./Comment"
+import Logout from "./Logout"
 
 function App() {
   const auth = useAuthContext().auth;
@@ -26,7 +27,8 @@ function App() {
       <Router>
         <Title />
         <Routes>
-          <Route path="/" element={auth? <HomepageFeed />:<LandingFeed />} />
+          <Route path="landing-feed" element={<LandingFeed />} />
+          <Route path="/" element={<HomepageFeed />} />
           <Route path="/about" element={<About />} />
           <Route path="/profile-review" element={auth? <ProfileReview />:<LogIn />} />
           <Route path="/login" element={<LogIn />} />
@@ -37,6 +39,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/other-user/:userId" element={<OtherUserProfile />} />;
           <Route path="/comments/:songArtist/:songTitle/:username" element={<Comment />} />;
+          <Route path="/logout" element={<Logout />} />
         </Routes>
         {auth? <Nav />:<NotAuthNav/>}
       </Router>
