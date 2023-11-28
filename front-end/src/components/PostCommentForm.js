@@ -2,48 +2,41 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useAuthContext } from "./AuthProvider.js";
 
-const PostCommentForm = ({addCommentToList, songArtist, songTitle}) => {
-  const username = useAuthContext().user
-  // create a state variable for each form field
-  const [rating, setRating] = useState('')
-  const [review, setReview] = useState('')
+const PostCommentForm = ({addCommentToList, songArtist, songTitle, username}) => {
+    const currentuser = useAuthContext().user
+    // create a state variable for each form field
+    const [comment, setComment] = useState('')
 
-  const submitForm = e => {
-    e.preventDefault() // prevent normal browser submit behavior
-    console.log("username", username)
+    const submitForm = e => {
+        e.preventDefault() // prevent normal browser submit behavior
 
+        // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
+        axios
+        .post(`http://localhost:3000/post/${songArtist}/${songTitle}/${username}/save`, {
+            username: currentuser,
+            comment: comment
+        })
+        .then(response => {
+            addCommentToList(response.data)
+        })
+        .catch(err => {
+            console.log("Error posting data:", err)
+        })
 
-    // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
-    axios
-      .post(`http://localhost:3000/song/${songArtist}/${songTitle}/save`, {
-        user: username,
-        rating: rating,
-        review: review,
-      })
-      .then(response => {
-        addPostToList(response.data)
-      })
-      .catch(err => {
-        console.log("Error posting data:", err)
-      })
-
-    // clear form
-    setShowForm(false)
-  }
+        // clear form
+        setComment('')
+    }
 
   return (
-    <form className="SongReviewForm" onSubmit={submitForm}>
-      <input type="number" name="rating" min="1" max="10" value={rating} onChange={e => setRating(e.target.value)}/>
-      <label htmlFor="rating"> /10</label>
-      <br />
+    <form className="PostCommentForm" onSubmit={submitForm}>
       <textarea
-        placeholder="enter your review..."
-        rows="10"
-        onChange={e => setReview(e.target.value)}
-        value={review}
+        placeholder="enter your comment..."
+        rows="5"
+        onChange={e => setComment(e.target.value)}
+        value={comment}
       />
       <br />
-      <input type="submit" disabled={!rating || !review} value="Post" />
+      <input type="submit" disabled={!comment} value="Post Comment" />
     </form>
   )
 }

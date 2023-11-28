@@ -40,7 +40,7 @@ function Post() {
       <h3>Comments:</h3>
         {comments.map((comment, i) => (<PostComment key={i} comment={comment}/>))}
       <h3>Comment:</h3>
-        <PostCommentForm addCommentToList={addCommentToList} songArtist={songArtist} songTitle={songTitle} />
+        <PostCommentForm addCommentToList={addCommentToList} songArtist={songArtist} songTitle={songTitle} username={username}/>
     </div>
   )
 }
