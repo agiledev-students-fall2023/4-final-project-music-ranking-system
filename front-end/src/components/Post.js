@@ -3,6 +3,7 @@ import '../css/Post.css';
 import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
 import CommentDisplay from './CommentDisplay';
+import Comment from './Comment';
 import { useAuthContext } from "./AuthProvider.js";
 
  
@@ -46,7 +47,7 @@ function Post() {
           <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
           <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
           <br />
-          <CommentDisplay />
+          <Comment />
     
         </div>
       );
@@ -61,7 +62,7 @@ function Post() {
           <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
           <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
           <br />
-          <CommentDisplay />
+          <Comment />
     
         </div>
       );
@@ -96,7 +97,7 @@ function Post() {
           <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
           <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
           <br />
-          <CommentDisplay />
+          <Comment />
     
         </div>
       );
@@ -112,8 +113,7 @@ function Post() {
           <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
           <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
           <br />
-          <CommentDisplay />
-    
+          <Comment />
         </div>
       );
     }

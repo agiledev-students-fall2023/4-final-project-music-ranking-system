@@ -16,6 +16,7 @@ import Search from "./Search";
 import { useAuthContext } from "./AuthProvider.js";
 import NotAuthNav from './NotAuthNav';
 import OtherUserProfile from "./OtherUserProfile";
+import Comment from "./Comment"
 
 function App() {
   const auth = useAuthContext().auth;
@@ -35,6 +36,7 @@ function App() {
           <Route path="/song/:songArtist/:songTitle" element={<Song />} />
           <Route path="/search" element={<Search />} />
           <Route path="/other-user/:userId" element={<OtherUserProfile />} />;
+          <Route path="/comments/:songArtist/:songTitle/:username" element={<Comment />} />;
         </Routes>
         {auth? <Nav />:<NotAuthNav/>}
       </Router>

@@ -1,43 +1,72 @@
-import React, { useState } from 'react';
-import axios from 'axios'; 
+import {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom';
+import { useAuthContext } from "./AuthProvider.js";
+import axios from 'axios';
+import '../css/Comments.css';
+import CommentPostForm from './CommentPostForm.js';
+import CommentPost from './CommentPost.js';
 
 
-function Comment({ onSubmit }) {
-  const [comment, setComment] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    axios
-      .post(`${process.env.REACT_APP_SERVER_HOSTNAME}/comments/save`, {
-        comment: comment,
-      })
-      .then(response => {
-        handleSubmit(response.data)
-      })
-      .catch(err => {
-        console.log("Error posting data:", err)
-      })
-
-      setComment('');
+function Comment() {
+  const username = useAuthContext().user;
+  const [comments, setComments] = useState('');
+  const {songArtist, songTitle} = useParams();
+  const [showForm, setShowForm] = useState(true);
+  const addCommentToList = comment => {
+    const newComments = [comment, ...comments]
+    setComments(newComments)
   }
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/comments/${songArtist}/${songTitle}/${username}`)
+      .then(response => {
+        const comments = response.data;
+        console.log(comments);
+        setComments(comments);
+      })
+      .catch(err => {
+        console.log("Error fetching data:", err)
+      })
+  }, [songArtist, songTitle, username])
+
+  useEffect(() => {
+    console.log(comments);
+    comments.localeCompare((comment) => {
+      if (comment.username === username) {
+        setShowForm(false)
+      }
+    })
+  }, [comments])
+
+if (comments) {
   return (
-    <form className="CommentForm" onSubmit={handleSubmit} method="post" enctype="multipart/form-data">
-          <label for="comment">Add Comment: </label>
-          <textarea 
-            id="song-comment" 
-            value={comment} 
-            name="song-comment" 
-            onChange={(e) => setComment(e.target.value)} 
-            placeholder="Enter a comment" 
-            rows="10"
-          />
-        <div class="button">
-          <input type="submit" disabled={!comment} value="Enter"/>
-        </div>
-    </form>
+    <div className="Comment">
+      {showForm && 
+        <>
+          <h3>Add Comment:</h3>
+          <CommentPostForm setShowForm={setShowForm} addCommentToList={addCommentToList} songArtist={songArtist} songTitle={songTitle} username={username}/>
+        </>
+      }
+      <h3>Other comments:</h3>
+        {comments.map((comment, i) => (
+          <CommentPost key={i} comment={comment} songArtist={songArtist} songTitle={songTitle} username={username}/>
+        ))}
+    </div>
   );
+}
+else {
+  return (
+    <div className="Comment">
+      {showForm && 
+        <>
+          <CommentPostForm setShowForm={setShowForm} addCommentToList={addCommentToList} songArtist={songArtist} songTitle={songTitle} username={username}/>
+        </>
+      }
+    </div>
+  );
+}
+ 
 };
 
 export default Comment;
