@@ -28,8 +28,8 @@ router.post('/comments/:songArtist/:songTitle/:username/save', async (req, res) 
     console.log(post.comments);
     await song.save();
     res.json(newComment);
-    //res.status(201).json({message: "Comment added successfully"});
-  } catch (error) {
+   } 
+   catch (error) {
     console.error("Error adding comment:", error);
     res.status(500).json({error: "Internal Server Error"});
   }
