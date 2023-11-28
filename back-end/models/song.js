@@ -1,26 +1,8 @@
 // helpful documentation: https://mongoosejs.com/docs/subdocs.html#adding-subdocs-to-arrays
 // https://mongoosejs.com/docs/index.html
+// https://mongoosejs.com/docs/populate.html
 
 const mongoose = require("mongoose");
-
-const commentSchema = new mongoose.Schema({
-    username: String,
-    comment: String
-})
-
-const postSchema = new mongoose.Schema({
-  username: {
-      type: String,
-      unique: true,
-  },
-  rating:{
-      type: Number,
-  },
-  review: {
-      type: String,
-  },
-  comments: [commentSchema],
-})
 
 const songSchema = new mongoose.Schema({
   title: String,
