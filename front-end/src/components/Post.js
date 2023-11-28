@@ -2,123 +2,47 @@ import React, { useState, useEffect} from 'react';
 import '../css/Post.css';
 import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
-import CommentDisplay from './CommentDisplay';
+import PostComment from './PostComment';
+import PostCommentForm from './PostCommentForm';
 import { useAuthContext } from "./AuthProvider.js";
 
- 
-
 function Post() {
-  //const { postId } = useParams(); // "1"
-  const {username} = useParams();
   const currentuser = useAuthContext().user;
-  const [posts, setPosts] = useState([]);
-  const {songArtist, songTitle} = useParams()
+  const {songArtist, songTitle, username} = useParams()
   const [song, setSong] = useState([])
-  
+  const [post, setPost] = useState([])
+  const [comments, setComments] = useState([])
+  const addCommentToList = comment => {
+    const newComments = [comment, ...comments] 
+    setComments(newComments) 
+  }
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/post/${songArtist}/${songTitle}/${username}`)
       .then(response => {
-        const postResponse = response.data
-        setSong(postResponse.song)
-        setPosts(postResponse.posts);
-        console.log(postResponse.posts);
-        console.log("Current", currentuser);
-        console.log("Username:", username);
+        setSong(response.data.song)
+        setPost(response.data.post)
+        setComments([...response.data.post.comments])
       })
       .catch(err => {
         console.log("Error fetching data:", err)
       })
   }, [songArtist, songTitle, username])
 
-  if (!posts) {
-    if (!song) {
-      return <div>Loading...</div>
-    }
-    if (currentuser == username) {
-      return (
-        <div className="Post">
-          <h3><Link to={`/profile-review`}>{username}</Link>'s Review</h3>
-          <h3>{song.artist} - {song.title}</h3>
-          <img src={song.coverSrc} alt="album cover" />
-          <br/>
-          <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
-          <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
-          <br />
-          <CommentDisplay />
-    
-        </div>
-      );
-    }
-    else {
-      return (
-        <div className="Post">
-          <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>
-          <h3>{song.artist} - {song.title}</h3>
-          <img src={song.coverSrc} alt="album cover" />
-          <br/>
-          <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
-          <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
-          <br />
-          <CommentDisplay />
-    
-        </div>
-      );
-    }
-  } 
-  else {
-    const filteredPosts = posts.map(post => {
-      if (post.username === username) {
-        return (
-          <div key="post">
-            <h4>{post.rating}/10</h4>
-            <p>{post.review}</p>
-          </div>
-        );
-      }
-      else {
-        return null;
-      }
-    })
-  
-    if (!song) {
-      return <div>Loading...</div>
-    }
-    if (currentuser == username) {
-      return (
-        <div className="Post">
-          <h3><Link to={`/profile-review`}>{username}</Link>'s Review</h3>
-          <h3>{song.artist} - {song.title}</h3>
-          <img src={song.coverSrc} alt="album cover" />
-          {filteredPosts}
-          <br/>
-          <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
-          <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
-          <br />
-          <CommentDisplay />
-    
-        </div>
-      );
-    }
-    else {
-      return (
-        <div className="Post">
-          <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>
-          <h3>{song.artist} - {song.title}</h3>
-          <img src={song.coverSrc} alt="album cover" />
-          {filteredPosts}
-          <br/>
-          <p><Link to='/other-user/ss'>ss</Link>  -- comment</p>
-          <p><Link to='/other-user/test1'>test1</Link> -- comment</p>
-          <br />
-          <CommentDisplay />
-    
-        </div>
-      );
-    }
-  }
-  
+  return (
+    <div className="Post">
+      {post.username == currentuser? <h3><Link to={`/profile-review`}>{username}</Link>'s Review</h3> : <h3><Link to={`/other-user/${post.username}`}>{username}</Link>'s Review</h3>}
+      <h3>{song.artist} - {song.title}</h3>
+      <img src={song.coverSrc} alt="album cover" />
+      <h4>{post.rating}/10</h4>
+      <p>{post.review}</p>
+      <h3>Comments:</h3>
+        {comments.map((comment, i) => (<PostComment key={i} comment={comment}/>))}
+      <h3>Comment:</h3>
+        <PostCommentForm addCommentToList={addCommentToList} songArtist={songArtist} songTitle={songTitle} username={username}/>
+    </div>
+  )
 }
 
 export default Post;
