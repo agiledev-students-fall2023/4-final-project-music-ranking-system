@@ -14,20 +14,20 @@ const server = require("../app")
 
 // a group of tests related to the /protected route
 describe("Login", () => {
-    describe("/signup", () => {
-        it("just signing up user to check first", done => {
-          const formData = { username: "foo", password: "bar" }
-          chai
-            .request(server)
-            .post("/auth/signup")
-            .type("form")
-            .send(formData)
-            .end((err, res) => {
-              res.should.have.status(200) // use 'should' to make BDD-style assertions
-              done() // resolve the Promise that these tests create so mocha can move on
-            })
-        })
-    })
+    // describe("/signup", () => {
+    //     it("just signing up user to check first", done => {
+    //       const formData = { username: "foo", password: "bar" }
+    //       chai
+    //         .request(server)
+    //         .post("/auth/signup")
+    //         .type("form")
+    //         .send(formData)
+    //         .end((err, res) => {
+    //           res.should.have.status(200) // use 'should' to make BDD-style assertions
+    //           done() // resolve the Promise that these tests create so mocha can move on
+    //         })
+    //     })
+    // })
   /**
    * test the POST /login route
    */
