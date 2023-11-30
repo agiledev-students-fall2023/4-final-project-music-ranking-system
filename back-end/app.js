@@ -5,9 +5,7 @@ const axios = require("axios"); // middleware for making requests to APIs
 const mongoose = require("mongoose");
 const connect_db = require("./db");
 require("dotenv").config();
-
 connect_db();
-
 const homePage = require("./routes/homePage");
 const songRoute = require("./routes/song");
 const otherUserRoute = require("./routes/otherUser");
@@ -18,6 +16,18 @@ const landingFeedRoute = require("./routes/landingFeed");
 const spotifyRoute = require("./routes/spotify");
 const signupRoute = require("./routes/signUp");
 const loginRoute = require("./routes/register");
+const authenticationRoute = require("./routes/authentication");
+
+// the following are used for authentication with JSON Web Tokens
+const jwt = require("jsonwebtoken")
+const passport = require("passport")
+
+// use this JWT strategy within passport for authentication handling
+const jwtStrategy = require("./config/jwt-config.js") // import setup options for using JWT in passport
+passport.use(jwtStrategy)
+
+// tell express to use passport middleware
+app.use(passport.initialize())
 
 // use express' builtin body-parser middleware to parse data included in a request
 app.use(express.json());
@@ -44,6 +54,7 @@ app.use("/landingFeed", landingFeedRoute);
 app.use("/spotify", spotifyRoute);
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
+app.use("/auth", authenticationRoute);
 
 // export the express app we created to make it available to other modules
 module.exports = app;
