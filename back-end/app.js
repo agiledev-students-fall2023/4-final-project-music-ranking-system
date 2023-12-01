@@ -17,6 +17,7 @@ const spotifyRoute = require("./routes/spotify");
 const signupRoute = require("./routes/signUp");
 const loginRoute = require("./routes/register");
 const authenticationRoute = require("./routes/authentication");
+const protectedRoute = require("./routes/protected-content")
 
 // the following are used for authentication with JSON Web Tokens
 const jwt = require("jsonwebtoken")
@@ -55,6 +56,7 @@ app.use("/spotify", spotifyRoute);
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/auth", authenticationRoute);
+app.use("/protected", protectedRoute)
 
 // export the express app we created to make it available to other modules
 module.exports = app;
