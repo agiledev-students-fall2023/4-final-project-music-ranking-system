@@ -3,7 +3,6 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const jwtStrategy = require("../config/jwt-config.js") // import setup options for using JWT in passport
 
 // this is our mongoose model for a user
 const UserSchema = new Schema({
@@ -63,8 +62,10 @@ UserSchema.methods.toAuthJSON = function () {
   }
 }
 
-// create a model from this schema
-const User = mongoose.model("User", UserSchema)
+// // create a model from this schema
+// const User = mongoose.model("User", UserSchema)
 
-// export the model
-module.exports = User
+// // export the model
+// module.exports = User
+
+module.exports = mongoose.model("User", UserSchema)
