@@ -1,19 +1,5 @@
 const mongoose = require("mongoose");
 
-const songSchema = new mongoose.Schema({
-  songName: {
-    type: String,
-    required: true,
-  },
-  artistName: {
-    type: String,
-    required: true,
-  },
-  albumCover: {
-    type: String,
-  },
-});
-
 const activitySchema = new mongoose.Schema({
   review: {
     type: String,
@@ -39,8 +25,25 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  topSongs: [songSchema],
   activity: [activitySchema],
+  followers: [
+    {
+      followerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+      followerUsername: String,
+    },
+  ],
+  following: [
+    {
+      followingId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+      followingUsername: String,
+    },
+  ],
 });
 
 userSchema.methods.comparePassword = function (password) {
