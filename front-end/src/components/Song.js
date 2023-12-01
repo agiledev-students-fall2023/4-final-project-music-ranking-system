@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import { useAuthContext } from "./AuthProvider.js";
 import axios from 'axios';
 import '../css/Song.css';
 import SongPostForm from './SongPostForm.js';

@@ -18,7 +18,6 @@ const authenticationRoute = require("./routes/authentication");
 const protectedRoute = require("./routes/protected-content")
 
 // the following are used for authentication with JSON Web Tokens
-const jwt = require("jsonwebtoken")
 const passport = require("passport")
 
 // use this JWT strategy within passport for authentication handling
