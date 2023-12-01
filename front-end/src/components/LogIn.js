@@ -15,7 +15,7 @@ const Login = props => {
   useEffect(() => {
     const qsError = urlSearchParams.get("error") // get any 'error' field in the URL query string
     if (qsError === "protected")
-      setErrorMessage("Please log in!")
+      setErrorMessage("Please log in first!")
   }, [])
 
   // if the user's logged-in status changes, save the token we receive from the server
@@ -49,7 +49,7 @@ const Login = props => {
     } catch (err) {
       // request failed... user entered invalid credentials
       setErrorMessage(
-        "You entered invalid credentials.  Try harder!  Check out the usernames in the server's user_data.js file."
+        "You entered invalid credentials."
       )
     }
   }
@@ -59,7 +59,6 @@ const Login = props => {
     return (
      <div className="LogIn">
       <h2>Log In</h2>
-      {errorMessage ? <p className="error">{errorMessage}</p> : ""}
       <form enctype="multipart/form-data" onSubmit={handleSubmit}>
         <div class="input-group">
           <label for="username">Username: </label>
@@ -89,6 +88,7 @@ const Login = props => {
           <input type="submit" value="Enter" />
         </div>
       </form>
+      {errorMessage ? <p className="error">{errorMessage}</p> : ""}
       <br />
       <Link to="/signup">Need an account? Click here to sign up</Link>
     </div>
