@@ -14,8 +14,6 @@ const searchRoute = require("./routes/search");
 const myProfile = require("./routes/myProfile");
 const landingFeedRoute = require("./routes/landingFeed");
 const spotifyRoute = require("./routes/spotify");
-const signupRoute = require("./routes/signUp");
-const loginRoute = require("./routes/register");
 const authenticationRoute = require("./routes/authentication");
 const protectedRoute = require("./routes/protected-content")
 
@@ -53,8 +51,6 @@ app.use("/myProfile", myProfile);
 app.use("/search", searchRoute);
 app.use("/landingFeed", landingFeedRoute);
 app.use("/spotify", spotifyRoute);
-app.use("/signup", signupRoute);
-app.use("/login", loginRoute);
 app.use("/auth", authenticationRoute);
 app.use("/protected", protectedRoute)
 
