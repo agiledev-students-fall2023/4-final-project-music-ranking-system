@@ -9,6 +9,7 @@ router.get("/:username", async (req, res) => {
     User.findOne({ username: user_to_find })
       .then((user) => {
         if (user) {
+          console.log(user);
           res.json(user);
         } else {
           res.send("User not found");

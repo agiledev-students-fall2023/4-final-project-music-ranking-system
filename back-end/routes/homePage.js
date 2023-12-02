@@ -3,19 +3,37 @@ const express = require("express"); // CommonJS import style!
 const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
 const router = require("express").Router();
+const User = require("../models/user");
 
 // const clientId = process.env.CLIENT_ID;
 // const clientSecret = process.env.CLIENT_SECRET;
 
-router.get("/", (req, res) => {
-  axios
-    .get("https://api.mockaroo.com/api/d8caa150?count=3&key=9b1fc5d0")
-    .then((apiResponse) => {
-      const resdata = apiResponse.data;
-      res.json(resdata);
+router.post("/", (req, res) => {
+  username = req.body.username;
+  User.findOne({ username: username })
+    .then((user) => {
+      if (user) {
+        const following = user.following;
+
+        const resdata = [];
+
+        User.find({ _id: { $in: following } }, "activity")
+          .then((users) => {
+            const activities = users.map((userP) => userP.activity).flat();
+            // console.log(activities.length);
+            return res.json(activities);
+          })
+          .catch((err) => {
+            console.error("Error finding users by ids:", err);
+            // Handle the error
+          });
+      } else {
+        console.log("User Does not Exist");
+      }
     })
     .catch((error) => {
-      res.status(500).json({ error: "Internal Server Error" });
+      console.error("Error finding user:", error);
+      res.status(500).send("Internal Server Error");
     });
 });
 

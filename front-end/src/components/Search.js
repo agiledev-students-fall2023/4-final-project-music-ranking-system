@@ -32,11 +32,9 @@ export default function Search() {
         console.log(res);
         const tracksData = res.map((track, index) => {
           return {
-            artist: track.artist,
-            song: track.name,
-            cover: track.image,
-            rating: 10,
-            review: "test",
+            artistName: track.artist,
+            songName: track.name,
+            albumCover: track.image,
             id: track.id,
           };
         });

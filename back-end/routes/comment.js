@@ -2,7 +2,6 @@ const express = require("express"); // CommonJS import style!
 const axios = require("axios"); // middleware for making requests to APIs
 const router = express.Router();
 const Song = require("../models/song");
-const User = require("../models/user");
 const mongoose = require("mongoose");
 require("dotenv").config();
 import { useAuthContext } from "./AuthProvider.js";

@@ -59,7 +59,7 @@ router.get("/artist", async (req, res) => {
   try {
     const accessToken = await getAccessToken();
     const searchTerm = encodeURIComponent(req.query.query);
-
+    console.log(accessToken);
     const response = await axios.get(
       `https://api.spotify.com/v1/search?type=track&q=artist:${searchTerm}`,
       {
