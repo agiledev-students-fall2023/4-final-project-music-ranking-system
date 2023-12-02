@@ -7,28 +7,11 @@ function Settings() {
   const authContext = useAuthContext();
   const user = useAuthContext().user;
   const navigate = useNavigate();
-  console.log(authContext.auth)
 
   const logout = e => {
-    // e.preventDefault() // prevent normal browser submit behavior
-
-    // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
-    // maybe set property { withCredentials: true }?
-    axios
-      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/logout`)
-      .then(response => {
-        // prob want to redirect here once backend implemented?
-        // https://stackoverflow.com/questions/34735580/how-to-do-a-redirect-to-another-route-with-react-routers
-        console.log("Logged out successfully")
-      })
-      .catch(err => {
-        console.log("Error getting data:", err)
-      })
-    // for now, setting auth is false, removing local storage item auth and redirecting to / regardless of result of get request
-    authContext.setAuth(false)
-    authContext.setUser(null)
-    localStorage.removeItem("auth")
-    localStorage.removeItem("username")
+    authContext.setJwtToken(null) 
+    localStorage.removeItem("token")
+    // window.dispatchEvent(new Event("storage"));
     navigate("/")
   }
   

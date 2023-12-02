@@ -31,7 +31,7 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />;
           <Route path="/post/:songArtist/:songTitle/:username" element={<Post />} />;
-          <Route path="/settings" element={auth? <Settings />:<LogIn />} />;
+          <Route path="/settings" element={<Settings />} />;
           <Route path="/song/:songArtist/:songTitle" element={<Song />} />
           <Route path="/search" element={<Search />} />
           <Route path="/other-user/:userId" element={<OtherUserProfile />} />;

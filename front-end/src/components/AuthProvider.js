@@ -8,31 +8,58 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext({
-  auth: null,
-  setAuth: () => {},
-  user: null,
+  response: null,
+  setResponse: () => {},
+  isLoggedIn: null,
+  setIsLoggedIn: () => {},
+  jwtToken: null,
+  setJwtToken: () => {}
 });
 export const useAuthContext = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState(localStorage.getItem("auth")? localStorage.getItem("auth"): false)
-  const [user, setUser] = useState(localStorage.getItem("username")? localStorage.getItem("username"): false);
+  const [jwtToken, setJwtToken] = useState(localStorage.getItem("token")) // the JWT token, if we have already received one and stored it in localStorage
+  console.log(`JWT token: ${jwtToken}`) // debugging
+
+  const [response, setResponse] = useState({}) // we expect the server to send us a simple object in this case
+  const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true) // if we already have a JWT token in local storage, set this to true, otherwise false
 
   // useEffect(() => {
-  //   const isAuth = async () => {
-  //     try {
-  //       const res = await axios.get(`${process.env.REACT_APP_SERVER_HOSTNAME}/loggeduser`,);
-  //       setUser(res.data);
-  //     } catch(error) {
-  //       setUser(null);
-  //     };
-  //   };
+  //   console.log("storage event happened")
+  //   function checkForToken() {
+  //     const token = localStorage.getItem('token')
+  //     if (token) {
+  //       setJwtToken(token)
+  //     }
+  //   }
+  //   window.addEventListener('storage', checkForToken)
+  //   return () => {
+  //     window.removeEventListener('storage', checkForToken)
+  //   }
+  // }, [])
+  
+  // try to load the protected data from the server when this component first renders
+  useEffect(() => {
+    // send the request to the server api, including the Authorization header with our JWT token in it
+    console.log("sending jwt token to server")
+    console.log(jwtToken)
+    axios
+      .get(`http://localhost:3000/protected`, {
+        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+      })
+      .then(res => {
+        setResponse(res.data) // store the response data
+      })
+      .catch(err => {
+        console.log(
+          "The server rejected the request for this protected resource... we probably do not have a valid JWT token."
+        )
+        setIsLoggedIn(false) // update this state variable, so the component re-renders
+      })
+  }, [jwtToken]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  //   isAuth();
-  // }, [auth]);
-  // the context passed down is object that contains the state variable auth, setAuth, and user
   return (
-    <AuthContext.Provider value={{ auth, setAuth, user, setUser }}>
+    <AuthContext.Provider value={{ response, setResponse, isLoggedIn, setIsLoggedIn, jwtToken, setJwtToken }}>
       {children}
     </AuthContext.Provider>
   );
