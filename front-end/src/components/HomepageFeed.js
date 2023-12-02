@@ -11,10 +11,9 @@ export default function HomepageFeed() {
     axios
       .post("http://localhost:3000/", { username: currentuser })
       .then((res) => {
-        // console.log(res.data);
         setReviewObject(res.data);
         // console.log(reviewObject);
-        console.log(res.data);
+        console.log(res);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);

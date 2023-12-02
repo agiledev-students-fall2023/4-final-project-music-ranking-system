@@ -17,11 +17,9 @@ export default function Search() {
         );
         const res = response.data.tracks[0];
         const temp = {
-          artist: res.artists[0].name,
-          song: res.name,
-          cover: res.album.images[1].url,
-          rating: 10,
-          review: "test",
+          artistName: res.artists[0].name,
+          songName: res.name,
+          albumCover: res.album.images[1].url,
         };
         setData([temp]);
       } else if (searchType == "artist") {

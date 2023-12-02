@@ -20,7 +20,8 @@ router.post("/", (req, res) => {
         User.find({ _id: { $in: following } }, "activity")
           .then((users) => {
             const activities = users.map((userP) => userP.activity).flat();
-            // console.log(activities.length);
+            console.log("here");
+            console.log(users);
             return res.json(activities);
           })
           .catch((err) => {
