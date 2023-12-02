@@ -7,10 +7,7 @@ import SongPost from './SongPost.js';
 import { useAuthContext } from "./AuthProvider.js";
 
 function Song() {
-  const authContext = useAuthContext()
-  const username = authContext.response.username;
-  const isLoggedIn = authContext.isLoggedIn;
-  
+  const username = useAuthContext().user
   const {songArtist, songTitle} = useParams()
   const [song, setSong] = useState([])
   const [posts, setPosts] = useState([])
@@ -48,7 +45,7 @@ function Song() {
       <img src={song.coverSrc} alt="album cover" />
       <p>{song.rating}/10</p>
       {song.numReviews === 1? <p>{song.numReviews} review</p>:<p>{song.numReviews} reviews</p>}
-      {isLoggedIn && showForm && 
+      {showForm && 
         <>
           <h3>Review:</h3>
           <SongPostForm setShowForm={setShowForm} addPostToList={addPostToList} songArtist={songArtist} songTitle={songTitle} />

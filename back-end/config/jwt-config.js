@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const ObjectId = mongoose.Types.ObjectId
-const User = require("../models/User")
+const User = require("../models/User.js")
 
 const passportJWT = require("passport-jwt")
 const ExtractJwt = passportJWT.ExtractJwt
@@ -27,7 +27,7 @@ const jwtVerifyToken = async function (jwt_payload, next) {
   // try to find a matching user in our database
 
   // find this user in the database
-  const userId = new ObjectId(jwt_payload.id) // convert the string id to an ObjectId
+  const userId = ObjectId(jwt_payload.id) // convert the string id to an ObjectId
   const user = await User.findOne({ _id: userId }).exec()
   if (user) {
     // we found the user... keep going
