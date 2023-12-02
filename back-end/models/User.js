@@ -7,12 +7,7 @@ const activitySchema = new mongoose.Schema({
   rating: {
     type: Number,
   },
-  songName: {
-    type: String,
-  },
-  artistName: {
-    type: String,
-  },
+  song: songSchema,
 });
 
 const userSchema = new mongoose.Schema({

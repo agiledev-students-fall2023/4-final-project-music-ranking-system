@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import '../css/ProfileReview.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../css/ProfileReview.css";
 import { useParams, Link } from "react-router-dom";
 import { useAuthContext } from "./AuthProvider.js";
 
@@ -10,7 +10,7 @@ function OtherUserProfile() {
   const currentuser = useAuthContext().user;
   console.log(currentuser);
   const [userData, setUser] = useState([]);
-  const [userActivity, setActivity] = useState([]);
+  const [userActivity, setUserActivity] = useState([]);
 
   const [userFollowers, setFollowers] = useState([]);
   let [userFollowing, setFollowing] = useState([]);
@@ -25,14 +25,14 @@ function OtherUserProfile() {
     axios
       .get(`http://localhost:3000/other-user/${userId}`)
       .then((res) => {
-        console.log('Received data:', res.data);
+        console.log("Received data:", res.data);
         setUser(res.data);
         setActivity(res.data.activity);
         setFollowers([...res.data.followers]);
         console.log("followers", userFollowers);
         setFollowing([...res.data.following]);
       })
-      .catch((error) =>{
+      .catch((error) => {
         console.error("Error fetching other user data: ", error);
       });
       
@@ -75,17 +75,22 @@ function OtherUserProfile() {
         </button>
       </div>
 
-       <div className="activity">
+      <div className="activity">
         <h2>Activity</h2>
         {userActivity.map((entry, index) => (
           <div key={index} className="activity-entry">
-            <p><Link to={`/post/${entry.artistName}/${entry.songName}/${userId}`}>{entry.artistName} -- {entry.songName}</Link></p>
+            <p>
+              <Link
+                to={`/post/${entry.song.artistName}/${entry.song.songName}/${userId}`}
+              >
+                {entry.song.artistName} -- {entry.song.songName}
+              </Link>
+            </p>
             <p>{entry.rating}/10</p>
             <p>{entry.review}</p>
           </div>
         ))}
       </div>
-
     </div>
   );
 }
