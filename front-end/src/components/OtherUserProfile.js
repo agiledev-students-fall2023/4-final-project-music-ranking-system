@@ -7,18 +7,18 @@ function OtherUserProfile() {
   const { userId } = useParams();
   const [userData, setUser] = useState([]);
   const [userSongs, setSongs] = useState([]);
-  const [userActivity, setActivity] = useState([]);
+  const [userActivity, setUserActivity] = useState([]);
 
   useEffect(() => {
     console.log("UserID: ", userId);
     axios
       .get(`http://localhost:3000/other-user/${userId}`)
       .then((res) => {
-        console.log("HEERREEEEE");
         console.log("Received data:", res.data);
         setUser(res.data);
         setSongs(res.data.topSongs);
-        setActivity(res.data.activity);
+        setUserActivity(res.data.activity);
+        console.log(res.data);
       })
       .catch((error) => {
         console.error("Error fetching other user data: ", error);
@@ -39,7 +39,7 @@ function OtherUserProfile() {
         <div className="ProfileReviewSongContainer">
           {userSongs.map((song, index) => (
             <div key={index} className="song">
-              <img src={song.albumCover} alt={song.songName} />
+              <img src={song.song.albumCover} alt={song.song.songName} />
               <p>
                 <Link
                   to={`/song/${song.artistName}/${song.songName}`}
@@ -59,9 +59,9 @@ function OtherUserProfile() {
           <div key={index} className="activity-entry">
             <p>
               <Link
-                to={`/post/${entry.artistName}/${entry.songName}/${userId}`}
+                to={`/post/${entry.song.artistName}/${entry.song.songName}/${userId}`}
               >
-                {entry.artistName} -- {entry.songName}
+                {entry.song.artistName} -- {entry.song.songName}
               </Link>
             </p>
             <p>{entry.rating}/10</p>
