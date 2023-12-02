@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import FeedComponent from "./FeedComponent";
-import "../css/LandingFeed.css"
+import "../css/LandingFeed.css";
 
 export default function LandingFeed() {
   const [reviewObject, setReviewObject] = useState([]);
@@ -21,7 +21,12 @@ export default function LandingFeed() {
     <div className="LandingFeed">
       <h1>Welcome to Music Ranking App!</h1>
       {reviewObject.map((item, index) => (
-        <FeedComponent item={item} key={index} />
+        <FeedComponent
+          item={item.song}
+          rating={item.rating}
+          review={item.review}
+          key={item._id}
+        />
       ))}
     </div>
   );
