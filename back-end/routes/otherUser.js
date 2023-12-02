@@ -1,8 +1,8 @@
 // import and instantiate express
 const express = require("express"); // CommonJS import style!
 const router1 = express.Router();
-const mongoose = require('mongoose');
-const User = require('../models/user');
+const mongoose = require("mongoose");
+const User = require("../models/user");
 require("dotenv").config();
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -10,22 +10,42 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
 });
 
-router1.post('/other-user/:userId/:currentuser/save', async (req, res) => {
+router1.post("/other-user/:userId/:currentuser/save", async (req, res) => {
   const user_to_find = req.params.userId;
   const currentusername = req.params.currentuser;
 
   try {
-    const user = await User.findOne({username: user_to_find});
-    const current = await User.findOne({username: currentusername});
+    const user = await User.findOne({ username: user_to_find });
+    const current = await User.findOne({ username: currentusername });
     user.followers.push(current);
     current.following.push(user);
     await user.save();
     await current.save();
-    const followData = {user, current};
+    const followData = { user, current };
     res.json(followData);
   } catch (err) {
-    res.status(500).json({"Error following": err});
+    res.status(500).json({ "Error following": err });
   }
+
+  // router1.get("/pineapple", async (req, res) => {
+  //   const userToFind = req.params.userId;
+  //   const currentusername = req.params.currentuser;
+  //   const userToFindMon = User.findOne({ username: userToFind });
+  //   const currentUserMon = User.findOne({ username: currentusername });
+  //   if (currentUserMon.following.includes(userToFindMon._id)) {
+  //     console.log("HEER");
+  //     return ret.json({ status: true });
+  //   } else {
+  //     console.log("HERE");
+  //     return ret.json({ status: false });
+  //   }
+  // });
+
+  // router1.post("/follow", async (req, res) => {
+  //   const userToFind = req.params.userId;
+  //   const currentusername = req.params.currentuser;
+  //   const user = User.findOne({ username: userToFind });
+  // });
 
   /*
 
@@ -61,7 +81,6 @@ router1.post('/other-user/:userId/:currentuser/save', async (req, res) => {
   */
 });
 
-
 // OtherUserProfile.js requests
 router1.get("/other-user/:userId", async (req, res) => {
   const user_to_find = req.params.userId;
@@ -72,13 +91,13 @@ router1.get("/other-user/:userId", async (req, res) => {
         // Display the user information
         res.json(user);
       } else {
-        res.send('User not found');
+        res.send("User not found");
       }
     })
     .catch((error) => {
-      console.error('Error finding user:', error);
-      res.status(500).send('Internal Server Error');
+      console.error("Error finding user:", error);
+      res.status(500).send("Internal Server Error");
     });
-  });
-  
-  module.exports = router1;
+});
+
+module.exports = router1;
