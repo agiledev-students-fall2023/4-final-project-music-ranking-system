@@ -7,6 +7,7 @@ import PostCommentForm from './PostCommentForm.js';
 import { useAuthContext } from "./AuthProvider.js";
 
 function Post() {
+  let currentuser;
   const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
   console.log(`JWT token: ${jwtToken}`) // debugging
 
@@ -22,6 +23,7 @@ function Post() {
       })
       .then(res => {
         setResponse(res.data) // store the response data
+        currentuser = res.data.user.username
       })
       .catch(err => {
         console.log(
@@ -31,7 +33,6 @@ function Post() {
       })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const currentuser = response.user.username
   const {songArtist, songTitle, username} = useParams()
   const [song, setSong] = useState([])
   const [post, setPost] = useState([])

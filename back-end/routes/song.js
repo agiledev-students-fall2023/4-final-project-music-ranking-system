@@ -7,7 +7,7 @@ const Song = require("../models/song");
 //TODO: if manually type in artist and title in params, will automatically fetch spotify api even if already have a database entry, maybe fix? but also might be ok if no one is directly typing in url bar
 router.post("/:songArtist/:songTitle/save", async (req, res) =>{
     try {
-        const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist})
+        const song = await Song.findOne({title: {'$regex': req.params.songTitle,$options:'i'}, artist: {'$regex': req.params.songArtist,$options:'i'}})
         const newPost = {
             username: req.body.user, 
             rating: parseInt(req.body.rating), 
@@ -27,7 +27,8 @@ router.post("/:songArtist/:songTitle/save", async (req, res) =>{
 
 router.get("/:songArtist/:songTitle", async (req, res) => {
     //check if already have song saved in database
-    const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist})
+    const song = await Song.findOne({title: {'$regex': req.params.songTitle,$options:'i'}, artist: {'$regex': req.params.songArtist,$options:'i'}})
+
     // if so, send response with song object
     if (song) {
         res.json(song)

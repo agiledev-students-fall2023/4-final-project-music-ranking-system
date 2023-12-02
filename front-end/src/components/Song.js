@@ -7,7 +7,7 @@ import SongPostForm from './SongPostForm.js';
 import SongPost from './SongPost.js';
 
 function Song() {
-  let username;
+  const [username, setUsername] = useState("");
   const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
   console.log(`JWT token: ${jwtToken}`) // debugging
 
@@ -23,7 +23,7 @@ function Song() {
       })
       .then(res => {
         setResponse(res.data) // store the response data
-        username = res.data.user.username
+        setUsername(res.data.user.username)
       })
       .catch(err => {
         console.log(
@@ -49,6 +49,7 @@ function Song() {
         const song = response.data
         setSong(song)
         setPosts([...song.posts])
+        // console.log("username: ", username)
       })
       .catch(err => {
         console.log("Error fetching data:", err)
@@ -61,7 +62,7 @@ function Song() {
         setShowForm(false)
       }
     })
-  }, [posts])
+  }, [username, posts])
 
   return (
     <div className="Song">
