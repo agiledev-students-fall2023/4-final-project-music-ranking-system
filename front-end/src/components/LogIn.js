@@ -3,8 +3,11 @@ import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import "../css/LogIn.css";
 import {useSearchParams} from 'react-router-dom';
+import { useAuthContext } from "./AuthProvider.js";
 
 const Login = props => {
+  const authContext = useAuthContext()
+
   let [urlSearchParams] = useSearchParams() // get access to the URL query string parameters
 
   // create state variables to hold username and password
@@ -22,7 +25,7 @@ const Login = props => {
   useEffect(() => {
     // if the user is logged-in, save the token to local storage
     if (response.success && response.token) {
-      console.log(`User successfully logged in: ${response.username}`)
+      authContext.setCheckAuth(prevCheckAuth => !prevCheckAuth) 
       localStorage.setItem("token", response.token) // store the token into localStorage
     }
   }, [response])

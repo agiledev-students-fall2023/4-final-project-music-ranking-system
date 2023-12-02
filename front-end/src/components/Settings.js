@@ -9,7 +9,7 @@ function Settings() {
   const navigate = useNavigate();
 
   const logout = e => {
-    authContext.setJwtToken(null) 
+    authContext.setCheckAuth(prevCheckAuth => !prevCheckAuth) 
     localStorage.removeItem("token")
     // window.dispatchEvent(new Event("storage"));
     navigate("/")

@@ -7,9 +7,10 @@ import SongPost from './SongPost.js';
 import { useAuthContext } from "./AuthProvider.js";
 
 function Song() {
-  console.log("useAuthContext", useAuthContext())
-  const username = useAuthContext().response.username;
-  const isLoggedIn = useAuthContext().isLoggedIn;
+  const authContext = useAuthContext()
+  const username = authContext.response.username;
+  const isLoggedIn = authContext.isLoggedIn;
+  
   const {songArtist, songTitle} = useParams()
   const [song, setSong] = useState([])
   const [posts, setPosts] = useState([])

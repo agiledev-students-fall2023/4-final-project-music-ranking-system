@@ -5,6 +5,8 @@ import axios from "axios";
 import "../css/SignUp.css";
 
 const SignUp = props => {
+  const authContext = useAuthContext();
+  
   // create state variables to hold username and password
   const [response, setResponse] = useState({}); // the API will return an object with a JWT token, if the user logs in successfully
   const [errorMessage, setErrorMessage] = useState("");
@@ -13,7 +15,7 @@ const SignUp = props => {
   useEffect(() => {
     // if the user is logged-in, save the token to local storage
     if (response.success && response.token) {
-      console.log(`User successfully logged in: ${response.username}`);
+      authContext.setCheckAuth(prevCheckAuth => !prevCheckAuth) 
       localStorage.setItem("token", response.token); // store the token into localStorage
     }
   }, [response]);

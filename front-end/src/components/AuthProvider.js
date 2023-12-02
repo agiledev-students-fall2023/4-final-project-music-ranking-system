@@ -12,14 +12,15 @@ const AuthContext = createContext({
   setResponse: () => {},
   isLoggedIn: null,
   setIsLoggedIn: () => {},
-  jwtToken: null,
-  setJwtToken: () => {}
+  checkAuth: null,
+  setCheckAuth: () => {}
 });
 export const useAuthContext = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  const [jwtToken, setJwtToken] = useState(localStorage.getItem("token")) // the JWT token, if we have already received one and stored it in localStorage
-  console.log(`JWT token: ${jwtToken}`) // debugging
+  const [checkAuth, setCheckAuth] = useState(false)
+  const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
+  // console.log(`JWT token: ${jwtToken}`) // debugging
 
   const [response, setResponse] = useState({}) // we expect the server to send us a simple object in this case
   const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true) // if we already have a JWT token in local storage, set this to true, otherwise false
@@ -41,8 +42,6 @@ const AuthProvider = ({ children }) => {
   // try to load the protected data from the server when this component first renders
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
-    console.log("sending jwt token to server")
-    console.log(jwtToken)
     axios
       .get(`http://localhost:3000/protected`, {
         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
@@ -56,10 +55,10 @@ const AuthProvider = ({ children }) => {
         )
         setIsLoggedIn(false) // update this state variable, so the component re-renders
       })
-  }, [jwtToken]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [checkAuth]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <AuthContext.Provider value={{ response, setResponse, isLoggedIn, setIsLoggedIn, jwtToken, setJwtToken }}>
+    <AuthContext.Provider value={{ response, setResponse, isLoggedIn, setIsLoggedIn, checkAuth, setCheckAuth }}>
       {children}
     </AuthContext.Provider>
   );
