@@ -7,6 +7,7 @@ import SongPostForm from './SongPostForm.js';
 import SongPost from './SongPost.js';
 
 function Song() {
+  let username;
   const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
   console.log(`JWT token: ${jwtToken}`) // debugging
 
@@ -22,6 +23,7 @@ function Song() {
       })
       .then(res => {
         setResponse(res.data) // store the response data
+        username = res.data.user.username
       })
       .catch(err => {
         console.log(
@@ -31,7 +33,6 @@ function Song() {
       })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const username = response.username
   const {songArtist, songTitle} = useParams()
   const [song, setSong] = useState([])
   const [posts, setPosts] = useState([])
@@ -55,7 +56,6 @@ function Song() {
   }, [songArtist, songTitle])
   //check if username already posted review, if so remove post form
   useEffect(() => {
-    console.log(posts)
     posts.map((post) => {
       if (post.username === username) {
         setShowForm(false)
