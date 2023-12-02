@@ -10,21 +10,36 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
 });
 
-router1.post('/other-user/:userId/toggle-follow/:currentuser', async (req, res) => {
+router1.post('/other-user/:userId/:currentuser/save', async (req, res) => {
   const user_to_find = req.params.userId;  
   const currentusername = req.params.currentuser;
+
+  try {
+    const user = await User.findOne({username: user_to_find});
+    const current = await User.findOne({username: currentusername});
+    user.followers.push(current);
+    current.following.push(user);
+    await user.save();
+    await current.save();
+    const followData = {user, current};
+    res.json(followData);
+  } catch (err) {
+    res.status(500).json({"Error following": err});
+  }
+
+  /*
 
   try {
       const user = await User.findOne({username: user_to_find});
       const current = await User.findOne({username: currentusername});
       //console.log(user);
-      //console.log(current);
+      console.log(current.followers.followerId);
       console.log("other user followers: ", user.followers);
       console.log("other user following: ", user.following);
       console.log("current user followers: ", current.followers);
       console.log("current user following: ", current.following);
       
-      if (user.followers.includes(current._id)) {
+      if (user.followers.includes(current.followers.followerId)) {
           console.log("true")
           current.following.pull(user);
           user.followers.pull(current);
@@ -43,6 +58,7 @@ router1.post('/other-user/:userId/toggle-follow/:currentuser', async (req, res) 
       console.error("Error toggling follow: ", error);
       res.status(500).json({ error: "Internal Server Error" });
   }
+  */
 });
 
 // OtherUserProfile.js requests

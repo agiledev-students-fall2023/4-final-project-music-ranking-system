@@ -31,20 +31,23 @@ const userSchema = new mongoose.Schema({
       followerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        unique: true,
       },
-      followerUsername: String,
-    },
+    }
   ],
   following: [
     {
       followingId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        unique: true,
       },
-      followingUsername: String,
     },
   ],
 });
+
+userSchema.index({ "followers.followerId": 1 }, { unique: true });
+userSchema.index({ "following.followingId": 1 }, { unique: true });
 
 userSchema.methods.comparePassword = function (password) {
   return this.password === password;

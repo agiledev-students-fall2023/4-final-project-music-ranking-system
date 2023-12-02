@@ -11,8 +11,13 @@ function OtherUserProfile() {
   console.log(currentuser);
   const [userData, setUser] = useState([]);
   const [userActivity, setActivity] = useState([]);
-  let [followers, setFollowers] = useState([]);
-  let [following, setFollowing] = useState([]);
+
+  const [userFollowers, setFollowers] = useState([]);
+  let [userFollowing, setFollowing] = useState([]);
+  const addFollowerToFollowers = follower => {
+    const newFollowers = [follower, ...userFollowers]
+    setFollowers(newFollowers)
+  }
   let [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
@@ -23,18 +28,29 @@ function OtherUserProfile() {
         console.log('Received data:', res.data);
         setUser(res.data);
         setActivity(res.data.activity);
-        setFollowers(res.data.followers);
-        setFollowing(res.data.following);
+        setFollowers([...res.data.followers]);
+        console.log("followers", userFollowers);
+        setFollowing([...res.data.following]);
       })
       .catch((error) =>{
         console.error("Error fetching other user data: ", error);
       });
       
-  }, [userId]);
+  }, [userId, userFollowers]);
+
+  useEffect(() => {
+    if (userFollowers) {
+      userFollowers.map((follower) => {
+        if (follower._id === currentuser._id) {
+          setIsFollowing(true);
+        }
+      })
+    }
+  }, [currentuser, userFollowers]);
 
   const handleFollowToggle = async () => {
     try {
-      const response = await axios.post(`http://localhost:3000/other-user/${userId}/toggle-follow/${currentuser}`);
+      const response = axios.post(`http://localhost:3000/other-user/${userId}/${currentuser}`);
       setIsFollowing(response.data.isFollowing);
       console.log(isFollowing);
     } catch (error) {
@@ -52,10 +68,10 @@ function OtherUserProfile() {
       </div>
 
       <div className="FollowingDashboard">
-        <p>Followers: {followers = null ? 0 : followers.length}</p>
-        <p>Following: {following = null ? 0 : following.length}</p>
-        <button onClick={handleFollowToggle}>
-          {isFollowing ? "Unfollow" : "Follow"}
+        <p>Followers: {userFollowers.length}</p>
+        <p>Following: {userFollowing = null ? 0 : userFollowing.length}</p>
+        <button onClick={addFollowerToFollowers} setShowForm={setIsFollowing}>
+          Follow
         </button>
       </div>
 
