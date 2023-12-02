@@ -25,7 +25,6 @@ const Login = props => {
   useEffect(() => {
     // if the user is logged-in, save the token to local storage
     if (response.success && response.token) {
-      authContext.setCheckAuth(prevCheckAuth => !prevCheckAuth) 
       localStorage.setItem("token", response.token) // store the token into localStorage
     }
   }, [response])

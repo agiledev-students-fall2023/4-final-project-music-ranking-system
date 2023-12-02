@@ -7,9 +7,10 @@ import { useAuthContext } from "./AuthProvider.js";
 
 export default function LandingFeed() {
   const authContext = useAuthContext()
-  console.log(authContext)
   const [reviewObject, setReviewObject] = useState([]);
-  useEffect(() => {
+  useEffect(() => {  
+    console.log(authContext)
+    
     axios
       .get("http://localhost:3000/landingFeed/retrieve")
       .then((res) => {

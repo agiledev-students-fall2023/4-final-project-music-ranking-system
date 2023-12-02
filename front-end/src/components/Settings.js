@@ -5,13 +5,11 @@ import '../css/Settings.css';
 
 function Settings() {
   const authContext = useAuthContext();
-  const user = useAuthContext().user;
+  const user = authContext.user;
   const navigate = useNavigate();
 
   const logout = e => {
-    authContext.setCheckAuth(prevCheckAuth => !prevCheckAuth) 
     localStorage.removeItem("token")
-    // window.dispatchEvent(new Event("storage"));
     navigate("/")
   }
   

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useAuthContext } from "./AuthProvider.js";
+import axios from 'axios';
 import "../css/Nav.css";
 
 function Nav() {
-  const authContext = useAuthContext();
-  const isLoggedIn = authContext.isLoggedIn;
+  const authContext = useAuthContext()
+  const isLoggedIn = authContext.isLoggedIn
+  console.log("isLoggedIn: ", isLoggedIn)
   
   return (
     <div>
