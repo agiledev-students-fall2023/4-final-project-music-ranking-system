@@ -18,16 +18,14 @@ import OtherUserProfile from "./OtherUserProfile";
 import Comment from "./Comment"
 
 function App() {
-  const auth = useAuthContext().auth;
-  console.log(auth)
   return (
     <div className="App">
       <Router>
         <Title />
         <Routes>
-          <Route path="/" element={auth? <HomepageFeed />:<LandingFeed />} />
+          <Route path="/" element={<LandingFeed />} />
           <Route path="/about" element={<About />} />
-          <Route path="/profile-review" element={auth? <ProfileReview />:<LogIn />} />
+          <Route path="/profile-review" element={<LogIn />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />;
           <Route path="/post/:songArtist/:songTitle/:username" element={<Post />} />;

@@ -19,25 +19,12 @@ export const useAuthContext = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
   const [checkAuth, setCheckAuth] = useState(false)
+  
   const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
   // console.log(`JWT token: ${jwtToken}`) // debugging
 
   const [response, setResponse] = useState({}) // we expect the server to send us a simple object in this case
   const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true) // if we already have a JWT token in local storage, set this to true, otherwise false
-
-  // useEffect(() => {
-  //   console.log("storage event happened")
-  //   function checkForToken() {
-  //     const token = localStorage.getItem('token')
-  //     if (token) {
-  //       setJwtToken(token)
-  //     }
-  //   }
-  //   window.addEventListener('storage', checkForToken)
-  //   return () => {
-  //     window.removeEventListener('storage', checkForToken)
-  //   }
-  // }, [])
   
   // try to load the protected data from the server when this component first renders
   useEffect(() => {

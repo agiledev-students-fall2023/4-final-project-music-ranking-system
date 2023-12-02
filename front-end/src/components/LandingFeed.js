@@ -3,8 +3,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import FeedComponent from "./FeedComponent";
 import "../css/LandingFeed.css"
+import { useAuthContext } from "./AuthProvider.js";
 
 export default function LandingFeed() {
+  const authContext = useAuthContext()
+  console.log(authContext)
   const [reviewObject, setReviewObject] = useState([]);
   useEffect(() => {
     axios
