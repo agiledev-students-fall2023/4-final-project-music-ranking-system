@@ -5,7 +5,6 @@ const Song = require("../models/song");
 const User = require("../models/user");
 const mongoose = require('mongoose');
 require("dotenv").config();
-import { useAuthContext } from "./AuthProvider.js";
 
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -16,10 +15,9 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 router.post('/comments/:songArtist/:songTitle/:username/save', async (req, res) => {
   try {
-    const currentuser = useAuthContext().user;
     const song = await Song.findOne({title: req.params.songName, artist: req.params.songArtist});
     const newComment = {
-        username: currentuser,
+        username: req.body.username,
         comment: req.body.comment,
     }
     const post = song.posts.username(username);
