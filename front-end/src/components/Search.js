@@ -41,11 +41,9 @@ export default function Search() {
         );
         const res = response.data.tracks[0];
         const temp = {
-          artist: res.artists[0].name,
-          song: res.name,
-          cover: res.album.images[1].url,
-          rating: 10,
-          review: "test",
+          artistName: res.artists[0].name,
+          songName: res.name,
+          albumCover: res.album.images[1].url,
         };
         setData([temp]);
       } else if (searchType == "artist") {
@@ -56,11 +54,9 @@ export default function Search() {
         console.log(res);
         const tracksData = res.map((track, index) => {
           return {
-            artist: track.artist,
-            song: track.name,
-            cover: track.image,
-            rating: 10,
-            review: "test",
+            artistName: track.artist,
+            songName: track.name,
+            albumCover: track.image,
             id: track.id,
           };
         });
