@@ -28,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={auth? <HomepageFeed />:<LandingFeed />} />
           <Route path="/about" element={<About />} />
-          <Route path="/profile-review" element={auth? <ProfileReview />:<LogIn />} />
+          <Route path="/profile" element={<ProfileReview />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />;
           <Route path="/post/:songArtist/:songTitle/:username" element={<Post />} />;

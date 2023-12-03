@@ -9,7 +9,6 @@ import SongPost from './SongPost.js';
 function Song() {
   const [username, setUsername] = useState("");
   const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
-  console.log(`JWT token: ${jwtToken}`) // debugging
 
   const [response, setResponse] = useState({}) // we expect the server to send us a simple object in this case
   const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true) // if we already have a JWT token in local storage, set this to true, otherwise false
