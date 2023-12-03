@@ -3,22 +3,52 @@ const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
 const router = require("express").Router();
 const Song = require("../models/song");
+const User = require("../models/User")
 
 //TODO: if manually type in artist and title in params, will automatically fetch spotify api even if already have a database entry, maybe fix? but also might be ok if no one is directly typing in url bar
 router.post("/:songArtist/:songTitle/save", async (req, res) =>{
     try {
-        const song = await Song.findOne({title: {'$regex': req.params.songTitle,$options:'i'}, artist: {'$regex': req.params.songArtist,$options:'i'}})
+        const username = req.body.user;
+        const rating = parseInt(req.body.rating);
+        const review = req.body.review;
+        const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist});
+
         const newPost = {
-            username: req.body.user, 
-            rating: parseInt(req.body.rating), 
-            review: req.body.review,
-            comments: []
-        } 
-        song.posts.push(newPost)
-        song.numReviews++
-        song.rating = ((song.rating * (song.numReviews-1) + newPost.rating)/song.numReviews).toFixed(1)
-        await song.save()
-        res.json(newPost)
+          username: username,
+          rating: rating,
+          review: review,
+          comments: [],
+        };
+        const newActivity = {
+          review: review,
+          rating: rating,
+          song: {
+            songName: song.title,
+            artistName: song.artist,
+            albumCover: song.coverSrc,
+          },
+        };
+        User.findOne({ username: username })
+          .then((user) => {
+            if (user) {
+              user.activity.push(newActivity);
+              user.save();
+            } else {
+              console.log("User Does not Exist");
+            }
+          })
+          .catch((error) => {
+            console.error("Error finding user:", error);
+            res.status(500).send("Internal Server Error");
+          });
+        song.posts.push(newPost);
+        song.numReviews++;
+        song.rating = (
+          (song.rating * (song.numReviews - 1) + newPost.rating) /
+          song.numReviews
+        ).toFixed(1);
+        await song.save();
+        res.json(newPost);
     }
     catch (err){
         res.status(500).json({"Error posting song review": err})
@@ -27,7 +57,7 @@ router.post("/:songArtist/:songTitle/save", async (req, res) =>{
 
 router.get("/:songArtist/:songTitle", async (req, res) => {
     //check if already have song saved in database
-    const song = await Song.findOne({title: {'$regex': req.params.songTitle,$options:'i'}, artist: {'$regex': req.params.songArtist,$options:'i'}})
+    const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist})
 
     // if so, send response with song object
     if (song) {
