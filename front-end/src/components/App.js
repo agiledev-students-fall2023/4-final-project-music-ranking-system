@@ -3,8 +3,7 @@ import "../App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./about";
 import Title from "./title";
-import HomepageFeed from "./HomepageFeed";
-import LandingFeed from "./LandingFeed";
+import Feed from "./Feed";
 import ProfileReview from "./ProfileReview";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
@@ -26,7 +25,7 @@ function App() {
       <Router>
         <Title />
         <Routes>
-          <Route path="/" element={auth? <HomepageFeed />:<LandingFeed />} />
+          <Route path="/" element={<Feed />} />
           <Route path="/about" element={<About />} />
           <Route path="/profile" element={<ProfileReview />} />
           <Route path="/login" element={<LogIn />} />
