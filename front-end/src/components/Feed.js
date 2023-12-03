@@ -31,46 +31,56 @@ export default function LandingFeed() {
       })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // const [reviewObject, setReviewObject] = useState([]);
-  // useEffect(() => {
-  //   // if logged in, display homepage feed
-  //   if (isLoggedIn) {
-  //     axios
-  //     .get("http://localhost:3000/")
-  //     .then((res) => {
-  //       setReviewObject(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data: ", error);
-  //     });
-  //   }
-  //   // otherwise, display landing feed
-  //   else {
-  //     axios
-  //     .get("http://localhost:3000/landingFeed/retrieve")
-  //     .then((res) => {
-  //       setReviewObject(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data: ", error);
-  //     });
-  //   }
-  // }, [isLoggedIn]);
+  const [reviewObject, setReviewObject] = useState([]);
+  useEffect(() => {
+    // if logged in, display homepage feed
+    if (isLoggedIn) {
+      axios
+      .post("http://localhost:3000/", { username: username })
+      .then((res) => {
+        setReviewObject(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+    }
+    // otherwise, display landing feed
+    else {
+      axios
+      .get("http://localhost:3000/landingFeed/retrieve")
+      .then((res) => {
+        setReviewObject(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+    }
+  }, [username, isLoggedIn]);
 
   return (
     <>
       {isLoggedIn? (
         <div className="HomepageFeed">
-          {/* {reviewObject.map((item, index) => (
-            <FeedComponent item={item} key={index} />
-          ))} */}
+          {reviewObject.map((item, index) => (
+            <FeedComponent
+              item={item.song}
+              rating={item.rating}
+              review={item.review}
+              key={item._id}
+            />
+          ))}
         </div>
       ):(
         <div className="LandingFeed">
             <h1>Welcome to Music Ranking App!</h1>
-            {/* {reviewObject.map((item, index) => (
-              <FeedComponent item={item} key={index} />
-            ))} */}
+            {reviewObject.map((item, index) => (
+            <FeedComponent
+              item={item.song}
+              rating={item.rating}
+              review={item.review}
+              key={item._id}
+            />
+          ))}
         </div>
       )}
       <Nav isLoggedIn={isLoggedIn} />
