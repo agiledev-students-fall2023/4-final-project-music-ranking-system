@@ -2,7 +2,7 @@ const express = require("express"); // CommonJS import style!
 
 // mongoose models for MongoDB data manipulation
 const mongoose = require("mongoose");
-const User = require("../models/User.js");
+const User = require("../models/user.js");
 const router = express.Router();
 
 // a route to handle user signup requests to /auth/signup
