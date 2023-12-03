@@ -8,12 +8,12 @@ require("dotenv").config();
 // mongoose.connect(process.env.MONGODB_URI, {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
-// });
+// });S
 
 router1.get("/", async (req, res) => {
   const userToFind = req.query.userId;
   const currentUsername = req.query.currentuser;
-  const userToFindMon = await User.findOne({ username: "test1" });
+  const userToFindMon = await User.findOne({ username: userToFind });
   const currentUserMon = await User.findOne({ username: currentUsername });
   const isFollowing = currentUserMon.following.some(
     (followingObj) =>
