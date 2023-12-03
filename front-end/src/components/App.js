@@ -13,7 +13,7 @@ import Post from "./Post";
 import Settings from "./Settings";
 import Song from "./Song";
 import Search from "./Search";
-import { useAuthContext } from "./AuthProvider.js";
+import { useAuthContext } from "./AuthProvider";
 import NotAuthNav from './NotAuthNav';
 import OtherUserProfile from "./OtherUserProfile";
 import Comment from "./Comment"

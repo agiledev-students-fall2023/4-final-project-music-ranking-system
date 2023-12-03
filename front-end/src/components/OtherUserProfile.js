@@ -9,7 +9,6 @@ function OtherUserProfile() {
   const currentuser = useAuthContext().user;
   const [userData, setUser] = useState([]);
   const [userActivity, setUserActivity] = useState([]);
-
   const [followStatus, setFollowStatus] = useState();
 
   // const [userFollowers, setFollowers] = useState([]);
