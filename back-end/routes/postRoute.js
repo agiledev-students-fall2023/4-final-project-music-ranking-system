@@ -3,7 +3,7 @@ const express = require("express"); // CommonJS import style!
 const axios = require("axios"); // middleware for making requests to APIs
 const router = express.Router();
 const Song = require("../models/song");
-const User = require("../models/User");
+const User = require("../models/user.js");
 
 router.post("/:songArtist/:songTitle/:username/save", async (req, res) => {
   try {

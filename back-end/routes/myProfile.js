@@ -1,7 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
-const User = require("../models/User");
+const User = require("../models/user.js");
 
 router.get("/:username", async (req, res) => {
   try 

@@ -2,7 +2,7 @@
 const express = require("express"); // CommonJS import style!
 const router1 = express.Router();
 const mongoose = require('mongoose');
-const User = require('../models/User');
+const User = require('../models/user.js');
 require("dotenv").config();
 
 mongoose.connect(process.env.MONGODB_URI, {
