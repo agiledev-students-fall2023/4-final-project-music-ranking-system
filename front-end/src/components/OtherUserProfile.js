@@ -6,6 +6,7 @@ import Nav from './Nav'
 
 
 function OtherUserProfile() {
+  const [currentuser, setCurrentUser] = useState("");
   const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
 
   const [response, setResponse] = useState({}) // we expect the server to send us a simple object in this case
@@ -31,8 +32,8 @@ function OtherUserProfile() {
 
   const { userId } = useParams();
   const [userData, setUser] = useState([]);
-  const [userSongs, setSongs] = useState([]);
   const [userActivity, setUserActivity] = useState([]);
+  const [followStatus, setFollowStatus] = useState();
 
   useEffect(() => {
     console.log("UserID: ", userId);
@@ -41,7 +42,6 @@ function OtherUserProfile() {
       .then((res) => {
         console.log('Received data:', res.data);
         setUser(res.data);
-        setSongs(res.data.topSongs);
         setUserActivity(res.data.activity);
       })
       .catch((error) =>{
@@ -50,9 +50,37 @@ function OtherUserProfile() {
       
   }, [userId]);
 
-  if (!userData && !userSongs && !userActivity) {
-    return <div>Loading...</div>
-  }
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/follow", {
+        params: {
+          userId: userId,
+          currentuser: currentuser,
+        },
+      })
+      .then((res) => {
+        setFollowStatus(res.data.status);
+        console.log("HERE");
+        console.log(res.data.status);
+      });
+  }, [currentuser]);
+
+  const addFollowerToFollowers = async () => {
+    // console.log("HERE1");
+    try {
+      axios
+        .post("http://localhost:3000/follow", {
+          userId: userId,
+          currentuser: currentuser,
+          status: followStatus,
+        })
+        .then((res) => {
+          console.log(res.data.status);
+          setFollowStatus(res.data.status);
+        });
+    } catch (err) {}
+  };
+
   return (
     <>
       <div className="ProfileReview">
@@ -60,36 +88,25 @@ function OtherUserProfile() {
           <h1>{userId}</h1>
         </div>
 
-        <div className="top-songs">
-          <h2>Top Songs</h2>
-          <div className="ProfileReviewSongContainer">
-            {userSongs.map((song, index) => (
-              <div key={index} className="song">
-                <img src={song.song.albumCover} alt={song.song.songName} />
-                <p>
-                  <Link
-                    to={`/song/${song.artistName}/${song.songName}`}
-                    className="song-link"
-                  >
-                    {song.artistName} -- {song.songName}
-                  </Link>
-                </p>
-              </div>
-            ))}
-          </div>
+        <div className="FollowingDashboard">
+          {/* <p>Followers: {userFollowers.length}</p>
+          <p>Following: {userFollowing.length}</p> */}
+          {isLoggedIn && <button onClick={addFollowerToFollowers}>{followStatus ? <p>Unfollow</p> : <p>Follow</p>}</button>}
         </div>
 
         <div className="activity">
           <h2>Activity</h2>
           {userActivity.map((entry, index) => (
             <div key={index} className="activity-entry">
-               <p>
+              <p>
                 <Link
                   to={`/post/${entry.song.artistName}/${entry.song.songName}/${userId}`}
                 >
                   {entry.song.artistName} -- {entry.song.songName}
                 </Link>
               </p>
+              <p>{entry.rating}/10</p>
+              <p>{entry.review}</p>
             </div>
           ))}
         </div>

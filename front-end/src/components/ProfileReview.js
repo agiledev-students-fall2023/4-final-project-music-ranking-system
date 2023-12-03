@@ -31,16 +31,26 @@ function App() {
       })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [songObject, setSongObject] = useState([]);  
   const [activityObject, setActivityObject] = useState([]);
+  let [userFollowers, setFollowers] = useState([]);
+  let [userFollowing, setFollowing] = useState([]);
+  const addFollowerToFollowers = follower => {
+    const newFollowers = [follower, ...userFollowers]
+    setFollowers(newFollowers)
+  }
+  const addFollowerToFollowing = follower => {
+    const newFollowing = [follower, ...userFollowing]
+    setFollowing(newFollowing)
+  }
+  let [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/myProfile/${username}`)
       .then((res) => {
-        setSongObject(res.data.topSongs);
         setActivityObject(res.data.activity);
-
+        setFollowers([...res.data.followers]);
+        setFollowing([...res.data.following]);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
@@ -54,18 +64,13 @@ function App() {
           <div className="ProfileReview">
             <div className="ProfileReviewHeader">
               <h1>{username}</h1>
-              <p><Link to="/settings">Settings</Link></p>
+              <p>
+                <Link to="/settings">Settings</Link>
+              </p>
             </div>
-            <div className="top-songs">
-              <h2>Top Songs</h2>
-              <div className="ProfileReviewSongContainer">
-                {songObject.map((song, index) => (
-                  <div key={index} className="song">
-                    <img src={song.albumCover} alt={song.songName} />
-                    <p><Link to={`/song/${song.artistName}/${song.songName}`} className="song-link">{song.artistName} -- {song.songName}</Link></p>
-                  </div>
-                ))}
-              </div>
+            <div className="FollowingDashboard">
+              <p>Followers: {userFollowers.length}</p>
+              <p>Following: {userFollowing.length}</p>
             </div>
             <div className="activity">
               <h2>Activity</h2>

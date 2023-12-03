@@ -41,9 +41,28 @@ const UserSchema = new Schema({
   },
   topSongs: [songSchema],
   activity: [activitySchema],
-  followers: [],
-  following: [],
+  followers: [
+    {
+      followerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        unique: true,
+      },
+    },
+  ],
+  following: [
+    {
+      followingId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        unique: true,
+      },
+    },
+  ],
 })
+
+UserSchema.index({ "followers.followerId": 1 }, { unique: true });
+UserSchema.index({ "following.followingId": 1 }, { unique: true });
 
 // hash the password before the user is saved
 // mongoose provides hooks that allow us to run code before or after specific events

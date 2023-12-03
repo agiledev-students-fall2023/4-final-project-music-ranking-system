@@ -16,6 +16,7 @@ const landingFeedRoute = require("./routes/landingFeed");
 const spotifyRoute = require("./routes/spotify");
 const authenticationRoute = require("./routes/authentication");
 const protectedRoute = require("./routes/protected-content")
+const followRoute = require("./routes/follow");
 
 // the following are used for authentication with JSON Web Tokens
 const jwt = require("jsonwebtoken")
@@ -53,6 +54,9 @@ app.use("/landingFeed", landingFeedRoute);
 app.use("/spotify", spotifyRoute);
 app.use("/auth", authenticationRoute);
 app.use("/protected", protectedRoute)
+app.use("/follow", followRoute);
+
+
 
 // export the express app we created to make it available to other modules
 module.exports = app;

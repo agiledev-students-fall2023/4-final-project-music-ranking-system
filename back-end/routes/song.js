@@ -3,7 +3,7 @@ const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
 const router = require("express").Router();
 const Song = require("../models/song");
-const User = require("../models/User")
+const User = require("../models/user")
 
 //TODO: if manually type in artist and title in params, will automatically fetch spotify api even if already have a database entry, maybe fix? but also might be ok if no one is directly typing in url bar
 router.post("/:songArtist/:songTitle/save", async (req, res) =>{

@@ -3,7 +3,7 @@ const express = require("express"); // CommonJS import style!
 const app = express(); // instantiate an Express object
 const axios = require("axios"); // middleware for making requests to APIs
 const router = require("express").Router();
-const User = require("../models/User.js");
+const User = require("../models/user.js");
 
 router.post("/", (req, res) => {
   username = req.body.username;
