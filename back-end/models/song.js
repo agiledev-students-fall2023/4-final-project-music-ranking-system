@@ -4,23 +4,23 @@
 const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({
-    username: String,
-    comment: String
-})
+  username: String,
+  comment: String,
+});
 
 const postSchema = new mongoose.Schema({
   username: {
-      type: String,
-      unique: true,
+    type: String,
+    unique: true,
   },
-  rating:{
-      type: Number,
+  rating: {
+    type: Number,
   },
   review: {
-      type: String,
+    type: String,
   },
   comments: [commentSchema],
-})
+});
 
 const songSchema = new mongoose.Schema({
   title: String,
@@ -28,7 +28,7 @@ const songSchema = new mongoose.Schema({
   coverSrc: String,
   rating: Number,
   numReviews: Number,
-  posts: [postSchema]
+  posts: [postSchema],
 });
 
 module.exports = mongoose.model("Song", songSchema);

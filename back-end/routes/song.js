@@ -80,29 +80,29 @@ router.get("/:songArtist/:songTitle", async (req, res) => {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
-            })
-        // then send response with updated song object + save to database
-            .then (async response => {
-                const newSong = new Song({
-                    title: response.data.tracks.items[0].name, 
-                    artist: response.data.tracks.items[0].artists[0].name, 
-                    coverSrc: response.data.tracks.items[0].album.images[1].url, 
-                    rating: 0,
-                    numReviews: 0,
-                    posts: []
-                })
-                await newSong.save()
-                res.json(newSong)
-            })
-            .catch(err => {
-                res.status(500).json({"Error updating song object": err})
-                console.log(err)
-            })
         })
-        .catch(err => {
-            res.status(500).json({"Error searching Spotify": err})
-        })
-    }
+          // then send response with updated song object + save to database
+          .then(async (response) => {
+            const newSong = new Song({
+              title: response.data.tracks.items[0].name,
+              artist: response.data.tracks.items[0].artists[0].name,
+              coverSrc: response.data.tracks.items[0].album.images[1].url,
+              rating: 0,
+              numReviews: 0,
+              posts: [],
+            });
+            await newSong.save();
+            res.json(newSong);
+          })
+          .catch((err) => {
+            res.status(500).json({ "Error updating song object": err });
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        res.status(500).json({ "Error searching Spotify": err });
+      });
+  }
 });
 
 module.exports = router;

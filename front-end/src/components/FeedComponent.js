@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../css/FeedComponent.css';
+import "../css/FeedComponent.css";
 
 
 export default function FeedComponent({ item, rating, review }) {
