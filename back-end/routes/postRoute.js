@@ -7,7 +7,7 @@ const User = require("../models/User.js");
 
 router.post("/:songArtist/:songTitle/:username/save", async (req, res) => {
   try {
-    const song = await Song.findOne({ title: {'$regex': req.params.songTitle,$options:'i'}, artist: {'$regex': req.params.songArtist,$options:'i'} });
+    const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist});
     // check if song has a post from username
     const post = song.posts.find(post => post.username == req.params.username)
     // if post exists, add comment to post
@@ -33,7 +33,7 @@ router.post("/:songArtist/:songTitle/:username/save", async (req, res) => {
 
 router.get("/:songArtist/:songTitle/:username", async (req, res) => {
   try {
-    const song = await Song.findOne({title: {'$regex': req.params.songTitle,$options:'i'}, artist: {'$regex': req.params.songArtist,$options:'i'} });
+    const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist});
     console.log("song: ", song);
 
     // check if song has a post from username
