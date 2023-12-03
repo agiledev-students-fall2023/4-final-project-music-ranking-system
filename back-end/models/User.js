@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
     {
       followerId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
         unique: true,
       },
     },
@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
     {
       followingId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
         unique: true,
       },
     },
