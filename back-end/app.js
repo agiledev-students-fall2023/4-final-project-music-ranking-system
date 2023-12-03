@@ -18,6 +18,7 @@ const landingFeedRoute = require("./routes/landingFeed");
 const spotifyRoute = require("./routes/spotify");
 const signupRoute = require("./routes/signUp");
 const loginRoute = require("./routes/register");
+const followRoute = require("./routes/follow");
 
 // use express' builtin body-parser middleware to parse data included in a request
 app.use(express.json());
@@ -44,6 +45,7 @@ app.use("/landingFeed", landingFeedRoute);
 app.use("/spotify", spotifyRoute);
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
+app.use("/follow", followRoute);
 
 // export the express app we created to make it available to other modules
 module.exports = app;

@@ -36,9 +36,28 @@ const userSchema = new mongoose.Schema({
   },
   topSongs: [songSchema],
   activity: [activitySchema],
-  followers: [],
-  following: [],
+  followers: [
+    {
+      followerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        unique: true,
+      },
+    },
+  ],
+  following: [
+    {
+      followingId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        unique: true,
+      },
+    },
+  ],
 });
+
+userSchema.index({ "followers.followerId": 1 }, { unique: true });
+userSchema.index({ "following.followingId": 1 }, { unique: true });
 
 userSchema.methods.comparePassword = function (password) {
   return this.password === password;
