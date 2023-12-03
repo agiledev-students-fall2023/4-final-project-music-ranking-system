@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { useAuthContext } from "./AuthProvider.js";
 import axios from "axios";
 import "../css/SignUp.css";
+import Nav from "./Nav";
+
 
 const SignUp = props => {
   // create state variables to hold username and password
@@ -48,41 +49,44 @@ const SignUp = props => {
   // if the user is not logged in, show the signup form
   if (!response.success)
     return (
-     <div className="SignUp">
-      <h2>Sign Up</h2>
-      <form enctype="multipart/form-data" onSubmit={handleSubmit}>
-        <div class="input-group">
-          <label for="username">Username: </label>
+      <>
+        <div className="SignUp">
+          <h2>Sign Up</h2>
+          <form enctype="multipart/form-data" onSubmit={handleSubmit}>
+            <div class="input-group">
+              <label for="username">Username: </label>
+              <br />
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                required
+              />
+            </div>
+            <br />
+            <div class="input-group">
+              <label for="password">Password: </label>
+              <br />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                required
+              />
+            </div>
+            <br />
+            <div class="button">
+              <input type="submit" value="Enter" />
+            </div>
+          </form>
+          {errorMessage ? <p className="error">{errorMessage}</p> : ""}
           <br />
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Enter username"
-            required
-          />
+          <Link to="/login">Already have an account? Click here to log in</Link>
         </div>
-        <br />
-        <div class="input-group">
-          <label for="password">Password: </label>
-          <br />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter password"
-            required
-          />
-        </div>
-        <br />
-        <div class="button">
-          <input type="submit" value="Enter" />
-        </div>
-      </form>
-      {errorMessage ? <p className="error">{errorMessage}</p> : ""}
-      <br />
-      <Link to="/login">Already have an account? Click here to log in</Link>
-    </div>
+        <Nav isLoggedIn={false} />
+      </>
     );
   // otherwise, if the user has successfully logged-in, redirect them to a different page
   // in this example, we simply redirect to the home page, but a real app would redirect to a page that shows content only available to logged-in users

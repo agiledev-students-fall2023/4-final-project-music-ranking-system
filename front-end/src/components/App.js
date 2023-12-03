@@ -7,19 +7,14 @@ import Feed from "./Feed";
 import ProfileReview from "./ProfileReview";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
-import Nav from "./Nav";
 import Post from "./Post";
 import Settings from "./Settings";
 import Song from "./Song";
 import Search from "./Search";
-import { useAuthContext } from "./AuthProvider.js";
-import NotAuthNav from './NotAuthNav';
 import OtherUserProfile from "./OtherUserProfile";
-import Comment from "./Comment"
+// import Comment from "./Comment"
 
 function App() {
-  const auth = useAuthContext().auth;
-  console.log(auth)
   return (
     <div className="App">
       <Router>
@@ -35,9 +30,8 @@ function App() {
           <Route path="/song/:songArtist/:songTitle" element={<Song />} />
           <Route path="/search" element={<Search />} />
           <Route path="/other-user/:userId" element={<OtherUserProfile />} />;
-          <Route path="/comments/:songArtist/:songTitle/:username" element={<Comment />} />;
+          {/* <Route path="/comments/:songArtist/:songTitle/:username" element={<Comment />} />; */}
         </Routes>
-        {/* <Nav /> */}
       </Router>
     </div>
   );

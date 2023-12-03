@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import FeedComponent from "./FeedComponent";
 import "../css/LandingFeed.css"
+import Nav from "./Nav";
 
 export default function LandingFeed() {
   const [username, setUsername] = useState("");
@@ -72,6 +73,7 @@ export default function LandingFeed() {
             ))} */}
         </div>
       )}
+      <Nav isLoggedIn={isLoggedIn} />
     </>
   );
 }

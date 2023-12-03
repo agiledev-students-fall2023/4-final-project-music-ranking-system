@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useAuthContext } from "./AuthProvider.js";
 
 const PostCommentForm = ({addCommentToList, songArtist, songTitle, username}) => {
   const [currentuser, setCurrentUser] = useState("");

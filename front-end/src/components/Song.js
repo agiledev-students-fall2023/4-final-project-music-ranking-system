@@ -1,10 +1,10 @@
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import { useAuthContext } from "./AuthProvider.js";
 import axios from 'axios';
 import '../css/Song.css';
 import SongPostForm from './SongPostForm.js';
 import SongPost from './SongPost.js';
+import Nav from './Nav';
 
 function Song() {
   const [username, setUsername] = useState("");
@@ -64,22 +64,25 @@ function Song() {
   }, [username, posts])
 
   return (
-    <div className="Song">
-      <h2>{song.artist} - {song.title}</h2>
-      <img src={song.coverSrc} alt="album cover" />
-      <p>{song.rating}/10</p>
-      {song.numReviews === 1? <p>{song.numReviews} review</p>:<p>{song.numReviews} reviews</p>}
-      {isLoggedIn && showForm && 
-        <>
-          <h3>Review:</h3>
-          <SongPostForm setShowForm={setShowForm} addPostToList={addPostToList} songArtist={songArtist} songTitle={songTitle} />
-        </>
-      }
-      <h3>Other reviews:</h3>
-        {posts.map((post, i) => (
-          <SongPost key={i} post={post} songArtist={songArtist} songTitle={songTitle}/>
-        ))}
-    </div>
+    <>
+      <div className="Song">
+        <h2>{song.artist} - {song.title}</h2>
+        <img src={song.coverSrc} alt="album cover" />
+        <p>{song.rating}/10</p>
+        {song.numReviews === 1? <p>{song.numReviews} review</p>:<p>{song.numReviews} reviews</p>}
+        {isLoggedIn && showForm && 
+          <>
+            <h3>Review:</h3>
+            <SongPostForm setShowForm={setShowForm} addPostToList={addPostToList} songArtist={songArtist} songTitle={songTitle} />
+          </>
+        }
+        <h3>Other reviews:</h3>
+          {posts.map((post, i) => (
+            <SongPost key={i} post={post} songArtist={songArtist} songTitle={songTitle}/>
+          ))}
+      </div>
+      <Nav isLoggedIn={isLoggedIn} />
+    </>
   );
 }
 

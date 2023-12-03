@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
 import PostComment from './PostComment.js';
 import PostCommentForm from './PostCommentForm.js';
+import Nav from './Nav'
 
 function Post() {
   const [currentuser, setCurrentUser] = useState("");
@@ -61,20 +62,23 @@ function Post() {
   }, [songArtist, songTitle, username])
 
   return (
-    <div className="Post">
-      {username == currentuser? <h3><Link to={`/profile`}>{username}</Link>'s Review</h3> : <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>}
-      <h3>{song.artist} - {song.title}</h3>
-      <img src={song.coverSrc} alt="album cover" />
-      <h4>{post.rating}/10</h4>
-      <p>{post.review}</p>
-      <h3>Comments:</h3>
-        {comments.map((comment, i) => (<PostComment key={i} comment={comment}/>))}
-      {isLoggedIn && 
-      <>
-        <h3>Comment:</h3>
-        <PostCommentForm addCommentToList={addCommentToList} songArtist={songArtist} songTitle={songTitle} username={username}/>
-      </>}
-    </div>
+    <>
+      <div className="Post">
+        {username == currentuser? <h3><Link to={`/profile`}>{username}</Link>'s Review</h3> : <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>}
+        <h3>{song.artist} - {song.title}</h3>
+        <img src={song.coverSrc} alt="album cover" />
+        <h4>{post.rating}/10</h4>
+        <p>{post.review}</p>
+        <h3>Comments:</h3>
+          {comments.map((comment, i) => (<PostComment key={i} comment={comment}/>))}
+        {isLoggedIn && 
+        <>
+          <h3>Comment:</h3>
+          <PostCommentForm addCommentToList={addCommentToList} songArtist={songArtist} songTitle={songTitle} username={username}/>
+        </>}
+      </div>
+      <Nav isLoggedIn={isLoggedIn} />
+    </>
   )
 }
 
