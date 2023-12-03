@@ -42,7 +42,7 @@ function Settings() {
       {isLoggedIn? (
         <div className='Settings'>
           <h1>Settings</h1>
-          <h4><Link id='link' to='/profile-review'>{username}</Link></h4>
+          <h4><Link id='link' to='/profile'>{username}</Link></h4>
           <form enctype='multipart/form-data'>
           <div class="input-group">
             <label for="username">Change username: </label><br/>

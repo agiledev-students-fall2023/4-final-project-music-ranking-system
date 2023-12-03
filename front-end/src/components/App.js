@@ -37,7 +37,7 @@ function App() {
           <Route path="/other-user/:userId" element={<OtherUserProfile />} />;
           <Route path="/comments/:songArtist/:songTitle/:username" element={<Comment />} />;
         </Routes>
-        {auth? <Nav />:<NotAuthNav/>}
+        {/* <Nav /> */}
       </Router>
     </div>
   );

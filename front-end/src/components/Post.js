@@ -62,7 +62,7 @@ function Post() {
 
   return (
     <div className="Post">
-      {username == currentuser? <h3><Link to={`/profile-review`}>{username}</Link>'s Review</h3> : <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>}
+      {username == currentuser? <h3><Link to={`/profile`}>{username}</Link>'s Review</h3> : <h3><Link to={`/other-user/${username}`}>{username}</Link>'s Review</h3>}
       <h3>{song.artist} - {song.title}</h3>
       <img src={song.coverSrc} alt="album cover" />
       <h4>{post.rating}/10</h4>
