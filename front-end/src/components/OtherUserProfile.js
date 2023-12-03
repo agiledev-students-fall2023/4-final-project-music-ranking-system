@@ -32,7 +32,7 @@ function OtherUserProfile() {
   const { userId } = useParams();
   const [userData, setUser] = useState([]);
   const [userSongs, setSongs] = useState([]);
-  const [userActivity, setActivity] = useState([]);
+  const [userActivity, setUserActivity] = useState([]);
 
   useEffect(() => {
     console.log("UserID: ", userId);
@@ -42,7 +42,7 @@ function OtherUserProfile() {
         console.log('Received data:', res.data);
         setUser(res.data);
         setSongs(res.data.topSongs);
-        setActivity(res.data.activity);
+        setUserActivity(res.data.activity);
       })
       .catch((error) =>{
         console.error("Error fetching other user data: ", error);
@@ -63,24 +63,35 @@ function OtherUserProfile() {
         <div className="top-songs">
           <h2>Top Songs</h2>
           <div className="ProfileReviewSongContainer">
-            {/* {userSongs.map((song, index) => (
+            {userSongs.map((song, index) => (
               <div key={index} className="song">
-                <img src={song.albumCover} alt={song.songName} />
-                <p><Link to={`/song/${song.artistName}/${song.songName}`} className="song-link">{song.artistName} -- {song.songName}</Link></p>
+                <img src={song.song.albumCover} alt={song.song.songName} />
+                <p>
+                  <Link
+                    to={`/song/${song.artistName}/${song.songName}`}
+                    className="song-link"
+                  >
+                    {song.artistName} -- {song.songName}
+                  </Link>
+                </p>
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
 
         <div className="activity">
           <h2>Activity</h2>
-          {/* {userActivity.map((entry, index) => (
+          {userActivity.map((entry, index) => (
             <div key={index} className="activity-entry">
-              <p><Link to={`/post/${entry.artistName}/${entry.songName}/${userId}`}>{entry.artistName} -- {entry.songName}</Link></p>
-              <p>{entry.rating}/10</p>
-              <p>{entry.review}</p>
+               <p>
+                <Link
+                  to={`/post/${entry.song.artistName}/${entry.song.songName}/${userId}`}
+                >
+                  {entry.song.artistName} -- {entry.song.songName}
+                </Link>
+              </p>
             </div>
-          ))} */}
+          ))}
         </div>
       </div>
       <Nav isLoggedIn={isLoggedIn} />
