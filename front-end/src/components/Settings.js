@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../css/Settings.css';
 
 function Settings() {
+  const [username, setUsername] = useState("");
   const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
   console.log(`JWT token: ${jwtToken}`) // debugging
 
@@ -19,6 +20,7 @@ function Settings() {
       })
       .then(res => {
         setResponse(res.data) // store the response data
+        setUsername(res.data.user.username)
       })
       .catch(err => {
         console.log(
@@ -28,7 +30,6 @@ function Settings() {
       })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // const username = response.user.username
   const navigate = useNavigate();
 
   const logout = e => {
@@ -41,7 +42,7 @@ function Settings() {
       {isLoggedIn? (
         <div className='Settings'>
           <h1>Settings</h1>
-          {/* <h4><Link id='link' to='/profile-review'>{username}</Link></h4> */}
+          <h4><Link id='link' to='/profile-review'>{username}</Link></h4>
           <form enctype='multipart/form-data'>
           <div class="input-group">
             <label for="username">Change username: </label><br/>
