@@ -12,6 +12,10 @@ router.post("/signup", async (req, res, next) => {
     // grab the username and password from the POST body
     const username = req.body.username;
     const password = req.body.password;
+    const topSongs = []
+    const activity = []
+    const followers = []
+    const following = []
 
     if (!username || !password) {
         // no username or password received in the POST body... send an error
@@ -24,7 +28,14 @@ router.post("/signup", async (req, res, next) => {
 
     // try to create a new user
     try {
-        const user = await new User({ username, password }).save();
+        const user = await new User({ 
+            username, 
+            password,
+            topSongs,
+            activity,
+            followers,
+            following
+        }).save();
         // user saved successfully... send a success response
         console.error(`New user: ${user}`);
         const token = user.generateJWT(); // generate a signed token

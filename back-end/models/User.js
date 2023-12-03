@@ -4,6 +4,30 @@ const Schema = mongoose.Schema
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
+const songSchema = new mongoose.Schema({
+  songName: {
+    type: String,
+    required: true,
+  },
+  artistName: {
+    type: String,
+    required: true,
+  },
+  albumCover: {
+    type: String,
+  },
+});
+
+const activitySchema = new mongoose.Schema({
+  review: {
+    type: String,
+  },
+  rating: {
+    type: Number,
+  },
+  song: songSchema,
+});
+
 // this is our mongoose model for a user
 const UserSchema = new Schema({
   username: {
@@ -15,6 +39,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  topSongs: [songSchema],
+  activity: [activitySchema],
+  followers: [],
+  following: [],
 })
 
 // hash the password before the user is saved
