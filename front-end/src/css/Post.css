@@ -1,10 +1,52 @@
-.Post {
-    border-top: 1px #ccc solid;
-    margin-left: 2vw;
-}
-.Post h1, h2, h3, h4, p {
-    margin-left: 0px;
-}
-.Post textarea {
-    width: 95%;
-}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .Post {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 10px;
+  }
+  
+  .Post h3 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .Post img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .Post h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .Post p {
+    font-size: 1.2em;
+  }
+  
+  .Post h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .Post h3 a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .Post h3 a:hover {
+    text-decoration: underline;
+  }
+  
