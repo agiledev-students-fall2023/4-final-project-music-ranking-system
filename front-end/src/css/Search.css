@@ -1,12 +1,34 @@
-.searchBar{
+.searchBar {
+    max-width: 600px;
+    margin: auto;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-}
-.searchInput{
+    margin-top: 20px;
+  }
+  
+  .searchBar select {
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    margin: 10px;
-    width: 100%;
-}
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .searchBar input {
+    flex-grow: 1;
+    padding: 10px;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .searchBar input:focus,
+  .searchBar select:focus {
+    outline: none;
+    border-color: #4CAF50;
+  }
+  
+  .searchBar input::placeholder {
+    color: #aaa;
+  }
+  
+  
