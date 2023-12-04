@@ -1,13 +1,32 @@
 import React, { useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import { useAuthContext } from "./AuthProvider.js";
 import '../css/Followers.css';
 
 function ViewFollowers() {
-    const userId = useAuthContext().user;
-    const [userFollowers, setFollowers] = useState();
+    const [userId, setUsername] = useState("");
+    const jwtToken = localStorage.getItem("token"); // the JWT token, if we have already received one and stored it in localStorage
+    const [response, setResponse] = useState({});
+    const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
     
+    useEffect(() => {
+        axios.get(`http://localhost:3000/protected`, {
+            headers: {Authorization: `JWT ${jwtToken}`},
+        })
+        .then(res => {
+            setResponse(res.data);
+            setUsername(res.data.user.username);
+        })
+        .catch(err => {
+            console.log(
+                "The server rejected the request for this protected resource... we probably do not have a valid JWT token."
+            );
+            setIsLoggedIn(false);
+        })
+    }, [])
+
+    const [userFollowers, setFollowers] = useState();
+
     useEffect(() => {
         axios
           .get(`http://localhost:3000/view-followers/${userId}`)
