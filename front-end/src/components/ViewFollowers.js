@@ -46,7 +46,7 @@ function ViewFollowers() {
     if (!userFollowers || userFollowers.length === 0) {
         return (
         <div className="profile">
-            <h1><Link to={`/profile-review`}>{userId}</Link>'s Followers</h1>
+            <h1><Link to={`/profile`}>{userId}</Link>'s Followers</h1>
             <div>You have no followers.</div>
         </div>
         )
@@ -54,7 +54,7 @@ function ViewFollowers() {
     return (
         <div className="ViewFollowers">
             <div className="profile">
-                <h1><Link to={`/profile-review`}>{userId}</Link>'s Followers</h1>
+                <h1><Link to={`/profile`}>{userId}</Link>'s Followers</h1>
             </div>
 
             <div className="followers">

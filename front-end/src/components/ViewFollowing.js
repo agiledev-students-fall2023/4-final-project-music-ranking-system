@@ -27,7 +27,7 @@ function ViewFollowing() {
     }, [])
 
     const [userFollowing, setFollowing] = useState([]);
-
+    console.log(userId);
     useEffect(() => {
         axios
           .get(`http://localhost:3000/view-following/${userId}`)
@@ -43,7 +43,7 @@ function ViewFollowing() {
     if (!userFollowing || userFollowing.length === 0) {
         return (
             <div className="profile">
-                <h1><Link to={`/profile-review`}>{userId}</Link>'s Following</h1>
+                <h1><Link to={`/profile`}>{userId}</Link>'s Following</h1>
                 <div>You are not following anyone.</div>
             </div>        
         )
@@ -52,7 +52,7 @@ function ViewFollowing() {
         return (
             <div className="ViewFollowing">
                 <div className="profile">
-                    <h1><Link to={`/profile-review`}>{userId}</Link>'s Following</h1>
+                    <h1><Link to={`/profile`}>{userId}</Link>'s Following</h1>
                 </div>
     
                 <div className="following">
