@@ -21,6 +21,7 @@ function OtherUserProfile() {
       })
       .then(res => {
         setResponse(res.data) // store the response data
+        setCurrentUser(res.data.user.username)
       })
       .catch(err => {
         console.log(
@@ -51,7 +52,8 @@ function OtherUserProfile() {
   }, [userId]);
 
   useEffect(() => {
-    axios
+    if (currentuser){
+      axios
       .get("http://localhost:3000/follow", {
         params: {
           userId: userId,
@@ -63,9 +65,11 @@ function OtherUserProfile() {
         console.log("HERE");
         console.log(res.data.status);
       });
+    }
   }, [currentuser]);
 
   const addFollowerToFollowers = async () => {
+     
     // console.log("HERE1");
     try {
       axios
