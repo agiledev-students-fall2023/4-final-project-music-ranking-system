@@ -1,0 +1,39 @@
+.SongReviewForm {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .SongReviewForm input,
+  .SongReviewForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .SongReviewForm label {
+    margin-left: 5px;
+  }
+  
+  .SongReviewForm input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .SongReviewForm input[type="submit"]:disabled {
+    background-color: #ddd;
+    color: #555;
+    cursor: not-allowed;
+  }
+    

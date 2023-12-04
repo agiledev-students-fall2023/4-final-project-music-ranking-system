@@ -1,0 +1,29 @@
+.SongPost {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .SongPost a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+  }
+  
+  .SongPost a:hover {
+    text-decoration: underline;
+  }
+  
+  .SongPost p {
+    font-size: 1.2em;
+    margin: 5px 0;
+  }
+  
+  .SongPost p:first-child {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
