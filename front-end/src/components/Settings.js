@@ -1,60 +1,75 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuthContext } from "./AuthProvider.js";
+import {useState, useEffect} from 'react';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/Settings.css';
+import Nav from './Nav'
 
 function Settings() {
-  const authContext = useAuthContext();
-  const user = useAuthContext().user;
-  const navigate = useNavigate();
-  console.log(authContext.auth)
+  const [username, setUsername] = useState("");
+  const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
+  console.log(`JWT token: ${jwtToken}`) // debugging
 
-  const logout = e => {
-    // e.preventDefault() // prevent normal browser submit behavior
+  const [response, setResponse] = useState({}) // we expect the server to send us a simple object in this case
+  const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true) // if we already have a JWT token in local storage, set this to true, otherwise false
 
-    // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
-    // maybe set property { withCredentials: true }?
+  // try to load the protected data from the server when this component first renders
+  useEffect(() => {
+    // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/logout`)
-      .then(response => {
-        // prob want to redirect here once backend implemented?
-        // https://stackoverflow.com/questions/34735580/how-to-do-a-redirect-to-another-route-with-react-routers
-        console.log("Logged out successfully")
+      .get(`http://localhost:3000/protected`, {
+        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+      })
+      .then(res => {
+        setResponse(res.data) // store the response data
+        setUsername(res.data.user.username)
       })
       .catch(err => {
-        console.log("Error getting data:", err)
+        console.log(
+          "The server rejected the request for this protected resource... we probably do not have a valid JWT token."
+        )
+        setIsLoggedIn(false) // update this state variable, so the component re-renders
       })
-    // for now, setting auth is false, removing local storage item auth and redirecting to / regardless of result of get request
-    authContext.setAuth(false)
-    authContext.setUser(null)
-    localStorage.removeItem("auth")
-    localStorage.removeItem("username")
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const navigate = useNavigate();
+
+  const logout = e => {
+    localStorage.removeItem("token")
     navigate("/")
   }
   
   return (
-    <div className='Settings'>
-        <h1>Settings</h1>
-        <h4><Link id='link' to='/profile-review'>{user}</Link></h4>
-        <form enctype='multipart/form-data'>
-        <div class="input-group">
-          <label for="username">Change username: </label><br/>
-          <input type="text" id="username" name="username" placeholder="Enter username" required/>
+    <>
+      {isLoggedIn? (
+        <>
+          <div className='Settings'>
+            <h1>Settings</h1>
+            <h4><Link id='link' to='/profile'>{username}</Link></h4>
+            <form enctype='multipart/form-data'>
+            <div class="input-group">
+              <label for="username">Change username: </label><br/>
+              <input type="text" id="username" name="username" placeholder="Enter username" required/>
+            </div>
+            <br/>
+            <div class="input-group">
+              <label for="password">Change password: </label><br/>
+              <input type="text" id="password" name="password" placeholder="Enter password" required/>
+            </div>
+            <br/>
+            <div class="button">
+              <input type="submit" value="Save"/>
+            </div>
+            <br/>
+            <button type='button' onClick={(e) => logout(e)}>Logout</button>
+          </form>
+          <br/>
         </div>
-        <br/>
-        <div class="input-group">
-          <label for="password">Change password: </label><br/>
-          <input type="text" id="password" name="password" placeholder="Enter password" required/>
-        </div>
-        <br/>
-        <div class="button">
-          <input type="submit" value="Save"/>
-        </div>
-        <br/>
-        <button type='button' onClick={(e) => logout(e)}>Logout</button>
-      </form>
-      <br/>
-    </div>
+        <Nav isLoggedIn={true} />
+        </>
+      ):(
+        <Navigate to="/login?error=protected" />
+      )}
+    </>
   );
 }
 
