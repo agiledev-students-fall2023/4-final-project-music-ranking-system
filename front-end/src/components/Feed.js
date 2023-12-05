@@ -47,7 +47,9 @@ export default function LandingFeed() {
     // otherwise, display landing feed
     else {
       axios
-        .get("http://localhost:3000/landingFeed/retrieve")
+       // .get("http://localhost:3000/landingFeed/retrieve")
+         .get("http://localhost:3000/landingFeed/topSongs")
+
         .then((res) => {
           setReviewObject(res.data);
         })
