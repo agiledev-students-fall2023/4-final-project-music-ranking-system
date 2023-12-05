@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../css/Followers.css';
 
 function ViewFollowers() {
-    const [userId, setUsername] = useState("");
+    const [userId, setUserId] = useState("");
     const jwtToken = localStorage.getItem("token"); // the JWT token, if we have already received one and stored it in localStorage
     const [response, setResponse] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
@@ -15,7 +15,7 @@ function ViewFollowers() {
         })
         .then(res => {
             setResponse(res.data);
-            setUsername(res.data.user.username);
+            setUserId(res.data.user.username);
         })
         .catch(err => {
             console.log(

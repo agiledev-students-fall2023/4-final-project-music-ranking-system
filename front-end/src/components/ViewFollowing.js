@@ -5,7 +5,7 @@ import '../css/Following.css';
 
 
 function ViewFollowing() {
-    const [userId, setUsername] = useState("");
+    const [userId, setUserId] = useState("");
     const jwtToken = localStorage.getItem("token"); // the JWT token, if we have already received one and stored it in localStorage
     const [response, setResponse] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
@@ -16,7 +16,7 @@ function ViewFollowing() {
         })
         .then(res => {
             setResponse(res.data);
-            setUsername(res.data.user.username);
+            setUserId(res.data.user.username);
         })
         .catch(err => {
             console.log(
@@ -27,7 +27,7 @@ function ViewFollowing() {
     }, [])
 
     const [userFollowing, setFollowing] = useState([]);
-    console.log(userId);
+
     useEffect(() => {
         axios
           .get(`http://localhost:3000/view-following/${userId}`)
