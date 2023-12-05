@@ -22,6 +22,14 @@
     font-size: 1.5em;
     margin-bottom: 10px;
   }
+
+  .Settings #link {
+    text-decoration: none;
+  }
+
+  .Settings #link:visited {
+    color: #7d7dea;
+  }
   
   .Settings form {
     display: flex;

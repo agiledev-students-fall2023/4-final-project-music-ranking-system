@@ -1,9 +1,4 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .Post {
+.Post {
     max-width: 800px;
     margin: auto;
     padding: 20px;

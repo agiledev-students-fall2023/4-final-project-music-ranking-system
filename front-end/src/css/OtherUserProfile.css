@@ -1,9 +1,4 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .ProfileReview {
+.ProfileReview {
     max-width: 800px;
     margin: auto;
     padding: 20px;
@@ -13,6 +8,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding-top: 80px;
+    
   }
   
   .ProfileReview h1 {
