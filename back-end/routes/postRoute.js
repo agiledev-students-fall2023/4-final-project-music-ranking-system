@@ -3,11 +3,11 @@ const express = require("express"); // CommonJS import style!
 const axios = require("axios"); // middleware for making requests to APIs
 const router = express.Router();
 const Song = require("../models/song");
-const User = require("../models/user");
+const User = require("../models/user.js");
 
 router.post("/:songArtist/:songTitle/:username/save", async (req, res) => {
   try {
-    const song = await Song.findOne({ title: req.params.songTitle, artist: req.params.songArtist });
+    const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist});
     // check if song has a post from username
     const post = song.posts.find(post => post.username == req.params.username)
     // if post exists, add comment to post
@@ -33,7 +33,7 @@ router.post("/:songArtist/:songTitle/:username/save", async (req, res) => {
 
 router.get("/:songArtist/:songTitle/:username", async (req, res) => {
   try {
-    const song = await Song.findOne({ title: req.params.songTitle, artist: req.params.songArtist });
+    const song = await Song.findOne({title: req.params.songTitle, artist: req.params.songArtist});
     console.log("song: ", song);
 
     // check if song has a post from username

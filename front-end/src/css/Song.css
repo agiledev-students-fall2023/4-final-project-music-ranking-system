@@ -1,14 +1,32 @@
 .Song {
-    border-top: 1px #ccc solid;
-    margin-left: 2vw;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 10px;
 }
 
-.Song h1, h2, h3, p {
-    margin-left: 0px;
+.Song h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
 }
-.Song h3{
-    text-transform: lowercase;
+
+.Song img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
 }
-.Song textarea {
-    width: 95%;
+
+.Song p {
+    font-size: 1.2em;
+}
+
+.Song h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
