@@ -1,32 +1,5 @@
 .title {
     text-align: center;
-<<<<<<< HEAD
-    background-color: #f4f4f4;
-    border-top: 1px #ccc solid;
-    border-bottom: 1px #ccc solid;
-    font-family: 'Roboto Condensed', sans-serif;
-    text-decoration: none;
-}
-
-.title h1{
-    font-size: 3em;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.title h4 {
-    font-style: oblique;
-}
-
-.title-link {
-    text-decoration: none;
-    color: black;
-}
-
-.title-link:visited {
-    color: black;
-}
-=======
     padding: 20px;
     background-color: darkblue;
   }
@@ -47,4 +20,3 @@
     text-decoration: underline;
   }
   
->>>>>>> edad8c2a523f39c2c83f9359c9c01233fe1b2162
