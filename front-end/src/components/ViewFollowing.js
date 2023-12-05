@@ -52,7 +52,7 @@ function ViewFollowing() {
         return (
             <div className="ViewFollowing">
                 <div className="profile">
-                    <h1><Link to={`/profile`}>{userId}</Link>'s Following</h1>
+                    <h1><Link to={`/profile`}>{userId}</Link>'s Following:</h1>
                 </div>
     
                 <div className="following">

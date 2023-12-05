@@ -80,7 +80,7 @@ function App() {
                     <Link
                       to={`/post/${entry.song.artistName}/${entry.song.songName}/${username}`}
                     >
-                      {entry.song.artistName} -- {entry.song.songName}
+                      {entry.song.artistName} - {entry.song.songName}
                     </Link>
                   </p>
                   <p>{entry.rating}/10</p>

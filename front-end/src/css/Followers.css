@@ -1,4 +1,45 @@
 .ViewFollowers {
     border-top: 1px #ccc solid;
-    margin-left: 2vw;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.followers {
+    margin: 15px;
+}
+
+.followers p  {
+    color: black;
+}
+
+.profile {
+    margin: 15px;
+}
+
+.profile a {
+    text-decoration: none;
+}
+
+.profile a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.profile a:hover {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.follower-entry a {
+    text-decoration: none;
+    color: black;
+}
+
+.follower-entry a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.follower-entry a:hover {
+    text-decoration: none;
+    color: #7840fb;
 }

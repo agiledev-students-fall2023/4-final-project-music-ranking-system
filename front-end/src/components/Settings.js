@@ -105,8 +105,8 @@ function Settings() {
                 />
               </div>
               <br />
-              <div class="button">
-                <input type="submit" value="Save" />
+              <div>
+                <input class="button" type="submit" value="Save" />
               </div>
               <br />
               <button type="button" onClick={(e) => logout(e)}>
