@@ -9,17 +9,21 @@
     text-align: center;
     margin-bottom: 100px;
     margin-top: 10px;
+    font-family: 'Quicksand', sans-serif;
+
   }
   
   .Post h3 {
     font-size: 2em;
     margin-bottom: 10px;
+    font-weight: bold;
   }
   
   .Post img {
     max-width: 100%;
     height: auto;
     margin-bottom: 10px;
+    border-radius: 10px;
   }
   
   .Post h4 {

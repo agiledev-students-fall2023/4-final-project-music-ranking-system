@@ -58,20 +58,20 @@
   }
 
   .Settings .button:hover {
-    background-color: #C2AFF0;
+    background-color: #d12fdc;
   }
   
   .Settings button {
-    background-color: #5DFDCB;
-    color: #017c55;
-    padding: 10px 15px;
+    background-color: #8437f0;
+    color: white;
+    padding: 10px 100px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
   
   .Settings button:hover {
-    background-color: #09cb8d;
+    background-color: #9b72d4;
   }
 
   .user-pass {

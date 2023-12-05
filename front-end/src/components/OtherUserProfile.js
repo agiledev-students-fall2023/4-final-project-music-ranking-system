@@ -107,7 +107,7 @@ function OtherUserProfile() {
                 <Link
                   to={`/post/${entry.song.artistName}/${entry.song.songName}/${userId}`}
                 >
-                  {entry.song.artistName} -- {entry.song.songName}
+                  {entry.song.artistName} - {entry.song.songName}
                 </Link>
               </p>
               <p>{entry.rating}/10</p>

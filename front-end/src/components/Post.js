@@ -72,9 +72,9 @@ function Post() {
             <Link to={`/other-user/${username}`}>{username}</Link>'s Review
           </h3>
         )}
-        <h3>
+        <h4>
           {song.artist} - {song.title}
-        </h3>
+        </h4>
         <img src={song.coverSrc} alt="album cover" />
         <h4>{post.rating}/10</h4>
         <p>{post.review}</p>

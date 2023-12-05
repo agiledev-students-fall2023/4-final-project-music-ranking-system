@@ -1,0 +1,12 @@
+.PostComment a {
+    text-decoration: none;
+    color: black;
+}
+
+.PostComment a:visited {
+    color: black;
+}
+
+.PostComment a:hover {
+    color: #8437f0;
+}

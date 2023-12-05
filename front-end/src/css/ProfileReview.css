@@ -8,11 +8,15 @@
     border-bottom: 1px solid #ddd;
     padding: 15px;
     text-align: center;
+    color: white;
   }
   
   .ProfileReview h1 {
+    text-align: center;
     font-size: 2em;
     margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
   }
   
   .ProfileReview p {
@@ -24,6 +28,11 @@
     justify-content: space-around;
     border-bottom: 1px solid rgb(193, 132, 255);
     padding: 15px;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .FollowingDashboard p {
+    font-family: 'Quicksand', sans-serif;
   }
   
   .activity {
@@ -65,9 +74,13 @@
 }
 
 #settings:visited {
-  color: black;
+  color: white;
 }
 
 #settings:hover {
   color: #5DFDCB;
+}
+
+.profile {
+  font-family: 'Quicksand', sans-serif;
 }
