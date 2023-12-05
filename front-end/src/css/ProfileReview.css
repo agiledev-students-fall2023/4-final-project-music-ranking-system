@@ -1,21 +1,22 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  .ProfileReview{
-    margin-bottom: 100px;
-  }
+.ProfileReview{
+  margin-bottom: 100px;
+  font-family: 'Quicksand', sans-serif;
+}
   
   .ProfileReviewHeader {
-    background-color: #fff;
+    background-color: #7840fb;
     border-bottom: 1px solid #ddd;
     padding: 15px;
     text-align: center;
+    color: white;
   }
   
   .ProfileReview h1 {
+    text-align: center;
     font-size: 2em;
     margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
   }
   
   .ProfileReview p {
@@ -25,8 +26,18 @@ body {
   .FollowingDashboard {
     display: flex;
     justify-content: space-around;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid rgb(193, 132, 255);
     padding: 15px;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .FollowingDashboard p {
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .FollowingDashboard a {
+    text-decoration: none;
+    color: #7840fb;
   }
   
   .activity {
@@ -61,3 +72,21 @@ body {
   .activity-entry a:hover {
     text-decoration: underline;
   }
+
+#settings {
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
+#settings:visited {
+  color: white;
+}
+
+#settings:hover {
+  color: #5DFDCB;
+}
+
+.profile {
+  font-family: 'Quicksand', sans-serif;
+}
+

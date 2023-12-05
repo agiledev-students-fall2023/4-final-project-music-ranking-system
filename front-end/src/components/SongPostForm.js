@@ -72,13 +72,13 @@ const SongPostForm = ({
       <label htmlFor="rating"> /10</label>
       <br />
       <textarea
-        placeholder="enter your review..."
+        placeholder="Enter your review..."
         rows="10"
         onChange={(e) => setReview(e.target.value)}
         value={review}
       />
       <br />
-      <input type="submit" disabled={!rating || !review} value="Post" />
+      <input id="button" type="submit" disabled={!rating || !review} value="POST" />
     </form>
   );
 };

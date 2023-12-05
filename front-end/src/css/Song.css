@@ -9,6 +9,7 @@
     text-align: center;
     margin-bottom: 100px;
     margin-top: 10px;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .Song h2 {
@@ -20,6 +21,7 @@
     max-width: 100%;
     height: auto;
     margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .Song p {
@@ -29,4 +31,13 @@
 .Song h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
+}
+
+.Song textarea {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1em;
+}
+
+.Song #button {
+    font-family: 'Quicksand', sans-serif;
 }

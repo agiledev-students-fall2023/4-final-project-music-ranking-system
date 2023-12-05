@@ -65,7 +65,7 @@ function App() {
             <div className="ProfileReviewHeader">
               <h1>{username}</h1>
               <p>
-                <Link to="/settings">Settings</Link>
+                <Link to="/settings" id="settings">⚙ SETTINGS ⚙</Link>
               </p>
             </div>
             <div className="FollowingDashboard">
@@ -80,7 +80,7 @@ function App() {
                     <Link
                       to={`/post/${entry.song.artistName}/${entry.song.songName}/${username}`}
                     >
-                      {entry.song.artistName} -- {entry.song.songName}
+                      {entry.song.artistName} - {entry.song.songName}
                     </Link>
                   </p>
                   <p>{entry.rating}/10</p>

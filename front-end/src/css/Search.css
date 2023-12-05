@@ -8,9 +8,10 @@
   }
   
   .searchBar select {
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-family: 'Quicksand', sans-serif;
   }
   
   .searchBar input {
@@ -19,12 +20,13 @@
     margin-left: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-family: 'Quicksand', sans-serif;
   }
   
   .searchBar input:focus,
   .searchBar select:focus {
     outline: none;
-    border-color: #4CAF50;
+    border-color: #9191E9;
   }
   
   .searchBar input::placeholder {

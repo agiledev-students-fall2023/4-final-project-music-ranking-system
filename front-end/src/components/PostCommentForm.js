@@ -62,7 +62,7 @@ const PostCommentForm = ({
   return (
     <form className="PostCommentForm" onSubmit={submitForm}>
       <textarea
-        placeholder="enter your comment..."
+        placeholder="Enter your comment..."
         rows="5"
         onChange={(e) => setComment(e.target.value)}
         value={comment}

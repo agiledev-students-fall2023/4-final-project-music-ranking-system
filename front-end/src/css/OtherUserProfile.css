@@ -1,11 +1,7 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .ProfileReview {
+
+.ProfileReview {
     max-width: 800px;
-    margin: auto;
+    margin: 10px;
     padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -13,11 +9,11 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding-top: 80px;
+    
   }
   
   .ProfileReview h1 {
     font-size: 2em;
-    margin-bottom: 10px;
   }
   
   .FollowingDashboard {
@@ -25,6 +21,11 @@ body {
     justify-content: space-around;
     border-bottom: 1px solid #ddd;
     padding: 15px;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .FollowingDashboard button p {
+    font-family: 'Quicksand', sans-serif;
   }
   
   .activity {
@@ -53,7 +54,6 @@ body {
   
   .activity-entry a {
     color: #333;
-    text-decoration: none;
   }
   
   .activity-entry a:hover {
