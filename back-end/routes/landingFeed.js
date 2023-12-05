@@ -75,14 +75,18 @@ require("dotenv").config();
 router.get("/topSongs", async (req, res) => {
   try {
     const topSongs = await Song
-      .findOne({})
-      // .sort({ numReviews: -1 })
-      // .limit(3)
+      .find({})
+       .sort({ numReviews: -1 })
+       .limit(5)
       // .exec();
+      let songArr = []
+      topSongs.map((song) => {
+        const songItem = {albumCover: song.coverSrc, artistName: song.artist, songName: song.title}
+        const songObj = {rating: song.rating, song: songItem}
+         songArr.push(songObj)
+      })
 
-
-      console.log(topSongs)
-    res.json(topSongs);
+    res.json(songArr);
   } catch (error) {
     console.error("Error: ", error);
     res.status(500).json({ error: "Internal Server Error" });

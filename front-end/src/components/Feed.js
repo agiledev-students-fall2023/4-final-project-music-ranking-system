@@ -39,6 +39,7 @@ export default function LandingFeed() {
         .post("http://localhost:3000/", { username: username })
         .then((res) => {
           setReviewObject(res.data);
+         // console.log(res.data) //ake out later
         })
         .catch((error) => {
           console.error("Error fetching data: ", error);
@@ -50,6 +51,7 @@ export default function LandingFeed() {
         .get("http://localhost:3000/landingFeed/topSongs")
         .then((res) => {
           setReviewObject(res.data);
+        //  console.log(res.data) //take out later
         })
         .catch((error) => {
           console.error("Error fetching data: ", error);
@@ -81,7 +83,7 @@ export default function LandingFeed() {
               review={item.review}
               key={item._id}
             />
-          ))}
+          ))} 
         </div>
       )}
       <Nav isLoggedIn={isLoggedIn} />
