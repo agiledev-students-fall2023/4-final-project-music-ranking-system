@@ -1,10 +1,7 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  .ProfileReview{
-    margin-bottom: 100px;
-  }
+.ProfileReview{
+  margin-bottom: 100px;
+  font-family: 'Quicksand', sans-serif;
+}
   
   .ProfileReviewHeader {
     background-color: #fff;
@@ -61,3 +58,15 @@ body {
   .activity-entry a:hover {
     text-decoration: underline;
   }
+
+#settings {
+  text-decoration: none;
+}
+
+#settings:visited {
+  color: black;
+}
+
+#settings:hover {
+  color: #C2AFF0;
+}

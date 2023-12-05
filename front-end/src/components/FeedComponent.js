@@ -8,10 +8,10 @@ export default function FeedComponent({ username, item, rating, review }) {
       <div>
         <h1>
           <Link to={`/song/${item.artistName}/${item.songName}`}>
-            {item.artistName} -- {item.songName}
+            {item.artistName} - {item.songName}
           </Link>
         </h1>
-        <h1>{item.artistName}</h1>
+        <h1>({item.artistName})</h1>
         <img src={item.albumCover} alt="temp" />
         {username && <h1>Posted By: {username}</h1>}
         {rating && <h2>{rating}/10</h2>}
