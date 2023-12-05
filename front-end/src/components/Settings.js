@@ -71,29 +71,6 @@ function Settings() {
         <>
           <div className="Settings">
             <h1>Settings</h1>
-<<<<<<< HEAD
-            <h4><Link id='link' to='/profile'>{username}</Link></h4>
-            <form enctype='multipart/form-data'>
-            <div class="input-group">
-              <label for="username" class="user-pass">Change username: </label><br/>
-              <input type="text" id="username" name="username" placeholder="Enter username" required/>
-            </div>
-            <br/>
-            <div class="input-group">
-              <label for="password" class="user-pass">Change password: </label><br/>
-              <input type="text" id="password" name="password" placeholder="Enter password" required/>
-            </div>
-            <br/>
-            <div>
-              <input class="button" type="submit" value="Save"/>
-            </div>
-            <br/>
-            <button type='button' onClick={(e) => logout(e)}>Logout</button>
-          </form>
-          <br/>
-        </div>
-        <Nav isLoggedIn={true} />
-=======
             <h4>
               <Link id="link" to="/profile">
                 {username}
@@ -139,7 +116,6 @@ function Settings() {
             <br />
           </div>
           <Nav isLoggedIn={true} />
->>>>>>> fdf56e3373e3ee9f073364d49f0c5d5649fe5a29
         </>
       ) : (
         <Navigate to="/login?error=protected" />
