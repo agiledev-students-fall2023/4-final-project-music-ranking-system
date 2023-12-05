@@ -3,10 +3,25 @@
     background-color: #f4f4f4;
     border-top: 1px #ccc solid;
     border-bottom: 1px #ccc solid;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-decoration: none;
 }
 
 .title h1{
-    font-size: 1.8em;
-    color: #00E;
-    text-transform: lowercase;
+    font-size: 3em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.title h4 {
+    font-style: oblique;
+}
+
+.title-link {
+    text-decoration: none;
+    color: black;
+}
+
+.title-link:visited {
+    color: black;
 }
