@@ -73,7 +73,7 @@ export default function LandingFeed() {
         </div>
       ) : (
         <div className="LandingFeed">
-          <h1>Welcome to Music Ranking App!</h1>
+          <h1>Welcome to GlassTune!</h1>
           {reviewObject.map((item, index) => (
             <FeedComponent
               item={item.song}

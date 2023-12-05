@@ -1,6 +1,6 @@
 .ProfileReview {
     max-width: 800px;
-    margin: auto;
+    margin: 10px;
     padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -13,7 +13,6 @@
   
   .ProfileReview h1 {
     font-size: 2em;
-    margin-bottom: 10px;
   }
   
   .FollowingDashboard {
@@ -21,6 +20,13 @@
     justify-content: space-around;
     border-bottom: 1px solid #ddd;
     padding: 15px;
+    font-family: 'Quicksand', sans-serif;
+
+  }
+
+  .FollowingDashboard p {
+    font-family: 'Quicksand', sans-serif;
+
   }
   
   .activity {
