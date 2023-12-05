@@ -13,6 +13,8 @@ import Song from "./Song";
 import Search from "./Search";
 import OtherUserProfile from "./OtherUserProfile";
 // import Comment from "./Comment"
+import ViewFollowers from "./ViewFollowers";
+import ViewFollowing from "./ViewFollowing";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
           <Route path="/song/:songArtist/:songTitle" element={<Song />} />
           <Route path="/search" element={<Search />} />
           <Route path="/other-user/:userId" element={<OtherUserProfile />} />;
+          <Route path="/view-followers" element={<ViewFollowers />} />;
+          <Route path="/view-following" element={<ViewFollowing />} />;
           {/* <Route path="/comments/:songArtist/:songTitle/:username" element={<Comment />} />; */}
         </Routes>
       </Router>

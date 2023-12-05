@@ -24,5 +24,27 @@ router.get("/:username", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch song data" });
   }
 });
+router.post("/save", async (req, res) => {
+  try {
+    const username = req.body.username;
+    const usernameChange = req.body.usernameChange;
+    const passwordChange = req.body.passwordChange;
+
+    const user = await User.findOne({ username: username });
+
+    if (user) {
+      user.username = usernameChange;
+      user.password = passwordChange;
+
+      await user.save();
+
+      res.json({ newUser: usernameChange });
+    } else {
+      console.log("User not found");
+    }
+  } catch (error) {
+    console.error("Error updating user:", error);
+  }
+});
 
 module.exports = router;

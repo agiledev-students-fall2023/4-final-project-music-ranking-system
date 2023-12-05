@@ -69,8 +69,8 @@ function App() {
               </p>
             </div>
             <div className="FollowingDashboard">
-              <p>Followers: {userFollowers.length}</p>
-              <p>Following: {userFollowing.length}</p>
+              <p>Followers: <Link to={`/view-followers`}>{userFollowers.length}</Link></p>
+              <p>Following: <Link to={`/view-following`}>{userFollowing.length}</Link></p>
             </div>
             <div className="activity">
               <h2>Activity</h2>
