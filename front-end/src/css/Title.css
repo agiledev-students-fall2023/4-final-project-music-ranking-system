@@ -1,7 +1,7 @@
 .title {
     text-align: center;
     padding: 20px;
-    background-color: #686868;
+    background-color: #9191E9;
     font-family: 'Quicksand', sans-serif;  
   }
   
@@ -11,6 +11,7 @@
     font-size: 3.5em;
     text-decoration: none;
     font-family: 'Roboto Condensed', sans-serif;  
+    font-weight: bold;
   }
   
   .title a {
@@ -19,5 +20,9 @@
   
   .title a:hover {
     text-decoration: none;
+  }
+
+  .title h4 {
+    color: white;
   }
   

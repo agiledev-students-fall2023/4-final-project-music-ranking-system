@@ -65,7 +65,7 @@ function App() {
             <div className="ProfileReviewHeader">
               <h1>{username}</h1>
               <p>
-                <Link to="/settings" id="settings">Settings</Link>
+                <Link to="/settings" id="settings">⚙ SETTINGS ⚙</Link>
               </p>
             </div>
             <div className="FollowingDashboard">

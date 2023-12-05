@@ -47,17 +47,17 @@ function Settings() {
             <h4><Link id='link' to='/profile'>{username}</Link></h4>
             <form enctype='multipart/form-data'>
             <div class="input-group">
-              <label for="username">Change username: </label><br/>
+              <label for="username" class="user-pass">Change username: </label><br/>
               <input type="text" id="username" name="username" placeholder="Enter username" required/>
             </div>
             <br/>
             <div class="input-group">
-              <label for="password">Change password: </label><br/>
+              <label for="password" class="user-pass">Change password: </label><br/>
               <input type="text" id="password" name="password" placeholder="Enter password" required/>
             </div>
             <br/>
-            <div class="button">
-              <input type="submit" value="Save"/>
+            <div>
+              <input class="button" type="submit" value="Save"/>
             </div>
             <br/>
             <button type='button' onClick={(e) => logout(e)}>Logout</button>

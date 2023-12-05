@@ -1,5 +1,5 @@
 .nav {
-  background-color: #686868;
+  background-color: #9191E9;
   padding: 15px;
   text-align: center;
   position: fixed;
@@ -18,7 +18,7 @@
   
 .nav-link:hover {
   text-decoration: none;
-  color: #C2AFF0;
+  color: #5DFDCB;
 }
     
   

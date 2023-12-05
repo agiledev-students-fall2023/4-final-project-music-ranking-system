@@ -30,7 +30,7 @@ function About() {
   return (
     <>
       <div className="About">
-        <h1>About Music Ranking System</h1>
+        <h1>About GlassTune - The Music Ranking System</h1>
         <p>Welcome to our music ranking system, where the power of your music experience lies in your hands. We've created a platform that's all about celebrating the art of music, sharing your opinions, and connecting with fellow music enthusiasts.</p>
 
         <p>With our music ranking system, you have the freedom to explore and rate songs from any album, regardless of genre or artist. Whether it's a classic rock album from the '70s, a contemporary pop sensation, or an underground indie gem, you can listen and rate to your heart's content.</p>
