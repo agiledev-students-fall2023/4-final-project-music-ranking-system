@@ -45,7 +45,6 @@ export default function LandingFeed() {
                 setReviewObject(response.data);
               });
           } else {
-            console.log(res.data);
             setReviewObject(res.data);
           }
         })
@@ -59,7 +58,6 @@ export default function LandingFeed() {
         .get("http://localhost:3000/landingFeed/topSongs")
         .then((res) => {
           setReviewObject(res.data);
-          //  console.log(res.data) //take out later
         })
         .catch((error) => {
           console.error("Error fetching data: ", error);
