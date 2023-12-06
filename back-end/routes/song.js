@@ -11,6 +11,7 @@ router.post("/:songArtist/:songTitle/save", async (req, res) => {
     const username = req.body.user;
     const rating = parseInt(req.body.rating);
     const review = req.body.review;
+
     const song = await Song.findOne({
       title: req.params.songTitle,
       artist: req.params.songArtist,
@@ -22,6 +23,7 @@ router.post("/:songArtist/:songTitle/save", async (req, res) => {
       review: review,
       comments: [],
     };
+
     const newActivity = {
       username: username,
       review: review,
@@ -32,29 +34,33 @@ router.post("/:songArtist/:songTitle/save", async (req, res) => {
         albumCover: song.coverSrc,
       },
     };
-    User.findOne({ username: username })
-      .then((user) => {
-        if (user) {
-          user.activity.push(newActivity);
-          user.save();
-        } else {
-          console.log("User Does not Exist");
-        }
-      })
-      .catch((error) => {
-        console.error("Error finding user:", error);
-        res.status(500).send("Internal Server Error");
-      });
+
+    const user = await User.findOne({ username: username });
+
+    if (user) {
+      user.activity.push(newActivity);
+      await user.save();
+    } else {
+      console.log("User Does not Exist");
+    }
+
     song.posts.push(newPost);
     song.numReviews++;
+    console.log("before" + song.rating);
+
     song.rating = (
       (song.rating * (song.numReviews - 1) + newPost.rating) /
       song.numReviews
     ).toFixed(1);
+
+    console.log("after" + song.rating);
+
     await song.save();
+    console.log("AFTER AWAIT");
     res.json(newPost);
   } catch (err) {
-    res.status(500).json({ "Error posting song review": err });
+    console.error("Error posting song review:", err);
+    res.status(500).json({ "Error posting song review": err.message });
   }
 });
 

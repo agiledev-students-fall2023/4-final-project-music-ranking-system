@@ -4,30 +4,32 @@
 const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({
-  username: String,
-  comment: String,
+  username: { type: String, sparse: true },
+  comment: { type: String, sparse: true },
 });
 
 const postSchema = new mongoose.Schema({
   username: {
     type: String,
-    unique: true,
+    sparse: true,
   },
   rating: {
     type: Number,
+    sparse: true,
   },
   review: {
     type: String,
+    sparse: true,
   },
   comments: [commentSchema],
 });
 
 const songSchema = new mongoose.Schema({
-  title: String,
-  artist: String,
-  coverSrc: String,
-  rating: Number,
-  numReviews: Number,
+  title: { type: String, sparse: true },
+  artist: { type: String, sparse: true },
+  coverSrc: { type: String, sparse: true },
+  rating: { type: Number, sparse: true },
+  numReviews: { type: Number, sparse: true },
   posts: [postSchema],
 });
 
