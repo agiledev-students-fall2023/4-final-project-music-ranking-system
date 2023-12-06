@@ -52,6 +52,7 @@ function ViewFollowers() {
           <Link to={`/profile`}>{userId}</Link>'s Followers
         </h1>
         <div>You have no followers.</div>
+        <Nav isLoggedIn={isLoggedIn} />
       </div>
     );
   }

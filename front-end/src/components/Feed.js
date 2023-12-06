@@ -38,8 +38,16 @@ export default function LandingFeed() {
       axios
         .post("http://localhost:3000/", { username: username })
         .then((res) => {
-          setReviewObject(res.data);
-         // console.log(res.data) //ake out later
+          if (res.data.length == 0) {
+            axios
+              .get("http://localhost:3000/landingFeed/topSongs")
+              .then((response) => {
+                setReviewObject(response.data);
+              });
+          } else {
+            console.log(res.data);
+            setReviewObject(res.data);
+          }
         })
         .catch((error) => {
           console.error("Error fetching data: ", error);
@@ -51,7 +59,7 @@ export default function LandingFeed() {
         .get("http://localhost:3000/landingFeed/topSongs")
         .then((res) => {
           setReviewObject(res.data);
-        //  console.log(res.data) //take out later
+          //  console.log(res.data) //take out later
         })
         .catch((error) => {
           console.error("Error fetching data: ", error);
@@ -69,7 +77,7 @@ export default function LandingFeed() {
               item={item.song}
               rating={item.rating}
               review={item.review}
-              key={item._id}
+              key={item._id || index}
             />
           ))}
         </div>
@@ -81,9 +89,9 @@ export default function LandingFeed() {
               item={item.song}
               rating={item.rating}
               review={item.review}
-              key={item._id}
+              key={item._id || index}
             />
-          ))} 
+          ))}
         </div>
       )}
       <Nav isLoggedIn={isLoggedIn} />
