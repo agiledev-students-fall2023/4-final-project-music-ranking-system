@@ -37,15 +37,19 @@ export default function LandingFeed() {
     if (isLoggedIn) {
       axios
         .post("http://localhost:3000/", { username: username })
-        .then((res) => {
-          if (res.data.length == 0) {
+        .then((res) => 
+        {
+          if (res.data.length == 0) 
+          {
             axios
               .get("http://localhost:3000/landingFeed/topSongs")
-              .then((response) => {
+              .then((response) => 
+              {
                 setReviewObject(response.data);
               });
-          } else {
-            console.log(res.data);
+          } 
+          else 
+          {
             setReviewObject(res.data);
           }
         })
@@ -57,11 +61,12 @@ export default function LandingFeed() {
     else {
       axios
         .get("http://localhost:3000/landingFeed/topSongs")
-        .then((res) => {
+        .then((res) => 
+        {
           setReviewObject(res.data);
-          //  console.log(res.data) //take out later
         })
-        .catch((error) => {
+        .catch((error) => 
+        {
           console.error("Error fetching data: ", error);
         });
     }

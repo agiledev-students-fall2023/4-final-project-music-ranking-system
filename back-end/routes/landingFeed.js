@@ -57,8 +57,6 @@ require("dotenv").config();
 
 // module.exports = router;
 
-//ADD CODE SO THAT IF THERE ARE NO REVIEWS IT SHOWS 3 RANDOM SONGS?
-
 //const model = mongoose.model("Data", landingFeedSchema);
 
 // router.get("/retrieve", async (req, res) => {
