@@ -48,6 +48,7 @@ function ViewFollowing() {
           <Link to={`/profile`}>{userId}</Link>'s Following
         </h1>
         <div>You are not following anyone.</div>
+        <Nav isLoggedIn={isLoggedIn} />
       </div>
     );
   } else {
