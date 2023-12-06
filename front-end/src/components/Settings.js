@@ -3,7 +3,6 @@ import { Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import "../css/Settings.css";
 import Nav from "./Nav";
-import { set } from "mongoose";
 
 function Settings() {
   const [username, setUsername] = useState("");
