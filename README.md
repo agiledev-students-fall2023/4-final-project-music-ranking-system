@@ -3,7 +3,7 @@
 ### Project Description
 - Product Vision Statement: Free expression for every music lover. 
 
-Our app is a music ranking app that allows users to view songs and leave rating and comments about their thoughts. Users are allowed to create accounts and choose to log in and log out. They can also search for individual songs that they want to rate as well as look at the current reviews for that song. Users can also comment under these posts or create a post of their own. Our app also allows for people to view other profiles to see what other posts and comments other users have left. The goal of our product is to create a community of users where they can actively share their thoughts on songs as well as see and communicate with other peoples views. This allows users to not only learn more about songs they might not have heard yet but also receive opinions from other users that may align or clash with their own thoughts.
+**GlassTune!** is a music ranking app that allows users to view songs and leave rating and comments about their thoughts. Users are allowed to create accounts and choose to log in and log out. They can also search for individual songs that they want to rate as well as look at the current reviews for that song. Users can also comment under these posts or create a post of their own. **GlassTune!** also allows for people to view other profiles to see what other users have posted and commented. You can even follow your friends! The goal of our product is to create a community of users where they can actively share their thoughts on songs as well as see and communicate with other people's views. This allows users to not only learn more about songs they might not have heard yet but also receive opinions from other users that may align or clash with their own thoughts.
 
 ### Team Members
  - [Athena Leong](https://github.com/aleong2002)
@@ -13,7 +13,7 @@ Our app is a music ranking app that allows users to view songs and leave rating 
  - [Gayatri Rithe](https://github.com/gayatririthe)
 
 ### Project History and Contribution
-As frequent users of Spotify, we found ourselves wanting to learn more about our friend’s opinions on the same songs we listen to. When comparing albums, we would each have different rankings for our favorite songs, and realized that having an app that would allow for us to input this and view other people’s rankings would help make the music listening experience even more interactive.
+As frequent users of Spotify, we found ourselves wanting to learn more about our friends' opinions on the same songs we listen to. When comparing albums, we would each have different rankings for our favorite songs, and realized that having an app that would allow for us to input this and view other people’s rankings would help make the music listening experience even more interactive.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for information on project contribution.
 
@@ -23,13 +23,16 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for information on project contribution
 ### Project Building/Testing Instructions
 #### To run front-end...
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-- use `npm install`, then `npm start` in the project directory `cd front-end` so the app runs.
-- open [http://localhost:3001](http://localhost:3001) to view it in your browser. The page will reload when you make changes.
-- for now, any username and password is authenticated
+- use `npm install` and `npm install react`, then `npm start` in the project directory `cd front-end` so the front-end app runs.
+- open [http://localhost:3001](http://localhost:3001) to view the web app in your browser. The page will reload when you make changes.
+- create an account, or use a valid log in to access the full app's functionality
 - use `npm test` for testing
 
 #### To run and test back-end...
 - use `npm install`, then `npm start` in the project directory `cd back-end` for the back-end to run
-- be sure to use `npm install c8 --save-dev`, `npm install mocha chai --save-dev`, and `npm install express`
+- be sure to use `npm install c8 --save-dev`, `npm install mocha chai --save-dev`, `npm install mongoose`, and `npm install express`
 - use `npm test` to run the c8 module and mocha/chai unit tests. results and code coverage will appear in the terminal
 - open [http://localhost:3001](http://localhost:3001) to view the complete app in your browser.
+
+### Deployment
+This app is deployed via a Digital Ocean droplet.
