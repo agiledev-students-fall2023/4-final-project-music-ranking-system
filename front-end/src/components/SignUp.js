@@ -4,8 +4,7 @@ import axios from "axios";
 import "../css/SignUp.css";
 import Nav from "./Nav";
 
-
-const SignUp = props => {
+const SignUp = (props) => {
   // create state variables to hold username and password
   const [response, setResponse] = useState({}); // the API will return an object with a JWT token, if the user logs in successfully
   const [errorMessage, setErrorMessage] = useState("");
@@ -14,13 +13,12 @@ const SignUp = props => {
   useEffect(() => {
     // if the user is logged-in, save the token to local storage
     if (response.success && response.token) {
-      console.log(`User successfully logged in: ${response.username}`);
       localStorage.setItem("token", response.token); // store the token into localStorage
     }
   }, [response]);
 
   // what to do when the user clicks the submit buton on the form
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     // prevent the HTML form from actually submitting... we use React's javascript code instead
     e.preventDefault();
 
@@ -36,13 +34,10 @@ const SignUp = props => {
         requestData
       );
       // store the response data into s the data state variable
-      console.log(`Server response: ${JSON.stringify(response.data, null, 0)}`);
       setResponse(response.data);
     } catch (err) {
       // request failed... user entered invalid credentials
-      setErrorMessage(
-        "The username or password you entered are not valid."
-      );
+      setErrorMessage("The username or password you entered are not valid.");
     }
   };
 

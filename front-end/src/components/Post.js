@@ -46,13 +46,10 @@ function Post() {
       .get(`http://localhost:3000/post/${songArtist}/${songTitle}/${username}`)
       .then((response) => {
         setSong(response.data.song);
-        console.log("song", song);
         setPost(response.data.post);
-        console.log("post", post);
 
         if (response.data.post.comments) {
           setComments([...response.data.post.comments]);
-          console.log("set comments");
         }
       })
       .catch((err) => {

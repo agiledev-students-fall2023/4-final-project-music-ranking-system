@@ -34,7 +34,6 @@ function ViewFollowing() {
       .get(`http://localhost:3000/view-following/${userId}`)
       .then((response) => {
         setFollowing(response.data);
-        console.log("following", userFollowing);
       })
       .catch((err) => {
         console.log("Error fetching data:", err);

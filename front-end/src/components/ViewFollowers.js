@@ -34,16 +34,13 @@ function ViewFollowers() {
       .get(`http://localhost:3000/view-followers/${userId}`)
       .then((response) => {
         setFollowers(response.data);
-        console.log("followers", response.data);
       })
       .catch((err) => {
         console.log("Error fetching data:", err);
       });
   }, [userId]);
 
-  useEffect(() => {
-    console.log("set followers", userFollowers);
-  }, [userFollowers]);
+  useEffect(() => {}, [userFollowers]);
 
   if (!userFollowers || userFollowers.length === 0) {
     return (

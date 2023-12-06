@@ -46,17 +46,13 @@ router.post("/:songArtist/:songTitle/save", async (req, res) => {
 
     song.posts.push(newPost);
     song.numReviews++;
-    console.log("before" + song.rating);
 
     song.rating = (
       (song.rating * (song.numReviews - 1) + newPost.rating) /
       song.numReviews
     ).toFixed(1);
 
-    console.log("after" + song.rating);
-
     await song.save();
-    console.log("AFTER AWAIT");
     res.json(newPost);
   } catch (err) {
     console.error("Error posting song review:", err);

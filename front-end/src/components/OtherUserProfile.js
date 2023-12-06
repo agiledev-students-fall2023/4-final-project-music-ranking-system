@@ -36,7 +36,6 @@ function OtherUserProfile() {
   const [followStatus, setFollowStatus] = useState();
 
   useEffect(() => {
-    console.log("UserID: ", userId);
     axios
       .get(`http://localhost:3000/other-user/${userId}`)
       .then((res) => {
@@ -60,8 +59,6 @@ function OtherUserProfile() {
         })
         .then((res) => {
           setFollowStatus(res.data.status);
-          console.log("HERE");
-          console.log(res.data.status);
         });
     }
   }, [currentuser]);
@@ -76,7 +73,6 @@ function OtherUserProfile() {
           status: followStatus,
         })
         .then((res) => {
-          console.log(res.data.status);
           setFollowStatus(res.data.status);
         });
     } catch (err) {}

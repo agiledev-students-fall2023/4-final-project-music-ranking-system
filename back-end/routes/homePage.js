@@ -14,8 +14,6 @@ router.post("/", (req, res) => {
         User.find({ _id: { $in: following } }, "activity")
           .then((users) => {
             const activities = users.map((userP) => userP.activity).flat();
-            console.log("here");
-            console.log(users);
             return res.json(activities);
           })
           .catch((err) => {
@@ -31,6 +29,5 @@ router.post("/", (req, res) => {
       res.status(500).send("Internal Server Error");
     });
 });
-
 
 module.exports = router;

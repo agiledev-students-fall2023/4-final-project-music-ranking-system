@@ -9,7 +9,6 @@ function Settings() {
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
   const jwtToken = localStorage.getItem("token"); // the JWT token, if we have already received one and stored it in localStorage
-  // console.log(`JWT token: ${jwtToken}`); // debugging
 
   const [response, setResponse] = useState({}); // we expect the server to send us a simple object in this case
   const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true); // if we already have a JWT token in local storage, set this to true, otherwise false
@@ -73,7 +72,6 @@ function Settings() {
     } catch (error) {
       if (error.response.status === 409) {
         setMessage(error.response.data.msg);
-        console.log(error);
         setUsernameChange("");
         setPasswordChange("");
       } else {

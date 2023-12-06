@@ -10,7 +10,6 @@ router.get("/:username", async (req, res) => {
     User.findOne({ username: user_to_find })
       .then((user) => {
         if (user) {
-          console.log(user);
           res.json(user);
         } else {
           res.send("User not found");
@@ -32,17 +31,13 @@ router.post("/save", async (req, res) => {
     const passwordChange = req.body.passwordChange;
 
     const alreadyExists = await User.findOne({ username: usernameChange });
-    console.log(alreadyExists);
     if (alreadyExists != null) {
-      console.log("here");
       return res.status(409).json({
         msg: "This username already exists",
       });
     }
-    console.log("AFter");
     const user = await User.findOne({ username: username });
     if (!user) {
-      console.log("User not found");
       return res.status(404).json({
         newUser: usernameChange,
         msg: "User not found",
