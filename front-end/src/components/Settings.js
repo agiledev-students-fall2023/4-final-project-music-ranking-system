@@ -3,9 +3,11 @@ import { Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import "../css/Settings.css";
 import Nav from "./Nav";
+import { set } from "mongoose";
 
 function Settings() {
   const [username, setUsername] = useState("");
+  const [message, setMessage] = useState("");
   const jwtToken = localStorage.getItem("token"); // the JWT token, if we have already received one and stored it in localStorage
   // console.log(`JWT token: ${jwtToken}`); // debugging
 
@@ -39,6 +41,7 @@ function Settings() {
     localStorage.removeItem("token");
     navigate("/");
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
     try {
@@ -55,13 +58,27 @@ function Settings() {
           },
         }
       );
-      // console.log("Response:", response); // Log the entire response
-      // console.log("HEREEE");
-      setUsername(response.data.newUser);
-      setUsernameChange("");
-      setPasswordChange("");
+
+      const status = response.status;
+      const responseData = response.data;
+
+      if (status === 201) {
+        setUsername(responseData.newUser);
+        setMessage(responseData.msg);
+        setUsernameChange("");
+        setPasswordChange("");
+      } else {
+        console.error(`Unexpected status code: ${status}`);
+      }
     } catch (error) {
-      console.log("Error:", error);
+      if (error.response.status === 409) {
+        setMessage(error.response.data.msg);
+        console.log(error);
+        setUsernameChange("");
+        setPasswordChange("");
+      } else {
+        console.error("Error:", error);
+      }
     }
   };
 
@@ -108,6 +125,7 @@ function Settings() {
               <div>
                 <input class="button" type="submit" value="Save" />
               </div>
+              {message && <h1>{message}</h1>}
               <br />
               <button type="button" onClick={(e) => logout(e)}>
                 Logout
