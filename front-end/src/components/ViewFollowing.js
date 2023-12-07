@@ -12,7 +12,7 @@ function ViewFollowing() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/protected`, {
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/protected`, {
         headers: { Authorization: `JWT ${jwtToken}` },
       })
       .then((res) => {
@@ -31,7 +31,7 @@ function ViewFollowing() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/view-following/${userId}`)
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/view-following/${userId}`)
       .then((response) => {
         setFollowing(response.data);
         console.log("following", userFollowing);

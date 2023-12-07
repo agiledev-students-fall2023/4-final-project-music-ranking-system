@@ -12,7 +12,7 @@ function ViewFollowers() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/protected`, {
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/protected`, {
         headers: { Authorization: `JWT ${jwtToken}` },
       })
       .then((res) => {
@@ -31,7 +31,7 @@ function ViewFollowers() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/view-followers/${userId}`)
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/view-followers/${userId}`)
       .then((response) => {
         setFollowers(response.data);
         console.log("followers", response.data);

@@ -14,9 +14,10 @@ export default function LandingFeed() {
 
   // try to load the protected data from the server when this component first renders
   useEffect(() => {
+    console.log(`${process.env.REACT_APP_SERVER_HOSTNAME}`)
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get(`http://localhost:3000/protected`, {
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/protected`, {
         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
       })
       .then((res) => {
@@ -36,13 +37,13 @@ export default function LandingFeed() {
     // if logged in, display homepage feed
     if (isLoggedIn) {
       axios
-        .post("http://localhost:3000/", { username: username })
+        .post(`${process.env.REACT_APP_SERVER_HOSTNAME}`, { username: username })
         .then((res) => 
         {
           if (res.data.length == 0) 
           {
             axios
-              .get("http://localhost:3000/landingFeed/topSongs")
+              .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/landingFeed/topSongs`)
               .then((response) => 
               {
                 setReviewObject(response.data);
@@ -60,7 +61,7 @@ export default function LandingFeed() {
     // otherwise, display landing feed
     else {
       axios
-        .get("http://localhost:3000/landingFeed/topSongs")
+        .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/landingFeed/topSongs`)
         .then((res) => 
         {
           setReviewObject(res.data);
