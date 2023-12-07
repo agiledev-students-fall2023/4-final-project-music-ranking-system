@@ -1,19 +1,41 @@
 # Project Repository
 
-This repository will be used for team projects.
+### Project Description
+- Product Vision Statement: Free expression for every music lover. 
 
-Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
+**[GlassTune!](https://king-prawn-app-i4vu7.ondigitalocean.app/)** is a music ranking app that allows users to view songs and leave rating and comments about their thoughts. Users are allowed to create accounts and choose to log in and log out. They can also search for individual songs that they want to rate as well as look at the current reviews for that song. Users can also comment under these posts or create a post of their own. **GlassTune!** also allows for people to view other profiles to see what other users have posted and commented. You can even follow your friends! The goal of our product is to create a community of users where they can actively share their thoughts on songs as well as see and communicate with other people's views. This allows users to not only learn more about songs they might not have heard yet but also receive opinions from other users that may align or clash with their own thoughts.
 
-1. See the [App Map & Wireframes](instructions-0a-app-map-wireframes.md) and [Prototyping](./instructions-0b-prototyping.md) instructions for the requirements of the initial user experience design of the app.
+### Deployed Link To Our Project
+[Link to GlassTune!](https://king-prawn-app-i4vu7.ondigitalocean.app/)
 
-1. Delete the contents of this file and replace with the contents of a proper README.md, as described in the [project setup instructions](./instructions-0c-project-setup.md)
+### Project History and Contribution
+As frequent users of Spotify, we found ourselves wanting to learn more about our friends' opinions on the same songs we listen to. When comparing albums, we would each have different rankings for our favorite songs, and realized that having an app that would allow for us to input this and view other people’s rankings would help make the music listening experience even more interactive.
 
-1. See the [Sprint Planning instructions](instructions-0d-sprint-planning.md) for the requirements of Sprint Planning for each Sprint.
+### Team Members
+ - [Athena Leong](https://github.com/aleong2002)
+ - [Jaylyn Bido](https://github.com/jaylynb26)
+ - [Richard Li](https://github.com/Silver1793)
+ - [Amber Li](https://github.com/al6862)
+ - [Gayatri Rithe](https://github.com/gayatririthe)
 
-1. See the [Front-End Development instructions](./instructions-1-front-end.md) for the requirements of the initial Front-End Development.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for information on project contribution.
 
-1. See the [Back-End Development instructions](./instructions-2-back-end.md) for the requirements of the initial Back-End Development.
+### Additional Links
+- [SpotifyAPI](https://developer.spotify.com/documentation/web-api)
 
-1. See the [Database Integration instructions](./instructions-3-database.md) for the requirements of integrating a database into the back-end.
+### Project Building/Testing Instructions
+#### To run front-end...
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- use `npm install` and `npm install react`, then `npm start` in the project directory `cd front-end` so the front-end app runs.
+- open [http://localhost:3001](http://localhost:3001) to view the web app in your browser. The page will reload when you make changes.
+- create an account, or use a valid log in to access the full app's functionality
+- use `npm test` for testing
 
-1. See the [Deployment instructions](./instructions-4-deployment.md) for the requirements of deploying an app.
+#### To run and test back-end...
+- use `npm install`, then `npm start` in the project directory `cd back-end` for the back-end to run
+- be sure to use `npm install c8 --save-dev`, `npm install mocha chai --save-dev`, `npm install mongoose`, and `npm install express`
+- use `npm test` to run the c8 module and mocha/chai unit tests. results and code coverage will appear in the terminal
+- open [http://localhost:3001](http://localhost:3001) to view the complete app in your browser.
+
+### Deployment
+This app is deployed via a Digital Ocean droplet.

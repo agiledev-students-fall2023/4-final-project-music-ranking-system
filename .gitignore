@@ -39,6 +39,9 @@ Thumbs.db
 # Typical Node.js artifacts #
 #############################
 
+# NPM lock file - while this is often included in real projects, for practice projects it's best to ignore it to not artificially bloat the git log statistics of lines of code added, removed, etc.
+package-lock.json
+
 # Logs
 logs
 *.log
@@ -124,3 +127,9 @@ typings/
 ## Jekyll artifacts
 **/.jekyll-cache
 **/_site/
+
+CLIENT_ID = d002e350b9f94c77abd36d3d3559bf93
+CLIENT_SECRET = 8029c84a0ac348b98903d4f7da4df331
+MONGODB_URI="mongodb+srv://Richardli1793:Dog12345@cluster0.dljnw1q.mongodb.net/"
+JWT_SECRET=knowledge.kitchen
+JWT_EXP_DAYS=60

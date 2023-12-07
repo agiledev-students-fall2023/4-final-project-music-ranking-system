@@ -1,0 +1,50 @@
+.FeedComponent {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    background-color: #fff;
+    /* margin-bottom: 40px; */
+    margin-bottom: 5%;
+  }
+  
+  .FeedComponent h1 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+  
+  .FeedComponent img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  .FeedComponent h2 {
+    font-size: 1.5em;
+    margin-top: 10px;
+    font-family: 'Quicksand', sans-serif;
+  }
+  
+  .FeedComponent p {
+    font-size: 1em;
+    margin-top: 10px;
+    color: #555;
+    font-family: 'Quicksand', sans-serif;
+  }
+  
+  .FeedComponent a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .FeedComponent a:hover {
+    color: #C2AFF0;
+    font-weight: bold;
+  }
+  
+  

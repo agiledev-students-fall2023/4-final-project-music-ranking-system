@@ -1,0 +1,36 @@
+.ViewFollowing {
+    border-top: 1px #ccc solid;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.following {
+    margin: 15px;
+}
+
+.profile {
+    margin: 15px;
+}
+
+.profile a {
+    text-decoration: none;
+}
+
+.profile a:visited {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.profile a:hover {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.following-entry a {
+    text-decoration: none;
+}
+
+.following-entry a:hover {
+    text-decoration: none;
+    color: blueviolet;
+}

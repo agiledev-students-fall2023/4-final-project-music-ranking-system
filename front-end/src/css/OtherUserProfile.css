@@ -1,0 +1,62 @@
+
+.ProfileReview {
+    max-width: 800px;
+    margin: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-top: 80px;
+    
+  }
+  
+  .ProfileReview h1 {
+    font-size: 2em;
+  }
+  
+  .FollowingDashboard {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .FollowingDashboard button p {
+    font-family: 'Quicksand', sans-serif;
+  }
+  
+  .activity {
+    display: inline-block;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 15px;
+    max-width: 400px;
+  }
+  
+  .activity h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .activity-entry {
+    margin-bottom: 20px;
+  }
+  
+  .activity-entry p {
+    font-size: 1em;
+    margin: 5px 0;
+  }
+  
+  .activity-entry a {
+    color: #333;
+  }
+  
+  .activity-entry a:hover {
+    text-decoration: underline;
+  }
+    
