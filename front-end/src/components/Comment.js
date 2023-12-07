@@ -19,7 +19,7 @@ function Comment() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}comments/${songArtist}/${songTitle}/${username}`)
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/comments/${songArtist}/${songTitle}/${username}`)
       .then(response => {
         const comments = response.data;
         console.log(comments);
