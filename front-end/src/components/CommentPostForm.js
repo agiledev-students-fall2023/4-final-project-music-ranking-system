@@ -15,7 +15,7 @@ const CommentPostForm = ({setShowForm, addCommentToList, songArtist, songTitle})
 
     // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
     axios
-      .post(`http://localhost:3000/comment/${songArtist}/${songTitle}/${username}/save`, {
+      .post(`${process.env.REACT_APP_SERVER_HOSTNAME}/comment/${songArtist}/${songTitle}/${username}/save`, {
         username: username,
         comment: comment,
       })

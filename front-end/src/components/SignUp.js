@@ -32,7 +32,7 @@ const SignUp = props => {
       };
       // send a POST request with the data to the server api to authenticate
       const response = await axios.post(
-        `http://localhost:3000/auth/signup`,
+        `${process.env.REACT_APP_SERVER_HOSTNAME}/auth/signup`,
         requestData
       );
       // store the response data into s the data state variable

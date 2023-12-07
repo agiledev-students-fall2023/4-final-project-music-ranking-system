@@ -12,7 +12,7 @@ function CommentDisplay( {songName} ) {
 
   const fetchComments = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/comments/${songName}`);
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_HOSTNAME}/comments/${songName}`);
       setComments(response.data);
       console.log(comments);
     } catch (Error) {

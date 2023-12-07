@@ -15,7 +15,7 @@ function OtherUserProfile() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get(`http://localhost:3000/protected`, {
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/protected`, {
         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
       })
       .then((res) => {
@@ -38,7 +38,7 @@ function OtherUserProfile() {
   useEffect(() => {
     console.log("UserID: ", userId);
     axios
-      .get(`http://localhost:3000/other-user/${userId}`)
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/other-user/${userId}`)
       .then((res) => {
         console.log("Received data:", res.data);
         setUser(res.data);
@@ -52,7 +52,7 @@ function OtherUserProfile() {
   useEffect(() => {
     if (currentuser) {
       axios
-        .get("http://localhost:3000/follow", {
+        .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/follow`, {
           params: {
             userId: userId,
             currentuser: currentuser,
@@ -70,7 +70,7 @@ function OtherUserProfile() {
     // console.log("HERE1");
     try {
       axios
-        .post("http://localhost:3000/follow", {
+        .post(`${process.env.REACT_APP_SERVER_HOSTNAME}/follow`, {
           userId: userId,
           currentuser: currentuser,
           status: followStatus,

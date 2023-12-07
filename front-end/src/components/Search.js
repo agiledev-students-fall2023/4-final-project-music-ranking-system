@@ -14,7 +14,7 @@ export default function Search() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get(`http://localhost:3000/protected`, {
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/protected`, {
         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
       })
       .then(res => {
@@ -37,7 +37,7 @@ export default function Search() {
     try {
       if (searchType == "song") {
         const response = await axios.get(
-          `http://localhost:3000/search/song?query=${search}`
+          `${process.env.REACT_APP_SERVER_HOSTNAME}/search/song?query=${search}`
         );
         const res = response.data.tracks[0];
         const temp = {
@@ -48,7 +48,7 @@ export default function Search() {
         setData([temp]);
       } else if (searchType == "artist") {
         const response = await axios.get(
-          `http://localhost:3000/search/artist?query=${search}`
+          `${process.env.REACT_APP_SERVER_HOSTNAME}/search/artist?query=${search}`
         );
         const res = response.data.tracks;
         console.log(res);

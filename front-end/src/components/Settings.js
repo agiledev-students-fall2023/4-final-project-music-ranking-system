@@ -19,7 +19,7 @@ function Settings() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get(`http://localhost:3000/protected`, {
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/protected`, {
         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
       })
       .then((res) => {
@@ -45,7 +45,7 @@ function Settings() {
     e.preventDefault(); // Prevents the default form submission behavior
     try {
       const response = await axios.post(
-        "http://localhost:3000/myProfile/save",
+        `${process.env.REACT_APP_SERVER_HOSTNAME}/myProfile/save`,
         {
           username: username,
           usernameChange: usernameChange,

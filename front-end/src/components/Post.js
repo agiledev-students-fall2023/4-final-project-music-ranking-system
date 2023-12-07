@@ -17,7 +17,7 @@ function Post() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get(`http://localhost:3000/protected`, {
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/protected`, {
         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
       })
       .then((res) => {
@@ -43,7 +43,7 @@ function Post() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/post/${songArtist}/${songTitle}/${username}`)
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/post/${songArtist}/${songTitle}/${username}`)
       .then((response) => {
         setSong(response.data.song);
         console.log("song", song);

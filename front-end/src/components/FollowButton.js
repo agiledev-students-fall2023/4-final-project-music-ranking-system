@@ -13,7 +13,7 @@ const FollowForm = ({addFollowertoFollowers, userId, addFollowertoFollowing}) =>
     useEffect(() => {
       // send the request to the server api, including the Authorization header with our JWT token in it
       axios
-        .get(`http://localhost:3000/protected`, {
+        .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/protected`, {
           headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
         })
         .then(res => {
@@ -37,7 +37,7 @@ const FollowForm = ({addFollowertoFollowers, userId, addFollowertoFollowing}) =>
 
         // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
         axios
-        .post(`http://localhost:3000/other-user/${userId}/${currentuser}/save`, {
+        .post(`${process.env.REACT_APP_SERVER_HOSTNAME}/other-user/${userId}/${currentuser}/save`, {
             currentuser: currentuser,
             userId: userId,
         })
