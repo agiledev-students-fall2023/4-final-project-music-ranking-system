@@ -76,7 +76,7 @@ export default function LandingFeed() {
   return (
     <>
       {isLoggedIn ? (
-        <div className="HomepageFeed">
+        <div className="LandingFeed">
           {reviewObject.map((item, index) => (
             <FeedComponent
               username={item.username}
